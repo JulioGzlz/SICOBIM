@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sicobimF"
+    }
+  },
+  "defaultProject": "sicobimF",
+  "cli": {
+    "analytics": false
+  }
 }
