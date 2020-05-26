@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Julio Cesar Gonzalez\\Documents\\SICOBIM\\DESAROLLO\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {}
+    "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Julio Cesar Gonzalez\\Documents\\SICOBIM\\DESAROLLO\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {
+    "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Julio Cesar Gonzalez\\Documents\\SICOBIM\\DESAROLLO\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
         "projectName": "SICOBIM_B",
-        "projectPath": "C:\\Users\\Julio Cesar Gonzalez\\Documents\\SICOBIM\\DESAROLLO\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
-        "packagesPath": "C:\\Users\\Julio Cesar Gonzalez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Julio Cesar Gonzalez\\Documents\\SICOBIM\\DESAROLLO\\BACK\\SICOBIM_B\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Julio Cesar Gonzalez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -41,6 +42,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
