@@ -24,15 +24,19 @@
     ".NETCoreApp,Version=v3.1": {
       "SICOBIM_B/1.0.0": {
         "dependencies": {
+          "AutoMapper": "9.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "EntityFramework": "6.4.4",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "3.1.4",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.4",
           "Microsoft.EntityFrameworkCore": "3.1.4",
           "Microsoft.EntityFrameworkCore.Design": "3.1.4",
+          "Microsoft.Extensions.DependencyInjection": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "3.1.3",
           "System.IdentityModel.Tokens.Jwt": "6.6.0",
+          "linq2db": "2.9.8",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -159,7 +163,7 @@
           "System.Console.Reference": "4.1.2.0",
           "System.Core": "4.0.0.0",
           "System.Data.Common": "4.2.2.0",
-          "System.Data.DataSetExtensions": "4.0.1.0",
+          "System.Data.DataSetExtensions.Reference": "4.0.1.0",
           "System.Data": "4.0.0.0",
           "System.Diagnostics.Contracts": "4.0.4.0",
           "System.Diagnostics.Debug.Reference": "4.1.2.0",
@@ -309,6 +313,21 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/7.0.0": {
+        "dependencies": {
+          "AutoMapper": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "EntityFramework/6.4.4": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -421,6 +440,22 @@
         },
         "compile": {
           "lib/netstandard2.0/IdentityServer4.Storage.dll": {}
+        }
+      },
+      "linq2db/2.9.8": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.7.0",
+          "System.Data.DataSetExtensions": "4.5.0",
+          "System.Data.SqlClient": "4.8.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/linq2db.dll": {
+            "assemblyVersion": "2.9.8.0",
+            "fileVersion": "2.9.8.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.0/linq2db.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.7": {
@@ -1777,6 +1812,7 @@
           "System.Text.Encoding": "4.3.0"
         }
       },
+      "System.Data.DataSetExtensions/4.5.0": {},
       "System.Data.SqlClient/4.8.1": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -3144,7 +3180,7 @@
         },
         "compileOnly": true
       },
-      "System.Data.DataSetExtensions/4.0.1.0": {
+      "System.Data.DataSetExtensions.Reference/4.0.1.0": {
         "compile": {
           "System.Data.DataSetExtensions.dll": {}
         },
@@ -3921,6 +3957,13 @@
       "path": "automapper/9.0.0",
       "hashPath": "automapper.9.0.0.nupkg.sha512"
     },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-szI4yeRIM7GWe9JyekW0dKYehPB0t6M+I55fPeCebN6PhS7zQZa0eG3bgOnOx+eP3caSNoE7KEJs2rk7MLsh8w==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/7.0.0",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512"
+    },
     "EntityFramework/6.4.4": {
       "type": "package",
       "serviceable": true,
@@ -3969,6 +4012,13 @@
       "sha512": "sha512-hmUHGKiwrhy9o7Zz9gkEOPyZIM0mFgdR9vTWTjKgFdBvZ/24eOtpPNDtovNLIQz6kNnzaV2jgR3dANOIu+SxZg==",
       "path": "identityserver4.storage/3.0.0",
       "hashPath": "identityserver4.storage.3.0.0.nupkg.sha512"
+    },
+    "linq2db/2.9.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v/+lJZPNIVrVyj6+RlXdQguJ/5SfGW1SFiH67W2jJJ5ONouG8lTwQbauzAEt4frlWfcKhgZvO5FdVL8CGV9c9A==",
+      "path": "linq2db/2.9.8",
+      "hashPath": "linq2db.2.9.8.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.7": {
       "type": "package",
@@ -4683,6 +4733,13 @@
       "sha512": "sha512-DHDrIxiqk1h03m6khKWV2X8p/uvN79rgSqpilL6uzpmSfxfU5ng8VcPtW4qsDsQDHiTv6IPV9TmD5M/vElPNLg==",
       "path": "system.console/4.3.0",
       "hashPath": "system.console.4.3.0.nupkg.sha512"
+    },
+    "System.Data.DataSetExtensions/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-221clPs1445HkTBZPL+K9sDBdJRB8UN8rgjO3ztB0CQ26z//fmJXtlsr6whGatscsKGBrhJl5bwJuKSA8mwFOw==",
+      "path": "system.data.datasetextensions/4.5.0",
+      "hashPath": "system.data.datasetextensions.4.5.0.nupkg.sha512"
     },
     "System.Data.SqlClient/4.8.1": {
       "type": "package",
@@ -5741,7 +5798,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Data.DataSetExtensions/4.0.1.0": {
+    "System.Data.DataSetExtensions.Reference/4.0.1.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

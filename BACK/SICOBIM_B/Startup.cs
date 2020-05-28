@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -18,17 +19,23 @@ using SICOBIM_B.Data;
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 using SICOBIM_B.Services;
+using LinqToDB;
 
 namespace SICOBIM_B
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        private readonly IWebHostEnvironment _env;
+        private readonly IConfiguration _configuration;
+
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
-            Configuration = configuration;
+
+            _env = env;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -36,16 +43,19 @@ namespace SICOBIM_B
 
             services.AddCors();
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            services.AddDbContext<ApplicationDbContext>();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
-                Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
+            //    _configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             // configure jwt authentication
@@ -58,6 +68,24 @@ namespace SICOBIM_B
             })
             .AddJwtBearer(x =>
             {
+                x.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        var userService =
+                            context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userId = int.Parse(context.Principal.Identity.Name);
+                        var user = userService.GetById(userId);
+                        if (user == null)
+                        {
+
+                            // return unauthorized if user no longer exists
+                            context.Fail("Unauthorized");
+
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
@@ -67,6 +95,7 @@ namespace SICOBIM_B
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+
             });
 
             // configure DI for application services
