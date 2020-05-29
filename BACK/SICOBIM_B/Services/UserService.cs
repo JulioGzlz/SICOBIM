@@ -91,6 +91,7 @@ namespace SICOBIM_B.Services
 
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            ByteArrayToString(passwordHash);
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
@@ -111,6 +112,11 @@ namespace SICOBIM_B.Services
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
+        }
+
+        public static string  ByteArrayToString ( byte [] ba )
+        {
+           return BitConverter.ToString(ba).Replace("-","");
         }
     }
 }

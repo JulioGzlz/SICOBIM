@@ -9,13 +9,13 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { AlertComponent } from './_components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    HomeComponent,
-    LoginComponent
+    AlertComponent,
+    HomeComponent    
   ],
   imports: [
     BrowserModule,
