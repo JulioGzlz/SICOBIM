@@ -10,8 +10,8 @@ using SICOBIM_B.Data;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200528193012_ej_04")]
-    partial class ej_04
+    [Migration("20200530232449_ej_05")]
+    partial class ej_05
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,9 +21,33 @@ namespace SICOBIM_B.Migrations
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("SICOBIM_B.Entities.CatRol", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("UsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("rol")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("catRol");
+                });
+
             modelBuilder.Entity("SICOBIM_B.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -43,9 +67,9 @@ namespace SICOBIM_B.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("users");
+                    b.ToTable("usuarios");
                 });
 #pragma warning restore 612, 618
         }

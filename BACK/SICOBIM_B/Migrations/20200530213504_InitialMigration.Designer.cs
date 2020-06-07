@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B.Data;
@@ -9,39 +10,16 @@ using SICOBIM_B.Data;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200530213504_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("SICOBIM_B.Entities.CatRol", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("UsuarioAlta")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("activo")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("fechaAlta")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("rol")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("catRol");
-                });
 
             modelBuilder.Entity("SICOBIM_B.Entities.User", b =>
                 {

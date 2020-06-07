@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {}
+    "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {
+    "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+        "projectUniqueName": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
         "projectName": "SICOBIM_B",
-        "projectPath": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
-        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\SALUD\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\obj\\",
+        "projectPath": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+        "packagesPath": "C:\\Users\\sr_la\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sr_la\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -116,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

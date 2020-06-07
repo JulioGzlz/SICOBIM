@@ -51,7 +51,7 @@ namespace SICOBIM_B.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -64,7 +64,7 @@ namespace SICOBIM_B.Controllers
             return Ok(new
 
             {
-                Id = user.Id,
+                Id = user.id,
                 Username = user.Username,
                 FirstName = user.FirstName,
                 LastName = user.LastName,

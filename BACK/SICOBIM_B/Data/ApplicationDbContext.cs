@@ -29,5 +29,7 @@ namespace SICOBIM_B.Data
 
         public DbSet<User> users { set; get; }
 
+        public DbSet<CatRol> catRol { set; get; }
+
     }
 }
