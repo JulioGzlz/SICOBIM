@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User, Role } from './_models';
-import { AuthenticationService } from './_services';
+import { User } from './_models';
+import { AuthenticationService } from './_services/authentication.service';
 
 @Component({
   selector: 'app',
@@ -12,10 +12,6 @@ export class AppComponent {
 
   constructor(private authenticationService: AuthenticationService) {
       this.authenticationService.user.subscribe(x => this.user = x);
-  }
-
-  get isAdmin() {
-      return this.user && this.user.role === Role.Admin;
   }
 
   logout() {
