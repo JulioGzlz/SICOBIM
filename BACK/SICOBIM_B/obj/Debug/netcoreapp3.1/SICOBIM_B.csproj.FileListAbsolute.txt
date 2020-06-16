@@ -179,6 +179,12 @@ C:\Users\Dell\Documents\SALUD\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\
 C:\Users\Dell\Documents\SALUD\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.dll
 C:\Users\Dell\Documents\SALUD\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.pdb
 C:\Users\Dell\Documents\SALUD\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.csprojAssemblyReference.cache
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\staticwebassets\SICOBIM_B.StaticWebAssets.Manifest.cache
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\staticwebassets\SICOBIM_B.StaticWebAssets.xml
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfoInputs.cache
+C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfo.cs
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -332,12 +338,6 @@ C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\staticwebassets\SICOBIM_B.StaticWebAssets.Manifest.cache
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\staticwebassets\SICOBIM_B.StaticWebAssets.xml
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfoInputs.cache
-C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfo.cs
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.RazorTargetAssemblyInfo.cache
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.csproj.CopyComplete
 C:\Users\sr_la\Documents\SICOBIM\controldebienes\desarrollo\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.dll
