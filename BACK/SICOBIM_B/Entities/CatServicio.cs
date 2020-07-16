@@ -11,9 +11,10 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
         public string servicio { get; set; }
+        public String descripcion { get; set; }
         public int usuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
-        public int usuarioMod { get; set; }
+        public int idusuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
@@ -24,11 +25,6 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        public ICollection<TblResguardatarios> tblResguardatarios
-        {
-            get;
-            set;
-        }
-
+       
     }
 }

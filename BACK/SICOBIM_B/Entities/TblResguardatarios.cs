@@ -11,9 +11,12 @@ namespace SICOBIM_B.Entities
         public string nombre { get; set; }
         public string apellidoUno { get; set; }
         public string apellidoDos { get; set; }
-
+        public string RFC { get; set; }
+        public string plaza { get; set; }
+        public string numeroempleado { get; set; }
+        public string cargo { get; set; }
         public int idServicio { get; set; }
-        public CatServicio CatServicio
+        public CatServicio CatServicio//duda
         {
             set;
             get;
