@@ -8633,23 +8633,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sr_la\\.nuget\\packages\\": {},
+    "C:\\Users\\julio\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+      "projectUniqueName": "C:\\Users\\julio\\Desktop\\SICOBIM\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
       "projectName": "SICOBIM_B",
-      "projectPath": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
-      "packagesPath": "C:\\Users\\sr_la\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sr_la\\Documents\\SICOBIM\\controldebienes\\desarrollo\\SICOBIM\\BACK\\SICOBIM_B\\obj\\",
+      "projectPath": "C:\\Users\\julio\\Desktop\\SICOBIM\\SICOBIM\\BACK\\SICOBIM_B\\SICOBIM_B.csproj",
+      "packagesPath": "C:\\Users\\julio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\julio\\Desktop\\SICOBIM\\SICOBIM\\BACK\\SICOBIM_B\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\sr_la\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\julio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -8747,7 +8747,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   },

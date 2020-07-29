@@ -5,17 +5,19 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    public class cat_horario
+    public class CatTipoEntrada
     {
         public int id { get; set; }
-        public string horario { get; set; }
-        public int usuarioAlta { get; set; }
+
+        public String tipoentrada { get; set; }
+        public String descripcion { get; set; }
+        public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
+        public bool activo { get; set; }
 
-
-        public ICollection<User> users
+        public ICollection<TblBienes> tblBienes
         {
             get;
             set;

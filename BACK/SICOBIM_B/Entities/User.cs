@@ -46,7 +46,7 @@ namespace SICOBIM_B.Entities
             get;
         }
         public int idTipoBien { get; set; }
-        public CatTipoDeBienes CatTipoDeBienes
+        public CatTipoDeBien CatTipoDeBienes
         {
             set;
             get;
