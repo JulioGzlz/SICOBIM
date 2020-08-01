@@ -30,12 +30,17 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public ICollection<CatArea> catArea
+        public ICollection<TblResguardatarios> tblResguardatarios
         {
             get;
             set;
         }
-        public ICollection<CatServicio>  catServicio
+        public ICollection<TblBienes>  tblBienes
+        {
+            get;
+            set;
+        }
+        public ICollection<User> users
         {
             get;
             set;

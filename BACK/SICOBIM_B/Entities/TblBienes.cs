@@ -11,14 +11,14 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
         //FK
-        public int numerofederalizacion { get; set; }//normalizar 
+        public int numerofederalizacion { get; set; } 
         public int numeroInventario { get; set; }
         public TblInventarios tblInventarios
         {
             get;
             set;
         }
-        public string descripcion { get; set; }
+      
 
         public string marca { get; set; }
         public string modelo { get; set; }
@@ -39,13 +39,37 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+        public int idtipopartida { get; set; }
+        public CatTipoPartida catTipoPartida
+        {
+            get;
+            set;
+        }
         public string claveCambs { get; set; }
         public string claveSaica { get; set; }
         public double IVA { get; set; }
         public double subtotal { get; set; }
         public double costoTotal { get; set; }
-        //FK
-        public int idServicio { get; set; }//duda      
+        public int identrada { get; set; }
+        public CatTipoEntrada catTipoEntrada
+        {
+            get;
+            set;
+        }
+        public int idunidaddestino { get; set; }
+        public CatUnidadDestino catUnidadDestino
+        {
+            get;
+            set;
+        }
+
+
+        public int idServicio { get; set; }
+        public TblAreaServicio tblAreaServicio
+        {
+            get;
+            set;
+        }
         public int idResguardatario { get; set; }
         public TblResguardatarios tblResguardatarios
         {
@@ -74,6 +98,11 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
+        public ICollection<TblBienes> tblBienes
+        {
+            get;
+            set;
+        }
     }
 }
 

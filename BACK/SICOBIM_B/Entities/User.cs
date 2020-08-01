@@ -15,48 +15,58 @@ namespace SICOBIM_B.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
-        public string correo { get; set; }
-
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+        public string RFC { get; set; }
+        public string plaza { get; set; }
+        public string numeroempleado { get; set; }
+        public string cargo { get; set; }
         public int idSexo { get; set; }
         public CatSexo catSexo
         {
             set;
             get;
         }
+        public int idturno { get; set; }
+        public CatTurno catTurno
+        {
+            set;
+            get;
+        }
+        public int idtipocontrato { get; set; }
+        public CatTipoContrato catTipoContrato
+        {
+            set;
+            get;
+        }
 
-        //public string Password { get; set; }
-        //public string Role { get; set; }
-        //public string Token { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
-        //Foreign_key cat_horario
-
-        //one-to-many  (uno a muchos)
         public int idServicio { get; set; }
-        public CatServicio CatServicio
+        public TblAreaServicio tblAreaServicio
         {
             set;
             get;
         }
-        //one-to-many  (uno a muchos)
-        public int idRol { get; set; }
-        public CatRol catRol
+        public int idrol { get; set; }
+        public CatRol CatRol
         {
             set;
             get;
         }
-        public int idTipoBien { get; set; }
-        public CatTipoDeBien CatTipoDeBienes
+        public int idestatus { get; set; }
+        public CatEstatus catEstatus
         {
             set;
             get;
-        }      
+        }
+
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
-    
+
+       
+      
 
     }
 }

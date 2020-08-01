@@ -20,11 +20,11 @@ namespace SICOBIM_B.Entities
 
 
 
-        public ICollection<User> users
+        public ICollection<TblAreaServicio> tblAreaServicios
         {
             get;
             set;
         }
-       
+
     }
 }

@@ -23,5 +23,10 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+        public ICollection<User> users
+        {
+            get;
+            set;
+        }
     }
 }

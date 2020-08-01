@@ -17,7 +17,7 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public ICollection<TblBienes> tblBienes
+        public ICollection<TblSalidaBien> tblsalidaBien
         {
             get;
             set;
