@@ -491,7 +491,6 @@ C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\ru
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.csprojAssemblyReference.cache
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfoInputs.cache
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.AssemblyInfo.cs
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.csproj.CoreCompileInputs.cache
@@ -504,3 +503,4 @@ C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\st
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.dll
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.pdb
 C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.genruntimeconfig.cache
+C:\Users\julio\Desktop\SICOBIM\SICOBIM\BACK\SICOBIM_B\obj\Debug\netcoreapp3.1\SICOBIM_B.csprojAssemblyReference.cache

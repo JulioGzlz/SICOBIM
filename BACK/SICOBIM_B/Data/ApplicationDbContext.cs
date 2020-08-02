@@ -26,10 +26,21 @@ namespace SICOBIM_B.Data
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             //options.UseSqlServer(Configuration.GetConnectionString("WebApiDatabase"));
         }
+        protected override void OnModelCreating( ModelBuilder modelBuilder)
+        {
+            
+        modelBuilder.Entity<TblConfPerfil>()
+                .HasKey(m => new
+                {
+                    m.CatRol,
+                    m.CatPermiso
+                });
+
+        }
 
         public DbSet<User> users { set; get; }
 
-        public DbSet<CatRol> catRol { set; get; }
+        
 
     }
 }

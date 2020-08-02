@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
+    [Table("CatPermiso")]
     public class CatPermiso
     {
+        [Key]
         public int id { get; set; }
         public string permiso { get; set; }
         public String descripcion { get; set; }
@@ -15,11 +19,6 @@ namespace SICOBIM_B.Entities
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
-      
-        public virtual ICollection<TblConfPerfil> TblConfPerfil
-        {
-            get;
-            set;
-        }
+
     }
 }

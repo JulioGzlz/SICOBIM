@@ -47,11 +47,7 @@ namespace SICOBIM_B.Entities
             get;
         }
         public int idrol { get; set; }
-        public CatRol CatRol
-        {
-            set;
-            get;
-        }
+       
         public int idestatus { get; set; }
         public CatEstatus catEstatus
         {

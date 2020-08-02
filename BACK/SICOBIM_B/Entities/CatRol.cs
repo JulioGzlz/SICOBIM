@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
+    //[Table("CatRol")]
     public class CatRol
     {
+        [Key]
         public int id { get; set; }
         public string rol { get; set; }
         public String descripcion { get; set; }
@@ -16,16 +20,9 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
       
-        public ICollection<User> users
-        {
-            get;
-            set;
-        }
-        public virtual ICollection<TblConfPerfil> TblConfPerfil 
-        { 
-            get;
-            set; 
-        }
+        
+
+    
 
     }
 }
