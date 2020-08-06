@@ -28,19 +28,24 @@ namespace SICOBIM_B.Data
         }
         protected override void OnModelCreating( ModelBuilder modelBuilder)
         {
-            
-        modelBuilder.Entity<TblConfPerfil>()
-                .HasKey(m => new
-                {
-                    m.CatRol,
-                    m.CatPermiso
-                });
+            modelBuilder.Entity<TblConfPerfil>().HasNoKey();
+
+            //modelBuilder.Entity<TblConfPerfil>()
+            //        .HasKey(m => new
+            //        {
+
+            //            m.CatPermiso
+            //        });
+
 
         }
 
-        public DbSet<User> users { set; get; }
 
-        
+
+        public DbSet<User> users { set; get; }
+        public DbSet<TblConfPerfil> tblConfPerfil { set; get; }
+
+
 
     }
 }

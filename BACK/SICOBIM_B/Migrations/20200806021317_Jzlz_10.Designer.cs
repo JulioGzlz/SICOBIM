@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B.Data;
@@ -9,9 +10,10 @@ using SICOBIM_B.Data;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200806021317_Jzlz_10")]
+    partial class Jzlz_10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,39 +184,6 @@ namespace SICOBIM_B.Migrations
                     b.HasKey("id");
 
                     b.ToTable("CatPermiso");
-                });
-
-            modelBuilder.Entity("SICOBIM_B.Entities.CatRol", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("activo")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("descripcion")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("fechaAlta")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("fechaMod")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("idUsuarioAlta")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("idusuarioMod")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("rol")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("CatRol");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatServicio", b =>
@@ -725,15 +694,10 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("idPermiso")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("idRol")
-                        .HasColumnType("integer");
-
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasIndex("idPermiso");
-
-                    b.HasIndex("idRol");
 
                     b.ToTable("TblConfPerfil");
                 });
@@ -1107,10 +1071,6 @@ namespace SICOBIM_B.Migrations
                     b.HasOne("SICOBIM_B.Entities.CatPermiso", "CatPermiso")
                         .WithMany()
                         .HasForeignKey("idPermiso");
-
-                    b.HasOne("SICOBIM_B.Entities.CatRol", "CatRol")
-                        .WithMany()
-                        .HasForeignKey("idRol");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblResguardatarios", b =>

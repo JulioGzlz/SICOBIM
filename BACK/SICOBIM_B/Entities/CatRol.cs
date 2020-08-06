@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    //[Table("CatRol")]
+    [Table("CatRol")]
     public class CatRol
     {
         [Key]
         public int id { get; set; }
         public string rol { get; set; }
-        public String descripcion { get; set; }
+        public string descripcion { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int idusuarioMod { get; set; }
