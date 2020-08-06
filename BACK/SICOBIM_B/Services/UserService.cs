@@ -1,14 +1,17 @@
 ﻿using LinqToDB;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
 using SICOBIM_B.Data;
 using SICOBIM_B.Entities;
 using SICOBIM_B.Helpers;
+using SICOBIM_B.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,40 +19,88 @@ namespace SICOBIM_B.Services
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
+        AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress);
+        AuthenticateResponse RefreshToken(string token, string ipAddress);
+        bool RevokeToken(string token, string ipAddress);
+        IEnumerable<User> getAll();
         User GetById(int id);
         User Create(User user, string password);
-        //void Update(User user, string password = null);
-        //void Delete(int id);
+
+
+
     }
     public class UserService: IUserService
     {
 
         private ApplicationDbContext _context;
+        private readonly AppSettings _appSettings;
         public UserService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public User Authenticate(string username, string password)
+        public  AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            User objUser = new User();
+            if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))
                 return null;
+           
+            objUser.Username = model.Username;
 
-            var user = _context.users.SingleOrDefault(x => x.Username == username);
+            var user = _context.users.SingleOrDefault(x => x.Username == model.Username);
 
-            // check if username exists
-            if (user == null)
-                return null;
+            // return null if user not found
+            if (user == null) return null;
+            if (!VerifyPasswordHash(model.Password, objUser.PasswordHash, objUser.PasswordSalt)) 
+            return null;
 
-            // check if password is correct
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
+            // authentication successful so generate jwt and refresh tokens
+            var jwtToken = generateJwtToken(user);
+            var refreshToken = generateRefreshToken(ipAddress);
 
-            // authentication successful
-            return user;
+            // save refresh token
+            // save refresh token
+            user.RefreshTokens.Add(refreshToken);
+            _context.Update(user);
+            _context.SaveChanges();
 
+               return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
+
+        }
+
+        private RefreshToken generateRefreshToken(string ipAddress)
+        {
+            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+
+            {
+                var randomBytes = new byte[64];
+                rngCryptoServiceProvider.GetBytes(randomBytes);
+                return new RefreshToken
+                {
+                    Token = Convert.ToBase64String(randomBytes),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    Created = DateTime.UtcNow,
+                    CreatedByIp = ipAddress
+                };
+
+            }
+        }
+
+        private string generateJwtToken(User user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.id.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(15),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         private bool VerifyPasswordHash(string password, byte [] storedHash, byte[] storedSalt)
@@ -117,6 +168,45 @@ namespace SICOBIM_B.Services
         public static string  ByteArrayToString ( byte [] ba )
         {
            return BitConverter.ToString(ba).Replace("-","");
+        }
+
+
+
+        public AuthenticateResponse RefreshToken(string token, string ipAddress)
+        {
+            var user = _context.users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+
+            // return null if no user found with token
+            if (user == null) return null;
+
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+
+            // return null if token is no longer active
+            if (!refreshToken.IsActive) return null;
+
+            // replace old refresh token with a new one and save
+            var newRefreshToken = generateRefreshToken(ipAddress);
+            refreshToken.Revoked = DateTime.UtcNow;
+            refreshToken.RevokedByIp = ipAddress;
+            refreshToken.ReplacedByToken = newRefreshToken.Token;
+            user.RefreshTokens.Add(newRefreshToken);
+            _context.Update(user);
+            _context.SaveChanges();
+
+            // generate new jwt
+            var jwtToken = generateJwtToken(user);
+
+            return new AuthenticateResponse(user, jwtToken, newRefreshToken.Token);
+        }
+
+        public bool RevokeToken(string token, string ipAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> getAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

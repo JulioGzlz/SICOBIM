@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -20,6 +21,9 @@ using SICOBIM_B.Services;
 
 namespace SICOBIM_B.Controllers
 {
+
+   
+
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -38,42 +42,36 @@ namespace SICOBIM_B.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] AuthenticateModel model)
+        public IActionResult Authenticate([FromBody] AuthenticateRequest model)
         {
-            var user = _userService.Authenticate(model.Username, model.Password);
+            var response = _userService.Authenticate(model, ipAddress());
 
-            if (user == null)
+            if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.id.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-               SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
+            setTokenCookie(response.RefreshToken);
 
-            //retorna usuario basico con authentication token
-
-            return Ok(new
-
-            {
-                Id = user.id,
-                Username = user.Username,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Token = tokenString
-
-            });
+            return Ok(response);
 
         }
 
+        private void setTokenCookie(string token)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
+            Response.Cookies.Append("refreshToken", token, cookieOptions);
+        }
+
+        private string ipAddress()
+        {
+            if (Request.Headers.ContainsKey("X-Forwarded-For"))
+                return Request.Headers["X-Forwarded-For"];
+            else
+                return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+        }
 
         [AllowAnonymous]
         [HttpPost("register")]
@@ -96,7 +94,7 @@ namespace SICOBIM_B.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _userService.GetAll();
+            var users = _userService.getAll();
             var model = _mapper.Map<IList<UserModel>>(users);
             return Ok(model);
         }
