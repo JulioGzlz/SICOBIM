@@ -94,7 +94,7 @@ namespace SICOBIM_B.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _userService.GetAll();
+            var users = _userService.getAll();
             var model = _mapper.Map<IList<UserModel>>(users);
             return Ok(model);
         }

@@ -24,6 +24,8 @@ namespace SICOBIM_B.Services
         bool RevokeToken(string token, string ipAddress);
         IEnumerable<User> getAll();
         User GetById(int id);
+        User Create(User user, string password);
+
 
 
     }
@@ -37,12 +39,20 @@ namespace SICOBIM_B.Services
             _context = context;
         }
 
-        public User Authenticate(AuthenticateRequest model, string ipAddress)
+        public  AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            var user = _context.users.SingleOrDefault(x => x.Username ==  model.Username && x.Password == model.Password);
+            User objUser = new User();
+            if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))
+                return null;
+           
+            objUser.Username = model.Username;
+
+            var user = _context.users.SingleOrDefault(x => x.Username == model.Username);
 
             // return null if user not found
             if (user == null) return null;
+            if (!VerifyPasswordHash(model.Password, objUser.PasswordHash, objUser.PasswordSalt)) 
+            return null;
 
             // authentication successful so generate jwt and refresh tokens
             var jwtToken = generateJwtToken(user);
@@ -160,10 +170,7 @@ namespace SICOBIM_B.Services
            return BitConverter.ToString(ba).Replace("-","");
         }
 
-        public AuthenticateResponse Authenticate(AuthenticateResponse model, string ipAddress)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public AuthenticateResponse RefreshToken(string token, string ipAddress)
         {
