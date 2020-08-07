@@ -67,6 +67,7 @@ namespace SICOBIM_B.Entities
         // [JsonIgnore]
         // public string Password { get; set; }
 
+        public int idTok { get; set; }
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; }
 

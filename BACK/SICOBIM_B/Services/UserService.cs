@@ -34,9 +34,10 @@ namespace SICOBIM_B.Services
 
         private ApplicationDbContext _context;
         private readonly AppSettings _appSettings;
-        public UserService(ApplicationDbContext context)
+        public UserService(ApplicationDbContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
+            _appSettings = appSettings.Value;
         }
 
         public  AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
@@ -51,7 +52,7 @@ namespace SICOBIM_B.Services
 
             // return null if user not found
             if (user == null) return null;
-            if (!VerifyPasswordHash(model.Password, objUser.PasswordHash, objUser.PasswordSalt)) 
+            if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt)) 
             return null;
 
             // authentication successful so generate jwt and refresh tokens
