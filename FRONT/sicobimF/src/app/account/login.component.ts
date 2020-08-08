@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService, AlertService } from '../_services';
+import { AuthenticationService } from '../_services/authentication.service';
 
 
 @Component({ templateUrl: 'login.component.html' })
@@ -18,8 +19,15 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private alertService: AlertService
-    ) { }
+        private alertService: AlertService,
+        private authenticatioService: AuthenticationService
+    ) {
+
+        if(this.authenticatioService.userValue)
+        {
+            this.router.navigate(['/']);
+        }
+     }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
