@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,10 @@ using SICOBIM_B.Services;
 namespace SICOBIM_B.Controllers
 {
 
-   
 
+  
     [Authorize]
+
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
@@ -40,6 +42,8 @@ namespace SICOBIM_B.Controllers
             _appSettings = appSettings.Value;
         }
 
+
+
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] AuthenticateRequest model)
@@ -54,8 +58,10 @@ namespace SICOBIM_B.Controllers
             return Ok(response);
 
         }
+
         
         [AllowAnonymous]
+        [DisableCors]
         [HttpPost("refresh-token")]
         public IActionResult RefreshToken()
         {
@@ -70,6 +76,7 @@ namespace SICOBIM_B.Controllers
             return Ok(response);
         }
 
+        
         [HttpPost("revoke-token")]
         public IActionResult RevokeToken([FromBody] RevokeTokenRequest model)
         {
@@ -87,6 +94,7 @@ namespace SICOBIM_B.Controllers
             return Ok(new { message = "Token revoked" });
         }
         //Helper methods
+
         private void setTokenCookie(string token)
         {
             var cookieOptions = new CookieOptions

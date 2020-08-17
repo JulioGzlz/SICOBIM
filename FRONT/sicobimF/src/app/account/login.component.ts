@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
 
         // reset alerts on submit
-        this.alertService.clear();
+        //this.alertService.clear();
 
         // stop here if form is invalid
         if (this.form.invalid) {
@@ -54,11 +54,12 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.accountService.login(this.f.username.value, this.f.password.value)
+        this.authenticatioService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe({
                 next: () => 
                 {
+                    console.log("SI ENTRA");
                     this.router.navigate([this.returnUrl]);
                 },
                 error: error => 
