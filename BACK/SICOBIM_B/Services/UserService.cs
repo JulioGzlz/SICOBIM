@@ -202,12 +202,28 @@ namespace SICOBIM_B.Services
 
         public bool RevokeToken(string token, string ipAddress)
         {
-            throw new NotImplementedException();
+            var user = _context.users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+
+            // return false if no user found with token
+            if (user == null) return false;
+
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+
+            // return false if token is not active
+            if (!refreshToken.IsActive) return false;
+
+            // revoke token and save
+            refreshToken.Revoked = DateTime.UtcNow;
+            refreshToken.RevokedByIp = ipAddress;
+            _context.Update(user);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public IEnumerable<User> getAll()
         {
-            throw new NotImplementedException();
+            return _context.users;
         }
     }
 }
