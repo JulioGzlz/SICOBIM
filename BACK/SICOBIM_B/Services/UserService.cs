@@ -201,7 +201,7 @@ namespace SICOBIM_B.Services
         }
 
         public bool RevokeToken(string token, string ipAddress)
-        {
+        { 
             var user = _context.users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
 
             // return false if no user found with token
