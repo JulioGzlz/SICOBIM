@@ -24,6 +24,10 @@ export class RegisterComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
+            rfc: ['', Validators.required],
+            plaza: ['', Validators.required],
+            numeroempleado: ['', Validators.required],
+            cargo: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
@@ -47,7 +51,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+                    this.alertService.success('Registro exitoso', { keepAfterRouteChange: true });
                     this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error => {
