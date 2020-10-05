@@ -25,7 +25,7 @@ namespace SICOBIM_B.Controllers
 
 
   
-    [Authorize]
+    //[Authorize]
 
     [ApiController]
     [Route("[controller]")]

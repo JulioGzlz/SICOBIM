@@ -19,5 +19,20 @@ namespace SICOBIM_B.Models
 
         [Required]
         public string Password { get; set; }
+        public string RFC { get; set; }
+        public string plaza { get; set; }
+        public string numeroempleado { get; set; }
+        public string cargo { get; set; }
+        public int idSexo { get; set; }
+      
+        public int idturno { get; set; }
+      
+        public int idtipocontrato { get; set; }
+
+        public int idServicio { get; set; }
+       
+
+     
+  
     }
 }

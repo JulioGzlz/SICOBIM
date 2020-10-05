@@ -18,15 +18,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="firstName">Apellido Dos</label>
-                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">Apellido Dos Requerido</div>
+                <label for="apellidodos">Apellido Dos</label>
+                <input type="text" formControlName="apellidodos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }" />
+                <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellidodos.errors.required">Apellido Dos Requerido</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="sexo">Sexo</label>
-                <input type="text" formControlName="sexo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sexo.errors }" />
+                <input type="number" formControlName="sexo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sexo.errors }" />
                 <div *ngIf="submitted && f.sexo.errors" class="invalid-feedback">
                     <div *ngIf="f.sexo.errors.required">Sexo Requerido</div>
                 </div>
@@ -40,14 +40,14 @@
             </div>
             <div class="form-group">
                 <label for="plaza">Numero de Plaza</label>
-                <input type="number" formControlName="plaza" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.plaza.errors }" />
+                <input type="text" formControlName="plaza" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.plaza.errors }" />
                 <div *ngIf="submitted && f.plaza.errors" class="invalid-feedback">
                     <div *ngIf="f.plaza.errors.required">Sexo Requerido</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="numeroempleado">Numero de Empleado</label>
-                <input type="number" formControlName="numeroempleado" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroempleado.errors }" />
+                <input type="text" formControlName="numeroempleado" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroempleado.errors }" />
                 <div *ngIf="submitted && f.numeroempleado.errors" class="invalid-feedback">
                     <div *ngIf="f.numeroempleado.errors.required">Numero de Empleado Requerido</div>
                 </div>
@@ -61,21 +61,21 @@
             </div>
             <div class="form-group">
                 <label for="turno">Turno</label>
-                <input type="text" formControlName="turno" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.turno.errors }" />
+                <input type="number" formControlName="turno" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.turno.errors }" />
                 <div *ngIf="submitted && f.turno.errors" class="invalid-feedback">
                   <div *ngIf="f.turno.errors.required">Sexo Requerido</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="tipocontrato">Tipo de Contrato</label>
-                <input type="text" formControlName="tipocontrato" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipocontrato.errors }" />
+                <input type="number" formControlName="tipocontrato" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipocontrato.errors }" />
                 <div *ngIf="submitted && f.tipocontrato.errors" class="invalid-feedback">
                   <div *ngIf="f.tipocontrato.errors.required">Tipo de Contrato Requerido</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="servicio">Servicio</label>
-                <input type="text" formControlName="servicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.servicio.errors }" />
+                <input type="number" formControlName="servicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.servicio.errors }" />
                 <div *ngIf="submitted && f.servicio.errors" class="invalid-feedback">
                   <div *ngIf="f.servicio.errors.required">Servicio Requerido</div>
                 </div>

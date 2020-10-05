@@ -145,6 +145,15 @@ namespace SICOBIM_B.Services
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
             ByteArrayToString(passwordHash);
 
+
+            DateTime fechaActual = DateTime.Now;
+            user.idUsuarioAlta = 1;
+            user.activo = true;
+            user.fechaAlta = fechaActual;
+
+
+
+
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 

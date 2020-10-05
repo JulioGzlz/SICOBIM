@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private userSubject: BehaviorSubject<User>;
@@ -25,6 +26,7 @@ export class AuthenticationService {
     }
 
     register(user: User) {
+        console.log("AuthenticationService");
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
     login(username: string, password: string) {
