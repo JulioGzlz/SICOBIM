@@ -76,7 +76,7 @@ namespace SICOBIM_B.Controllers
             return Ok(response);
         }
 
-        
+
         [HttpPost("revoke-token")]
         public IActionResult RevokeToken([FromBody] RevokeTokenRequest model)
         {

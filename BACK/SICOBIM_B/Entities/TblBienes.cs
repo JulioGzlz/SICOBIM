@@ -70,6 +70,13 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+        public int idpiso { get; set; }
+        public CatPisos catPisos
+
+        {
+            get;
+            set;
+        }
         public int idResguardatario { get; set; }
         public TblResguardatarios tblResguardatarios
         {
