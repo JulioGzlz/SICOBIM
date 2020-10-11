@@ -43,7 +43,31 @@ namespace SICOBIM_B.Data
 
 
         public DbSet<User> users { set; get; }
+        public DbSet<CatArea> catAreas { set; get; }
+        public DbSet<CatEstadoDelBien> catEstadoDelBien { set; get; }
+        public DbSet<CatEstatus> catEstatus { set; get; }
+        public DbSet<CatGarantia> catGarantia { set; get; }
+        public DbSet<CatPermiso> catPermiso { set; get; }
+        public DbSet<CatPisos> catPisos { set; get; }
+        public DbSet<CatRol> catRol { set; get; }
+        public DbSet<CatServicio> catServicio { set; get; }
+        public DbSet<CatSexo> catSexo { set; get; }
+        public DbSet<CatTipoContrato> catTipoContrato { set; get; }
+        public DbSet<CatTipoDeBien> catTipoDeBien { set; get; }
+        public DbSet<CatTipoEntrada> catTipoEntrada { set; get; }
+        public DbSet<CatTipoPartida> catTipoPartida { set; get; }
+        public DbSet<CatTipoSalida> catTipoSalida { set; get; }
+        public DbSet<CatTurno> catTurno { set; get; }
+        public DbSet<CatUnidadDestino> catUnidadDestino { set; get; }
+        public DbSet<TblAreaServicio> tblAreaServicio { set; get; }
+        public DbSet<TblBienes> tblBienes { set; get; }
         public DbSet<TblConfPerfil> tblConfPerfil { set; get; }
+        public DbSet<TblFacturas> tblFacturas { set; get; }
+        public DbSet<TblInventarios> tblInventarios { set; get; }
+        public DbSet<TblResguardatarios> tblResguardatarios { set; get; }
+        public DbSet<TblSalidaBien> tblSalidaBien { set; get; }
+       
+
 
 
 
