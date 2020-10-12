@@ -35,6 +35,8 @@ export class RegisterComponent implements OnInit {
             servicio: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+
+        //cargar los catalogos 
     }
 
     // convenience getter for easy access to form fields

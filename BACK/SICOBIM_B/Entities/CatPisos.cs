@@ -26,5 +26,6 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+
     }
 }

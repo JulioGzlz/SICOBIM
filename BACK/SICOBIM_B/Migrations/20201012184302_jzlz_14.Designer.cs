@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B.Data;
@@ -9,9 +10,10 @@ using SICOBIM_B.Data;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201012184302_jzlz_14")]
+    partial class jzlz_14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatArea");
+                    b.ToTable("catAreas");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatEstadoDelBien", b =>
@@ -115,7 +117,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatEstatus");
+                    b.ToTable("catEstatus");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatGarantia", b =>
@@ -148,7 +150,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatGarantia");
+                    b.ToTable("catGarantia");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatPermiso", b =>
@@ -313,7 +315,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatSexo");
+                    b.ToTable("catSexo");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoContrato", b =>
@@ -412,7 +414,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatTipoEntrada");
+                    b.ToTable("catTipoEntrada");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoPartida", b =>
@@ -445,7 +447,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatTipoPartida");
+                    b.ToTable("catTipoPartida");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoSalida", b =>
@@ -478,7 +480,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatTipoSalida");
+                    b.ToTable("catTipoSalida");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTurno", b =>
@@ -544,7 +546,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CatUnidadDestino");
+                    b.ToTable("catUnidadDestino");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblAreaServicio", b =>
@@ -587,7 +589,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("catservicioid");
 
-                    b.ToTable("TblAreaServicio");
+                    b.ToTable("tblAreaServicio");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienes", b =>
@@ -921,7 +923,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("catTurnoid");
 
-                    b.ToTable("TblResguardatarios");
+                    b.ToTable("tblResguardatarios");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBien", b =>
@@ -972,7 +974,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("tblbienesid");
 
-                    b.ToTable("TblSalidaBien");
+                    b.ToTable("tblSalidaBien");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.User", b =>

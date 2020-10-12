@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
+    [Table("CatArea")]
+
     public class CatArea
     {
         public int id { get; set; }
@@ -17,7 +20,11 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
+        public ICollection<TblAreaServicio> tblAreaServicios
+        {
+            get;
+            set;
+        }
 
-        
     }
 }

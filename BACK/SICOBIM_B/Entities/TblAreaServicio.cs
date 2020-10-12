@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
+
+    [Table("TblAreaServicio")]
     public class TblAreaServicio
     {
         public int id { get; set; }
@@ -22,7 +25,7 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        public String localizacion { get; set; }
+        
         public String descripcion { get; set; }
 
         public DateTime fechaAlta { get; set; }
