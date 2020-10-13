@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Services
 {
-    public interface ICatalogoPerfiles
+    public interface ICatalogoPerfilesService
     {
         IEnumerable<User>  GetUser();
         IEnumerable<CatArea> GetAreas();
@@ -37,7 +37,7 @@ namespace SICOBIM_B.Services
 
     }
 
-    public class CatalogoPerfilesService : ICatalogoPerfiles
+    public class CatalogoPerfilesService : ICatalogoPerfilesService
     {
 
         private ApplicationDbContext _applicationDbContext;
