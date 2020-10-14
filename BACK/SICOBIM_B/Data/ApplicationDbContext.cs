@@ -67,6 +67,17 @@ namespace SICOBIM_B.Data
         public DbSet<TblResguardatarios> tblResguardatarios { set; get; }
         public DbSet<TblSalidaBien> tblSalidaBien { set; get; }
        
+        
+       
+        // se agregaron  nuevas tablas 
+     
+
+        public DbSet<TblFederalizacion> tblFederalizacion { set; get; }
+        public DbSet<TblContratoBien> tblContratoBien { set; get; }
+        public DbSet<TblProveedor> tblProveedor { set; get; }
+        public DbSet<TblClaveCambs> tblClaveCambs { set; get; }
+        public DbSet<TblClaveSaica> tblClaveSaica { set; get; }
+
 
 
 

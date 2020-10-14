@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    [Table("TblFacturas")]
-    public class TblFacturas
+    [Table("TblFederalizacion")]
+    public class TblFederalizacion
     {
         public int id { get; set; }
-        public string facturas { get; set; }
-        public double IVA { get; set; }
-        public double subtotal { get; set; }
-        public double costoTotal { get; set; }
+        public string federalizacion { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
@@ -24,5 +21,10 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+
+
+
+
+
     }
 }

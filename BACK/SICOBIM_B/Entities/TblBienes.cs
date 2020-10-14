@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    [Table("TblBienes")]
+    [Table("TblBienesMuebles")]
     public class TblBienes
     {
         public int id { get; set; }
-        //FK
-        public int numerofederalizacion { get; set; } 
-        public int numeroInventario { get; set; }
+        
+        public int idfederalizacion { get; set; }
+        public TblFederalizacion tblFederalizacion
+        {
+            get;
+            set;
+        }
+        public int idinventario { get; set; }
         public TblInventarios tblInventarios
         {
             get;
@@ -24,10 +29,21 @@ namespace SICOBIM_B.Entities
         public string modelo { get; set; }
         public string serie { get; set; }
         public  int cantidad { get; set; }
-        public string contrato { get; set; }//duda normalizar 
-        public string proveedor { get; set; }
-        //FK
-        public int idFactura { get; set; }//duda
+        public int idcontrato { get; set; }
+        public TblContratoBien tblContratoBien
+        {
+            get;
+            set;
+        }
+
+        public int idproveedor { get; set; }
+        public TblProveedor tblProveedor
+        {
+            get;
+            set;
+        }
+        
+        public int idfactura { get; set; }
         public TblFacturas tblFacturas
         {
             get;
@@ -45,11 +61,21 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        public string claveCambs { get; set; }
-        public string claveSaica { get; set; }
-        public double IVA { get; set; }
-        public double subtotal { get; set; }
-        public double costoTotal { get; set; }
+        public int idclaveCambs { get; set; }
+        public TblClaveCambs tblClaveCambs
+        {
+            get;
+            set;
+        }
+
+
+        public string idclaveSaica { get; set; }
+        public TblClaveSaica tblClaveSaica
+        {
+            get;
+            set;
+        }
+
         public int identrada { get; set; }
         public CatTipoEntrada catTipoEntrada
         {
@@ -99,6 +125,10 @@ namespace SICOBIM_B.Entities
         }
 
         public String observaciones { get; set; }
+
+
+
+
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }

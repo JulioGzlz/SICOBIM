@@ -33,6 +33,11 @@ namespace SICOBIM_B.Services
         IEnumerable<TblInventarios> GetTblInventarios();
         IEnumerable<TblResguardatarios> GetTblResguardatarios();
         IEnumerable<TblSalidaBien> GetTblSalidaBien();
+        IEnumerable<TblFederalizacion> GetTblFederalizacion();
+        IEnumerable<TblContratoBien> GetTblContratoBien();
+        IEnumerable<TblProveedor> GetTblProveedor();
+        IEnumerable<TblClaveCambs> GetTblClaveCambs();
+        IEnumerable<TblClaveSaica> GetTblClaveSaica();
 
 
     }
@@ -41,6 +46,11 @@ namespace SICOBIM_B.Services
     {
 
         private ApplicationDbContext _applicationDbContext;
+
+        public CatalogoPerfilesService(ApplicationDbContext dbContext)
+        {
+            _applicationDbContext = dbContext;
+        }
         /// <summary>
         /// Retorna las areas administrativas y operativas
         /// </summary>
@@ -235,7 +245,27 @@ namespace SICOBIM_B.Services
         {
                 return _applicationDbContext.users;
         }
+        public IEnumerable<TblFederalizacion> GetTblFederalizacion()
+        {
+            return _applicationDbContext.tblFederalizacion;
+        }
+        public IEnumerable<TblContratoBien> GetTblContratoBien()
+        {
+            return _applicationDbContext.tblContratoBien;
+        }
+        public IEnumerable<TblProveedor> GetTblProveedor()
+        {
+            return _applicationDbContext.tblProveedor;
+        }
+        public IEnumerable<TblClaveCambs> GetTblClaveCambs()
+        {
+            return _applicationDbContext.tblClaveCambs;
+        }
+        public IEnumerable<TblClaveSaica> GetTblClaveSaica()
+        {
+            return _applicationDbContext.tblClaveSaica;
+        }
 
-      
+
     }
 }
