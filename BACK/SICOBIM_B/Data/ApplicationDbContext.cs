@@ -79,7 +79,7 @@ namespace SICOBIM_B.Data
         public DbSet<TblClaveSaica> tblClaveSaica { set; get; }
         public DbSet<TblBienesEquMedico> tblBienesEquMedicos { set; get; }
         public DbSet<TblBienesSistemas> tblBienesSistemas { set; get; }
-        public DbSet<TblInstrumentalMedico> tblInstrumentalMedicos { set; get; }
+        public DbSet<TblInstrumentalMedico> tblInstrumentalMedico { set; get; }
 
 
 
