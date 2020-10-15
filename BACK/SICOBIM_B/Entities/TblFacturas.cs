@@ -24,5 +24,20 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        {
+            get;
+            set;
+        }
+        public ICollection<TblBienesSistemas> tblBienesSistemas
+        {
+            get;
+            set;
+        }
+        public ICollection<TblInstrumentalMedico> tblInstrumentalMedico
+        {
+            get;
+            set;
+        }
     }
 }

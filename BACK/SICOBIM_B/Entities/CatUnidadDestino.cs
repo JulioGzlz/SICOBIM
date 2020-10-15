@@ -24,10 +24,6 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        public ICollection<TblBienes> tblBienes
-        {
-            get;
-            set;
-        }
+        
     }
 }

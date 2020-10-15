@@ -38,6 +38,9 @@ namespace SICOBIM_B.Services
         IEnumerable<TblProveedor> GetTblProveedor();
         IEnumerable<TblClaveCambs> GetTblClaveCambs();
         IEnumerable<TblClaveSaica> GetTblClaveSaica();
+        IEnumerable<TblBienesEquMedico> GetTblBienesEquMedico();
+        IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
+        IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
 
 
     }
@@ -264,6 +267,18 @@ namespace SICOBIM_B.Services
         public IEnumerable<TblClaveSaica> GetTblClaveSaica()
         {
             return _applicationDbContext.tblClaveSaica;
+        }
+        public IEnumerable<TblBienesEquMedico> GetTblBienesEquMedico()
+        {
+            return _applicationDbContext.tblBienesEquMedicos;
+        }
+        public IEnumerable<TblBienesSistemas> GetTblBienesSistemas()
+        {
+            return _applicationDbContext.tblBienesSistemas;
+        }
+        public IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico()
+        {
+            return _applicationDbContext.tblInstrumentalMedico;
         }
 
 

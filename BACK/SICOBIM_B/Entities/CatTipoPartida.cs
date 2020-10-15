@@ -11,7 +11,7 @@ namespace SICOBIM_B.Entities
     {
 
         public int id { get; set; }
-        public string partida { get; set; }
+        public string partidapresupestual { get; set; }
         public String descripcion { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
@@ -19,6 +19,21 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
         public ICollection<TblBienes> tblBienes
+        {
+            get;
+            set;
+        }
+        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        {
+            get;
+            set;
+        }
+        public ICollection<TblBienesSistemas> tblBienesSistemas
+        {
+            get;
+            set;
+        }
+        public ICollection<TblInstrumentalMedico> tblInstrumentalMedico
         {
             get;
             set;

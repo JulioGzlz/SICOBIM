@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    [Table("TblBienesMuebles")]
-    public class TblBienes
+
+    [Table("TblInstrumentalMedico")]
+    public class TblInstrumentalMedico
     {
         public int id { get; set; }
-        
+
         public int idfederalizacion { get; set; }
         public TblFederalizacion tblFederalizacion
         {
@@ -23,12 +24,12 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-      
+
 
         public string marca { get; set; }
         public string modelo { get; set; }
         public string serie { get; set; }
-        public  int cantidad { get; set; }
+        public int cantidad { get; set; }
         public int idcontrato { get; set; }
         public TblContratoBien tblContratoBien
         {
@@ -42,7 +43,7 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        
+
         public int idfactura { get; set; }
         public TblFacturas tblFacturas
         {
@@ -133,7 +134,5 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-
     }
 }
-
