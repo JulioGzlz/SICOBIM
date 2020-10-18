@@ -131,6 +131,8 @@ namespace SICOBIM_B.Controllers
 
 
         }
+
+        [Authorize(Roles = Role.Admin)]
         [HttpGet]
         public IActionResult GetAll()
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SICOBIM_B.Business;
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Services;
 
@@ -13,11 +14,13 @@ namespace SICOBIM_B.Controllers
     [Route("[controller]")]
     public class CatPerfilController : ControllerBase
     {
+        BusinessPerfiles _businessPerfiles;
         private ICatalogoPerfilesService _catalogoPerfilesService;
 
 
-        public CatPerfilController(ICatalogoPerfilesService obj) {
+        public CatPerfilController(ICatalogoPerfilesService obj, BusinessPerfiles objPerfiles) {
             _catalogoPerfilesService = obj;
+            _businessPerfiles = objPerfiles;
 
         }
 
@@ -30,7 +33,7 @@ namespace SICOBIM_B.Controllers
         [HttpGet("GetCatEstatus")]
         public IActionResult GetCatEstatus()
         {
-            var result = _catalogoPerfilesService.GetCatEstatus();
+            var result = _businessPerfiles.GetEstatus();
             return Ok(result);
         }
         [HttpGet("GetCatArea")]
