@@ -42,30 +42,15 @@ namespace SICOBIM_B.Controllers
             var result = _catalogoPerfilesService.GetCatArea();
             return Ok(result);
         }
-        [HttpGet("GetCatEstadoDelBien")]
-        public IActionResult GetCatEstadoDelBien()
-        {
-            var result = _catalogoPerfilesService.GetCatEstadoDelBien();
-            return Ok(result);
-        }
-        [HttpGet("GetCatGarantia")]
-        public IActionResult GetCatGarantia()
-        {
-            var result = _catalogoPerfilesService.GetCatGarantia();
-            return Ok(result);
-        }
+
+       
         [HttpGet("GetCatPermiso")]
         public IActionResult GetCatPermiso()
         {
             var result = _catalogoPerfilesService.GetCatPermiso();
             return Ok(result);
         }
-        [HttpGet("GetCatPisos")]
-        public IActionResult GetCatPisos()
-        {
-            var result = _catalogoPerfilesService.GetCatPisos();
-            return Ok(result);
-        }
+
         [HttpGet("GetCatRol")]
         public IActionResult GetCatRol()
         {
@@ -84,52 +69,21 @@ namespace SICOBIM_B.Controllers
             var result = _catalogoPerfilesService.GetCatTipoContrato();
             return Ok(result);
         }
-        [HttpGet("GetCatTipoDeBien")]
-        public IActionResult GetCatTipoDeBien()
-        {
-            var result = _catalogoPerfilesService.GetCatTipoDeBien();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoEntrada")]
-        public IActionResult GetCatTipoEntrada()
-        {
-            var result = _catalogoPerfilesService.GetCatTipoEntrada();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoPartida")]
-        public IActionResult GetCatTipoPartida()
-        {
-            var result = _catalogoPerfilesService.GetCatTipoPartida();
-            return Ok(result);
-        }
+
+
+ 
         [HttpGet("GetCatTurno")]
         public IActionResult GetCatTurno()
         {
             var result = _catalogoPerfilesService.GetCatTurno();
             return Ok(result);
         }
-        [HttpGet("GetCatUnidadDestino")]
-        public IActionResult GetCatUnidadDestino()
-        {
-            var result = _catalogoPerfilesService.GetCatUnidadDestino();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoSalida")]
-        public IActionResult GetCatTipoSalida()
-        {
-            var result = _catalogoPerfilesService.GetCatTipoSalida();
-            return Ok(result);
-        }
+
+
         [HttpGet("GetTblAreaServicio")]
         public IActionResult GetTblAreaServicio()
         {
             var result = _catalogoPerfilesService.GetTblAreaServicio();
-            return Ok(result);
-        }
-        [HttpGet("GetTblBienes")]
-        public IActionResult GetTblBienes()
-        {
-            var result = _catalogoPerfilesService.GetCatTipoSalida();
             return Ok(result);
         }
 
