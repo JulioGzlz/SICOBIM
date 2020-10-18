@@ -43,7 +43,7 @@ namespace SICOBIM_B.Data
 
 
         public DbSet<User> users { set; get; }
-        public DbSet<CatArea> catAreas { set; get; }
+        public DbSet<CatArea> catArea { set; get; }
         public DbSet<CatEstadoDelBien> catEstadoDelBien { set; get; }
         public DbSet<CatEstatus> catEstatus { set; get; }
         public DbSet<CatGarantia> catGarantia { set; get; }

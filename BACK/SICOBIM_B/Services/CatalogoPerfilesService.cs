@@ -10,7 +10,7 @@ namespace SICOBIM_B.Services
     public interface ICatalogoPerfilesService
     {
         IEnumerable<User>  GetUser();
-        IEnumerable<CatArea> GetAreas();
+        IEnumerable<CatArea> GetCatArea();
         IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien();
         IEnumerable<CatEstatus> GetCatEstatus();
         IEnumerable<CatGarantia> GetCatGarantia();
@@ -58,9 +58,9 @@ namespace SICOBIM_B.Services
         /// Retorna las areas administrativas y operativas
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CatArea> GetAreas()
+        public IEnumerable<CatArea> GetCatArea()
         {
-            return _applicationDbContext.catAreas; 
+            return _applicationDbContext.catArea; 
         }
         /// <summary>
         /// Retorna el estatus activo e inactivo
