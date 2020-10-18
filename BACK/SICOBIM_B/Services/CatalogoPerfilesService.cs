@@ -21,7 +21,17 @@ namespace SICOBIM_B.Services
         IEnumerable<CatSexo> GetCatSexo();
         IEnumerable<CatTurno> GetCatTurno();
         IEnumerable<CatUnidadDestino> GetCatUnidadDestino();
-        
+
+        IEnumerable<CatTipoPartida> GetCatTipoPartida();
+        IEnumerable<CatTipoEntrada> GetCatTipoEntrada();
+        IEnumerable<CatTipoDeBien> GetCatTipoDeBien();
+        IEnumerable<CatTipoContrato> GetCatTipoContrato();
+        IEnumerable<CatTipoSalida> GetCatTipoSalida();
+
+
+
+
+
 
     }
 
@@ -42,6 +52,19 @@ namespace SICOBIM_B.Services
         {
             return _applicationDbContext.catArea; 
         }
+
+        public IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien()
+        {
+            return _applicationDbContext.catEstadoDelBien;
+        }
+
+        public IEnumerable<CatEstatus> GetCatEstatus()
+        {
+            return _applicationDbContext.catEstatus; 
+        }
+
+
+
         /// <summary>
         /// Retorna el estatus activo e inactivo
         /// </summary>
@@ -90,6 +113,26 @@ namespace SICOBIM_B.Services
             return _applicationDbContext.catTipoContrato;
         }
 
+        public IEnumerable<CatTipoDeBien> GetCatTipoDeBien()
+        {
+            return _applicationDbContext.catTipoDeBien;
+        }
+
+        public IEnumerable<CatTipoEntrada> GetCatTipoEntrada()
+        {
+            return _applicationDbContext.catTipoEntrada;
+        }
+
+        public IEnumerable<CatTipoPartida> GetCatTipoPartida()
+        {
+            return _applicationDbContext.catTipoPartida;
+        }
+
+        public IEnumerable<CatTipoSalida> GetCatTipoSalida()
+        {
+            return _applicationDbContext.catTipoSalida;
+        }
+
         /// <summary>
         /// Retorna el turno en el que se encuentra los usuarios y resguatdatarios
         /// </summary>
@@ -97,6 +140,11 @@ namespace SICOBIM_B.Services
         public IEnumerable<CatTurno> GetCatTurno()
         {
             return _applicationDbContext.catTurno;
+        }
+
+        public IEnumerable<CatUnidadDestino> GetCatUnidadDestino()
+        {
+            return _applicationDbContext.catUnidadDestino;
         }
 
         /// <summary>

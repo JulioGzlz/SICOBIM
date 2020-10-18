@@ -21,24 +21,24 @@ namespace SICOBIM_B.Controllers
             _businessPerfiles = objPerfiles;
         }
 
-        [HttpGet("GetCatSexo")]
+        [HttpGet("obtenerSexo")]
         public IActionResult GetCatSexo()
         {
             var result = _businessPerfiles.GetCatSexo();
             return Ok(result);
         }
-        [HttpGet("GetCatEstatus")]
+        [HttpGet("obtenerEstatus")]
         public IActionResult GetCatEstatus()
         {
             var result = _businessPerfiles.GetEstatus();
             return Ok(result);
         }
-        //[HttpGet("GetCatArea")]
-        //public IActionResult GetCatArea()
-        //{
-        //    var result = _catalogoPerfilesService.GetCatArea();
-        //    return Ok(result);
-        //}
+        [HttpGet("obtenerAreas")]
+        public IActionResult GetCatArea()
+        {
+            var result = _businessPerfiles.getCatArea();
+            return Ok(result);
+        }
         //[HttpGet("GetCatEstadoDelBien")]
         //public IActionResult GetCatEstadoDelBien()
         //{

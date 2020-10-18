@@ -1,4 +1,5 @@
 ﻿using SICOBIM_B.Common;
+using SICOBIM_B.Data;
 using SICOBIM_B.Entities;
 using SICOBIM_B.Services;
 using System;
@@ -10,13 +11,18 @@ namespace SICOBIM_B.Business
 {
     public class BusinessPerfiles
     {
+        private ApplicationDbContext _objApplicationDbContext;
+
+
+
 
         ICatalogoPerfilesService _catalogoPerfilesService;
 
 
-        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos)
+        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, ApplicationDbContext applicationDbContext)
         {
             _catalogoPerfilesService = objIcatalogos;
+            _objApplicationDbContext = applicationDbContext;
 
         }
 
@@ -398,6 +404,27 @@ namespace SICOBIM_B.Business
                 };
             }
         }
-    
+
+        public RespuestaApi<CatEstadoDelBien> getEstadoBienActivos()
+        {
+            try
+            {
+
+                List<CatEstadoDelBien> lstBienesActivos = _objApplicationDbContext.catEstadoDelBien.OrderBy(x => x.activo == true).ToList();
+
+                return new RespuestaApi<CatEstadoDelBien>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesActivos
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<CatEstadoDelBien>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+        }    
     }
 }
