@@ -9,7 +9,7 @@ namespace SICOBIM_B.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class InventarioSistemasController : Controller
+    public class InventarioSistemasController : ControllerBase
     {
 
         BusinessInventarioSistemas _businessSistemas;
@@ -17,9 +17,14 @@ namespace SICOBIM_B.Controllers
         {
             _businessSistemas = objSistemas;
         }
-        public IActionResult Index()
+
+
+        [HttpGet("ObtenerInventarioSistemas")]
+        public IActionResult GetTblInventarioSistemas()
         {
-            return View();
+            var result = _businessSistemas.GetSistemas(); 
+            return Ok(result);
         }
+
     }
 }

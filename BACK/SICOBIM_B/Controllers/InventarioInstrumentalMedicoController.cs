@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SICOBIM_B.Business;
 
 namespace SICOBIM_B.Controllers
 {
-    public class InventarioInstrumentalMedicoController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class InventarioInstrumentalMedicoController : ControllerBase
     {
-        public IActionResult Index()
+
+        BusinessInventarioInstrumentalMedico _businessInstrumeental;
+        public InventarioInstrumentalMedicoController(BusinessInventarioInstrumentalMedico objInstrumental)
         {
-            return View();
+            _businessInstrumeental = objInstrumental;
         }
+
+
+        [HttpGet("ObtenerInventarioInstrumental")]
+        public IActionResult GetTblInstrumentalMedico()
+        {
+            var result = _businessInstrumeental.GetInstrumental();
+            return Ok(result);
+        }
+
     }
 }
