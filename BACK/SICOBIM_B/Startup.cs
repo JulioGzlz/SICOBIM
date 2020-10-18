@@ -21,6 +21,7 @@ using SICOBIM_B.Models;
 using SICOBIM_B.Services;
 using LinqToDB;
 using Microsoft.Extensions.Options;
+using SICOBIM_B.Business;
 
 namespace SICOBIM_B
 {
@@ -98,6 +99,7 @@ namespace SICOBIM_B
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICatalogoPerfilesService, CatalogoPerfilesService>();
+            services.AddScoped<BusinessPerfiles>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

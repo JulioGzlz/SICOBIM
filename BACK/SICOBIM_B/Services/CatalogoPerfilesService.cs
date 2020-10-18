@@ -12,6 +12,8 @@ namespace SICOBIM_B.Services
         IEnumerable<User>  GetUser();
         IEnumerable<CatArea> GetCatArea();
         IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien();
+        //IEnumerable<CatEstatus> GetCatEstatus();
+
         IEnumerable<CatEstatus> GetCatEstatus();
         IEnumerable<CatGarantia> GetCatGarantia();
         IEnumerable<CatPermiso> GetCatPermiso();
@@ -66,10 +68,7 @@ namespace SICOBIM_B.Services
         /// Retorna el estatus activo e inactivo
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CatEstatus> GetCatEstatus()
-        {
-            return _applicationDbContext.catEstatus;
-        }
+
         /// <summary>
         /// Retorna los años de garantia de los bienes 
         /// </summary>
@@ -281,6 +280,9 @@ namespace SICOBIM_B.Services
             return _applicationDbContext.tblInstrumentalMedico;
         }
 
-
+          public IEnumerable<CatEstatus> GetCatEstatus()
+        {
+            return _applicationDbContext.catEstatus;
+        }
     }
 }
