@@ -9,7 +9,7 @@ namespace SICOBIM_B.Services
 {
     public interface ICatalogoPerfilesService
     {
-        IEnumerable<User>  GetUser();
+
         IEnumerable<CatArea> GetCatArea();
         IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien();
         IEnumerable<CatEstatus> GetCatEstatus();
@@ -26,22 +26,7 @@ namespace SICOBIM_B.Services
         IEnumerable<CatTipoSalida> GetCatTipoSalida();
         IEnumerable<CatTurno> GetCatTurno();
         IEnumerable<CatUnidadDestino> GetCatUnidadDestino();
-        IEnumerable<TblAreaServicio> GetTblAreaServicio();
-        IEnumerable<TblBienes> GetTblBienes();
-        IEnumerable<TblConfPerfil> GetTblConfPerfil();
-        IEnumerable<TblFacturas> GetTblFacturas();
-        IEnumerable<TblInventarios> GetTblInventarios();
-        IEnumerable<TblResguardatarios> GetTblResguardatarios();
-        IEnumerable<TblSalidaBien> GetTblSalidaBien();
-        IEnumerable<TblFederalizacion> GetTblFederalizacion();
-        IEnumerable<TblContratoBien> GetTblContratoBien();
-        IEnumerable<TblProveedor> GetTblProveedor();
-        IEnumerable<TblClaveCambs> GetTblClaveCambs();
-        IEnumerable<TblClaveSaica> GetTblClaveSaica();
-        IEnumerable<TblBienesEquMedico> GetTblBienesEquMedico();
-        IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
-        IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
-
+        
 
     }
 
@@ -188,98 +173,7 @@ namespace SICOBIM_B.Services
         /// </summary>
         /// <returns></returns>
 
-        public IEnumerable<TblAreaServicio> GetTblAreaServicio()
-        {
-                return _applicationDbContext.tblAreaServicio;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblBienes> GetTblBienes()
-        {
-                return _applicationDbContext.tblBienes;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblConfPerfil> GetTblConfPerfil()
-        {
-                return _applicationDbContext.tblConfPerfil;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblFacturas> GetTblFacturas()
-        {
-                return _applicationDbContext.tblFacturas;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblInventarios> GetTblInventarios()
-        {
-                return _applicationDbContext.tblInventarios;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblResguardatarios> GetTblResguardatarios()
-        {
-                return _applicationDbContext.tblResguardatarios;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TblSalidaBien> GetTblSalidaBien()
-        {
-                return _applicationDbContext.tblSalidaBien;
-        }
-        /// <summary>
-        /// Retorna las areas administrativas y operativas
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<User> GetUser()
-        {
-                return _applicationDbContext.users;
-        }
-        public IEnumerable<TblFederalizacion> GetTblFederalizacion()
-        {
-            return _applicationDbContext.tblFederalizacion;
-        }
-        public IEnumerable<TblContratoBien> GetTblContratoBien()
-        {
-            return _applicationDbContext.tblContratoBien;
-        }
-        public IEnumerable<TblProveedor> GetTblProveedor()
-        {
-            return _applicationDbContext.tblProveedor;
-        }
-        public IEnumerable<TblClaveCambs> GetTblClaveCambs()
-        {
-            return _applicationDbContext.tblClaveCambs;
-        }
-        public IEnumerable<TblClaveSaica> GetTblClaveSaica()
-        {
-            return _applicationDbContext.tblClaveSaica;
-        }
-        public IEnumerable<TblBienesEquMedico> GetTblBienesEquMedico()
-        {
-            return _applicationDbContext.tblBienesEquMedicos;
-        }
-        public IEnumerable<TblBienesSistemas> GetTblBienesSistemas()
-        {
-            return _applicationDbContext.tblBienesSistemas;
-        }
-        public IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico()
-        {
-            return _applicationDbContext.tblInstrumentalMedico;
-        }
+
 
 
     }
