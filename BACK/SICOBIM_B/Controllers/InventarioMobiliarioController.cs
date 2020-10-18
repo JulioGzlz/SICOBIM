@@ -15,89 +15,20 @@ namespace SICOBIM_B.Controllers
     {
 
         BusinessInventarioMobiliario _businessInventarioMobiliario;
-        private IInventarioService _inventarioService;
 
-        public InventarioMobiliarioController(IInventarioService objMobilirio, BusinessInventarioMobiliario objInventarioMobiliario)
+        public InventarioMobiliarioController(BusinessInventarioMobiliario objInventarioMobiliario)
 
         {
-            _inventarioService = objMobilirio;
             _businessInventarioMobiliario = objInventarioMobiliario;
         }
 
 
-        [HttpGet("GetTblBienes")]
+        [HttpGet("ObtenerBienesMuebles")]
         public IActionResult GetTblBienes()
         {
-            var result = _inventarioService.GetTblBienes();
+            var result = _businessInventarioMobiliario.GetTblBienes();
             return Ok(result);
         }
-        [HttpGet("GetCatEstadoDelBien")]
-        public IActionResult GetCatEstadoDelBien()
-        {
-            var result = _inventarioService.GetCatEstadoDelBien();
-            return Ok(result);
-        }
-        [HttpGet("GetCatGarantia")]
-        public IActionResult GetCatGarantia()
-        {
-            var result = _inventarioService.GetCatGarantia();
-            return Ok(result);
-        }
-        [HttpGet("GetCatPisos")]
-        public IActionResult GetCatPisos()
-        {
-            var result = _inventarioService.GetCatPisos();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoEntrada")]
-        public IActionResult GetCatTipoEntrada()
-        {
-            var result = _inventarioService.GetCatTipoEntrada();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoPartida")]
-        public IActionResult GetCatTipoPartida()
-        {
-            var result = _inventarioService.GetCatTipoPartida();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoDeBien")]
-        public IActionResult GetCatTipoDeBien()
-        {
-            var result = _inventarioService.GetCatTipoDeBien();
-            return Ok(result);
-        }
-        [HttpGet("GetCatTipoSalida")]
-        public IActionResult GetCatTipoSalida()
-        {
-            var result = _inventarioService.GetCatTipoSalida();
-            return Ok(result);
-        }
-        [HttpGet("GetCatUnidadDestino")]
-        public IActionResult GetCatUnidadDestino()
-        {
-            var result = _inventarioService.GetCatUnidadDestino();
-            return Ok(result);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
     }
 }

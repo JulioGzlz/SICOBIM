@@ -7,5 +7,14 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioSistemas
     {
+
+
+
+
+
+
+
+
+
     }
 }
