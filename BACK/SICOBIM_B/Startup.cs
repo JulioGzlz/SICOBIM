@@ -96,7 +96,7 @@ namespace SICOBIM_B
 
             });
 
-            // configure DI for application services se agregan todos los servicios 
+            // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICatalogoPerfilesService, CatalogoPerfilesService>();
             services.AddScoped<BusinessPerfiles>();
