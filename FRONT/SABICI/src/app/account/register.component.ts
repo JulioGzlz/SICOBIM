@@ -2,21 +2,24 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import {MatSelectModule} from '@angular/material/select';
 import { AccountService, AlertService } from '@app/_services';
+import { serviceCatalogo } from '@app/_services/service_cat/serviceCatalogos';
+import { Observable } from 'rxjs';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
     form: FormGroup;
     loading = false;
     submitted = false;
-
+    tipoSexo = null;
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private _serviceCat: serviceCatalogo
     ) { }
 
     ngOnInit() {
@@ -36,8 +39,13 @@ export class RegisterComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
 
-        //cargar los catalogos 
+        //cargar los catalogos
+          this._serviceCat.getSexo()
+          .pipe(first())
+          .subscribe(catalogosexo => this.tipoSexo = catalogosexo);
+
     }
+
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
