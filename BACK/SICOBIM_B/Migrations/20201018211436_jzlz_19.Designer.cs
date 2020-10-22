@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B.Data;
@@ -9,9 +10,10 @@ using SICOBIM_B.Data;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201018211436_jzlz_19")]
+    partial class jzlz_19
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -795,9 +797,6 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("idEstadoFisico")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("idInventarioid")
-                        .HasColumnType("integer");
-
                     b.Property<int>("idResguardatario")
                         .HasColumnType("integer");
 
@@ -823,6 +822,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("idfactura")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("idinventario")
                         .HasColumnType("integer");
 
                     b.Property<int>("idpiso")
@@ -864,6 +866,9 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("tblFederalizacionid")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("tblInventariosid")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("tblProveedorid")
                         .HasColumnType("integer");
 
@@ -887,8 +892,6 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("catTipoPartidaid");
 
-                    b.HasIndex("idInventarioid");
-
                     b.HasIndex("tblAreaServicioid");
 
                     b.HasIndex("tblClaveCambsid");
@@ -900,6 +903,8 @@ namespace SICOBIM_B.Migrations
                     b.HasIndex("tblFacturasid");
 
                     b.HasIndex("tblFederalizacionid");
+
+                    b.HasIndex("tblInventariosid");
 
                     b.HasIndex("tblProveedorid");
 
@@ -1837,10 +1842,6 @@ namespace SICOBIM_B.Migrations
                         .WithMany("tblBienesEquMedico")
                         .HasForeignKey("catTipoPartidaid");
 
-                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "idInventario")
-                        .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("idInventarioid");
-
                     b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "tblAreaServicio")
                         .WithMany("tblBienesEquMedico")
                         .HasForeignKey("tblAreaServicioid");
@@ -1864,6 +1865,10 @@ namespace SICOBIM_B.Migrations
                     b.HasOne("SICOBIM_B.Entities.TblFederalizacion", "tblFederalizacion")
                         .WithMany("tblBienesEquMedico")
                         .HasForeignKey("tblFederalizacionid");
+
+                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "tblInventarios")
+                        .WithMany("tblBienesEquMedico")
+                        .HasForeignKey("tblInventariosid");
 
                     b.HasOne("SICOBIM_B.Entities.TblProveedor", "tblProveedor")
                         .WithMany("tblBienesEquMedico")

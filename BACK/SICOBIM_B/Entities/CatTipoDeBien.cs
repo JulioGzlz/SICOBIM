@@ -38,5 +38,10 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+        public ICollection<TblFacturas> tblFacturas
+        {
+            get;
+            set;
+        }
     }
 }

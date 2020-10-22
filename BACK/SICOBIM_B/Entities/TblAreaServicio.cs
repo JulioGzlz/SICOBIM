@@ -12,13 +12,13 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
 
-        public int idarea { get; set; }
+  
         public CatArea catarea
         {
             get;
             set;
         }
-        public int idservicio { get; set; }
+     
         public CatServicio catservicio
 
         {

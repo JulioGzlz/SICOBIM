@@ -12,12 +12,12 @@ namespace SICOBIM_B.Business
     public class BusinessInventarioInstrumentalMedico
     {
         private ApplicationDbContext _objApplicationDbContext;
-        IInventarioService _inventarioService;
+        IInventarioService _inventarioServiceInstrumentalMedico;
 
 
         public BusinessInventarioInstrumentalMedico(IInventarioService objInstrumental, ApplicationDbContext applicationDbContext)
         {
-            _inventarioService = objInstrumental;
+            _inventarioServiceInstrumentalMedico = objInstrumental;
             _objApplicationDbContext = applicationDbContext;
 
         }
@@ -26,7 +26,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblInstrumentalMedico> lstInstrumental = _inventarioService.GetTblInstrumentalMedico().ToList();
+                List<TblInstrumentalMedico> lstInstrumental = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().ToList();
                 return new RespuestaApi<TblInstrumentalMedico>()
                 {
                     correcto = true,

@@ -12,12 +12,12 @@ namespace SICOBIM_B.Business
     public class BusinessInventarioSistemas
     {
         private ApplicationDbContext _objApplicationDbContext;
-        IInventarioService _inventarioService;
+        IInventarioService _inventarioServiceSistemas;
 
 
         public BusinessInventarioSistemas(IInventarioService objSistemas, ApplicationDbContext applicationDbContext)
         {
-            _inventarioService = objSistemas;
+            _inventarioServiceSistemas = objSistemas;
             _objApplicationDbContext = applicationDbContext;
 
         }
@@ -27,7 +27,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesSistemas> lstSistemas = _inventarioService.GetTblBienesSistemas().OrderBy(x => x.idinventario).ToList();
+                List<TblBienesSistemas> lstSistemas = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.id).ToList();
                 return new RespuestaApi<TblBienesSistemas>
                 {
                     correcto = true,

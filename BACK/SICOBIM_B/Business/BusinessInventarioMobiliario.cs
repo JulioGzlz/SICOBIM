@@ -10,12 +10,12 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioMobiliario
     {
-        IInventarioService _InventarioService;
+        IInventarioService _InventarioServiceMobiliario;
 
 
         public BusinessInventarioMobiliario(IInventarioService objInventarioMobiliario)
         {
-            _InventarioService = objInventarioMobiliario;
+            _InventarioServiceMobiliario = objInventarioMobiliario;
 
         }
 
@@ -23,7 +23,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                IEnumerable<TblBienes> lstBienes = _InventarioService.GetTblBienes();
+                IEnumerable<TblBienes> lstBienes = _InventarioServiceMobiliario.GetTblBienes();
                 return new RespuestaApi<TblBienes>
                 {
                     correcto = true,

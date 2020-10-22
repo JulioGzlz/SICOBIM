@@ -25,5 +25,11 @@ namespace SICOBIM_B.Controllers
             var result = _businessEquipoMedico.GetEquipoMedico();
             return Ok(result);
         }
+        [HttpGet("ObtenerInventarioPorFederalizacion")]
+        public IActionResult GetTblBienesEquMedicoFederalizacion()
+        {
+            var result = _businessEquipoMedico.GetConsultaFederalizacion();
+            return Ok(result);
+        }
     }
 }

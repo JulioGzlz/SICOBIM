@@ -99,7 +99,12 @@ namespace SICOBIM_B
             // configure DI for application services se agregan todos los servicios 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICatalogoPerfilesService, CatalogoPerfilesService>();
+            services.AddScoped<IInventarioService, InventarioService>();
             services.AddScoped<BusinessPerfiles>();
+            services.AddScoped<BusinessInventarioEquipoMedico>();
+            services.AddScoped<BusinessInventarioInstrumentalMedico>();
+            services.AddScoped<BusinessInventarioMobiliario>();
+            services.AddScoped<BusinessInventarioSistemas>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

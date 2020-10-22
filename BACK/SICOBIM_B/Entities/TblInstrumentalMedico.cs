@@ -12,13 +12,12 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
 
-        public int idfederalizacion { get; set; }
         public TblFederalizacion tblFederalizacion
         {
             get;
             set;
         }
-        public int idinventario { get; set; }
+
         public TblInventarios tblInventarios
         {
             get;
@@ -30,39 +29,39 @@ namespace SICOBIM_B.Entities
         public string modelo { get; set; }
         public string serie { get; set; }
         public int cantidad { get; set; }
-        public int idcontrato { get; set; }
+
         public TblContratoBien tblContratoBien
         {
             get;
             set;
         }
 
-        public int idproveedor { get; set; }
+
         public TblProveedor tblProveedor
         {
             get;
             set;
         }
 
-        public int idfactura { get; set; }
+
         public TblFacturas tblFacturas
         {
             get;
             set;
         }
-        public int idAñosGarantia { get; set; }
+
         public CatGarantia catGarantia
         {
             get;
             set;
         }
-        public int idtipopartida { get; set; }
+
         public CatTipoPartida catTipoPartida
         {
             get;
             set;
         }
-        public int idclaveCambs { get; set; }
+
         public TblClaveCambs tblClaveCambs
         {
             get;
@@ -70,48 +69,48 @@ namespace SICOBIM_B.Entities
         }
 
 
-        public string idclaveSaica { get; set; }
+
         public TblClaveSaica tblClaveSaica
         {
             get;
             set;
         }
 
-        public int identrada { get; set; }
+
         public CatTipoEntrada catTipoEntrada
         {
             get;
             set;
         }
 
-        public int idServicio { get; set; }
+
         public TblAreaServicio tblAreaServicio
         {
             get;
             set;
         }
-        public int idpiso { get; set; }
+
         public CatPisos catPisos
 
         {
             get;
             set;
         }
-        public int idResguardatario { get; set; }
+
         public TblResguardatarios tblResguardatarios
         {
             get;
             set;
         }
         //FK
-        public int idTipoBien { get; set; }
+
         public CatTipoDeBien catTipoDeBienes
         {
             get;
             set;
         }
         //FK
-        public int idEstadoFisico { get; set; }
+
         public CatEstadoDelBien catEstadoDelBien
         {
             get;
@@ -130,6 +129,16 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
         public ICollection<TblSalidaBien> tblSalidaBien
+        {
+            get;
+            set;
+        }
+        public ICollection<TblFacturas> TblFacturas
+        {
+            get;
+            set;
+        }
+        public ICollection<TblProveedor> TblProveedor
         {
             get;
             set;
