@@ -1,108 +1,67 @@
-﻿<h2>SABICI-Sistema de Administracion de Bienes y Control de Inventarios</h2>
+﻿<h2>SABICI Sistema de Administracion de Bienes y Control de Inventarios</h2>
 <div class="card">
-    <h4 class="card-header">Registro de Usuarios</h4>
+    <h4 class="card-header">Registro de usuarios</h4>
     <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="firstName">Nombre</label>
-                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">Nombre Requerido</div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault01">Nombre(s)</label>
+              <input type="text" class="form-control" id="validationDefault01" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">Requerido</div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="lastName">Apellido Uno</label>
-                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+             <div class="col-md-4 mb-3">
+              <label for="validationDefault02">Primer apellido</label>
+              <input type="text" class="form-control" id="validationDefault02"class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Apellido Uno Requerido</div>
+                    <div *ngIf="f.lastName.errors.required">Requerido</div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="apellidodos">Apellido Dos</label>
-                <input type="text" formControlName="apellidodos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }" />
-                <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault02">Segundo apellido</label>
+              <input type="text" class="form-control" id="validationDefault02" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }">
+                 <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
                     <div *ngIf="f.apellidodos.errors.required">Apellido Dos Requerido</div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="sexo">Sexo</label>
-                <input type="number" formControlName="sexo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sexo.errors }" />
-                <div *ngIf="submitted && f.sexo.errors" class="invalid-feedback">
-                    <div *ngIf="f.sexo.errors.required">Sexo Requerido</div>
+            <div class="col-md-4 mb-3">
+              <label for="validationDefaultUsername">Nombre usuario</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
                 </div>
+                <input type="text" class="form-control" id="validationDefaultUsername" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }">
+                    <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellidodos.errors.required">Requerido</div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-                <label for="rfc">RFC</label>
-                <input type="text" formControlName="rfc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rfc.errors }" />
-                <div *ngIf="submitted && f.rfc.errors" class="invalid-feedback">
-                    <div *ngIf="f.rfc.errors.required">RFC Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="plaza">Numero de Plaza</label>
-                <input type="text" formControlName="plaza" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.plaza.errors }" />
-                <div *ngIf="submitted && f.plaza.errors" class="invalid-feedback">
-                    <div *ngIf="f.plaza.errors.required">Sexo Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="numeroempleado">Numero de Empleado</label>
-                <input type="text" formControlName="numeroempleado" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroempleado.errors }" />
-                <div *ngIf="submitted && f.numeroempleado.errors" class="invalid-feedback">
-                    <div *ngIf="f.numeroempleado.errors.required">Numero de Empleado Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="cargo">Cargo</label>
-                <input type="text" formControlName="cargo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cargo.errors }" />
-                <div *ngIf="submitted && f.cargo.errors" class="invalid-feedback">
-                    <div *ngIf="f.cargo.errors.required">Cargo Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="turno">Turno</label>
-                <input type="number" formControlName="turno" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.turno.errors }" />
-                <div *ngIf="submitted && f.turno.errors" class="invalid-feedback">
-                  <div *ngIf="f.turno.errors.required">Sexo Requerido</div>
-                </div>
-            </div>7
-            <div class="form-group">
-                <label for="tipocontrato">Tipo de Contrato</label>
-                <input type="number" formControlName="tipocontrato" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipocontrato.errors }" />
-                <div *ngIf="submitted && f.tipocontrato.errors" class="invalid-feedback">
-                  <div *ngIf="f.tipocontrato.errors.required">Tipo de Contrato Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="servicio">Servicio</label>
-                <input type="number" formControlName="servicio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.servicio.errors }" />
-                <div *ngIf="submitted && f.servicio.errors" class="invalid-feedback">
-                  <div *ngIf="f.servicio.errors.required">Servicio Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="username">Nombre de Usuario</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Nombre de Usuario Requerido</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Contraseña Requerida</div>
-                    <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault03">RFC</label>
+              <input type="text" class="form-control" id="validationDefault03" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rfc.errors }">
+              <div *ngIf="submitted && f.rfc.errors" class="invalid-feedback">
+                    <div *ngIf="f.rfc.errors.required">Requerido</div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Registrar
-                </button>
-                <a routerLink="../login" class="btn btn-link">Cancelar</a>
+
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+              <label class="form-check-label" for="invalidCheck2">
+                Agree to terms and conditions
+              </label>
             </div>
-        </form>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit form</button>
+
+      </form>
+
     </div>
 </div>

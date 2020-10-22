@@ -39,32 +39,32 @@ namespace SICOBIM_B.Controllers
             var result = _businessPerfiles.getCatArea();
             return Ok(result);
         }
-        [HttpGet("GetCatEstadoDelBien")]
+        [HttpGet("obtenerEstadosBien")]
         public IActionResult GetCatEstadoDelBien()
         {
             var result = _businessPerfiles.getEstadoBien();
             return Ok(result);
         }
-        [HttpGet("GetCatGarantia")]
+        [HttpGet("obtenerGarantias")]
         public IActionResult GetCatGarantia()
         {
             var result = _businessPerfiles.getCatGarantia();
             return Ok(result);
         }
-        [HttpGet("GetCatPermiso")]
+        [HttpGet("obtenerPermisos")]
         public IActionResult GetCatPermiso()
         {
             var result = _businessPerfiles.getCatPermiso();
             return Ok(result);
         }
-        [HttpGet("GetCatPisos")]
+        [HttpGet("obtenerPisos")]
         public IActionResult GetCatPisos()
         {
-            var result = _businessPerfiles.getCatPermiso();
+            var result = _businessPerfiles.getCatPisos();
             return Ok(result);
         }
 
-        [HttpGet("GetCatServicio")]
+        [HttpGet("obtenerServicios")]
         public IActionResult GetCatServicio()
         {
             var result = _businessPerfiles.getServicios();
@@ -72,43 +72,43 @@ namespace SICOBIM_B.Controllers
         }
 
 
-        [HttpGet("GetCatTipoContrato")]
+        [HttpGet("obtenerContratos")]
         public IActionResult GetCatTipoContrato()
         {
             var result = _businessPerfiles.getCatPisos();
             return Ok(result);
         }
-        [HttpGet("GetCatTipoDeBien")]
+        [HttpGet("obtenerTipoBien")]
         public IActionResult GetCatTipoDeBien()
         {
             var result = _businessPerfiles.getTipoBienes();
             return Ok(result);
         }
-        [HttpGet("GetCatTipoEntrada")]
+        [HttpGet("obtenerTipoEntrada")]
         public IActionResult GetCatTipoEntrada()
         {
             var result = _businessPerfiles.getTipoEntrada();
             return Ok(result);
         }
-        [HttpGet("GetCatTipoPartida")]
+        [HttpGet("obtenerPartidas")]
         public IActionResult GetCatTipoPartida()
         {
             var result = _businessPerfiles.getTipoPartidad();
             return Ok(result);
         }
-        [HttpGet("GetCatTurno")]
+        [HttpGet("obtenerTurnos")]
         public IActionResult GetCatTurno()
         {
             var result = _businessPerfiles.getCatTurnos();
             return Ok(result);
         }
-        [HttpGet("GetCatUnidadDestino")]
+        [HttpGet("obtenerDestinos")]
         public IActionResult GetCatUnidadDestino()
         {
             var result = _businessPerfiles.getUnidadDestino();
             return Ok(result);
         }
-        [HttpGet("GetCatTipoSalida")]
+        [HttpGet("obtenerTipoSalidas")]
         public IActionResult GetCatTipoSalida()
         {
             var result = _businessPerfiles.getTipoSalida();
