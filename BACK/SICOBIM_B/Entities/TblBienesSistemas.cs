@@ -12,13 +12,13 @@ namespace SICOBIM_B.Entities
         public int id { get; set; }
 
 
-        public TblFederalizacion tblFederalizacion
+        public TblFederalizacion IdFederalizacion
         {
             get;
             set;
         }
 
-        public TblInventarios tblInventarios
+        public TblInventarios IdInventarios
         {
             get;
             set;
@@ -30,26 +30,26 @@ namespace SICOBIM_B.Entities
         public string serie { get; set; }
         public int cantidad { get; set; }
 
-        public TblContratoBien tblContratoBien
+        public TblContratoBien IdContratoBien
         {
             get;
             set;
         }
 
        
-        public TblProveedor tblProveedor
+        public TblProveedor IdProveedor
         {
             get;
             set;
         }
 
 
-        public TblFacturas tblFacturas
+        public TblFacturas IdFacturas
         {
             get;
             set;
         }
-
+        
         public CatGarantia catGarantia
         {
             get;
@@ -62,7 +62,7 @@ namespace SICOBIM_B.Entities
             set;
         }
 
-        public TblClaveCambs tblClaveCambs
+        public TblClaveCambs IdClaveCambs
         {
             get;
             set;
@@ -70,7 +70,7 @@ namespace SICOBIM_B.Entities
 
 
 
-        public TblClaveSaica tblClaveSaica
+        public TblClaveSaica IdClaveSaica
         {
             get;
             set;
@@ -84,7 +84,7 @@ namespace SICOBIM_B.Entities
         }
         
 
-        public TblAreaServicio tblAreaServicio
+        public TblAreaServicio IdAreaServicio
         {
             get;
             set;
@@ -97,7 +97,7 @@ namespace SICOBIM_B.Entities
             set;
         }
 
-        public TblResguardatarios tblResguardatarios
+        public TblResguardatarios IdResguardatarios
         {
             get;
             set;
@@ -133,15 +133,10 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
-        public ICollection<TblFacturas> TblFacturas
-        {
-            get;
-            set;
-        }
-        public ICollection<TblProveedor> TblProveedor
-        {
-            get;
-            set;
-        }
+
+
+
+  
+
     }
 }

@@ -11,15 +11,15 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioEquipoMedico
     {
-        private ApplicationDbContext _objApplicationDbContext;
+        //private ApplicationDbContext _objApplicationDbContext;
         IInventarioService _inventarioServiceEquipoMedico;
-        BusinessInventarioEquipoMedico _objBEnventarioEquipoMedico;
+        //BusinessInventarioEquipoMedico _objBEnventarioEquipoMedico;
 
-        public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico, ApplicationDbContext applicationDbContext, BusinessInventarioEquipoMedico businessInventarioEquipoMedico)
+        public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico)
         {
             _inventarioServiceEquipoMedico = objEquipoMedico;
-            _objApplicationDbContext = applicationDbContext;
-            _objBEnventarioEquipoMedico = businessInventarioEquipoMedico;
+            //_objApplicationDbContext = applicationDbContext;
+            //_objBEnventarioEquipoMedico = businessInventarioEquipoMedico;
 
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.tblFederalizacion).ToList();
+                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacion).ToList();
                 return new RespuestaApi<TblBienesEquMedico>
                 {
                     correcto = true,
@@ -77,76 +77,76 @@ namespace SICOBIM_B.Business
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="idBienSistema"></param>
+        /// <param name="idBienEquipoMedico"></param>
         /// <returns></returns>
-        public List<TblFacturas> getFacturasTipoInventario(int idBienSistema)
-        {
-            List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
-            try
-            {              
-                tblFacturastipoinventario = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesSistema.id == idBienSistema).ToList();
+        //public List<TblFacturas> getFacturasTipoInventario(int idBienEquipoMedico)
+        //{
+        //    List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
+        //    try
+        //    {              
+        //        tblFacturastipoinventario = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico).ToList();
 
-                if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
-                    throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");
+        //        if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
+        //            throw new System.Exception("No existen registros con el Bien Equipo Médico insertado, favor de verificar");
                
-            }
-            catch (Exception ex)
-            {
-              string m =  ex.Message;
-            }
-            return tblFacturastipoinventario;
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //      string m =  ex.Message;
+        //    }
+        //    return tblFacturastipoinventario;
+        //}
         /// <summary>
         /// Retorna un objeto de tipo TblFacturas
         /// </summary>
         /// <param name="factura">Parametro para la busqueda de una factura en especifico</param>
         /// <returns></returns>
-        public TblFacturas getFactura (string factura)
-        {
-            TblFacturas tblFacturas = new TblFacturas();
-            try
-            {
+        //public TblFacturas getFactura (string factura)
+        //{
+        //    TblFacturas tblFacturas = new TblFacturas();
+        //    try
+        //    {
                
-                tblFacturas = _objApplicationDbContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
-                //if (  )
+        //        tblFacturas = _objApplicationDbContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
+        //        //if (  )
 
                    
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
               
              
-            }
-            return tblFacturas;
-        }
+        //    }
+        //    return tblFacturas;
+        //}
 
-        public RespuestaApi<TblFacturas> getFacturasPorCosto (int idBienSistema, double costo )
-        {
-            List<TblFacturas> tblFacturasPorCosto = new List<TblFacturas>();
+        //public RespuestaApi<TblFacturas> getFacturasPorCosto (int idBienEquipoMedico, double costo )
+        //{
+        //    List<TblFacturas> tblFacturasPorCosto = new List<TblFacturas>();
 
-            try
-            {
-                var result = _objBEnventarioEquipoMedico.getFacturasTipoInventario(idBienSistema);
+        //    try
+        //    {
+        //        var result = _objBEnventarioEquipoMedico.getFacturasTipoInventario(idBienEquipoMedico);
 
-                tblFacturasPorCosto = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesSistema.id == idBienSistema && x.costoTotal == costo).ToList();
+        //        tblFacturasPorCosto = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico && x.costoTotal == costo).ToList();
 
-                return new RespuestaApi<TblFacturas>()
-                {
-                    correcto = true,
-                    ObjetoRespuesta = tblFacturasPorCosto
-                };
+        //        return new RespuestaApi<TblFacturas>()
+        //        {
+        //            correcto = true,
+        //            ObjetoRespuesta = tblFacturasPorCosto
+        //        };
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return new RespuestaApi<TblFacturas>()
-                {
-                    Mensaje = ex.Message
-                };
-            }
+        //        return new RespuestaApi<TblFacturas>()
+        //        {
+        //            Mensaje = ex.Message
+        //        };
+        //    }
             
-        }
+        //}
 
 
     }

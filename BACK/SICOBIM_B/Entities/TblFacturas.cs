@@ -9,7 +9,7 @@ namespace SICOBIM_B.Entities
     [Table("TblFacturas")]
     public class TblFacturas
 
-
+        ///una factura puede tener varios bienes
         //por factura/tipo de bien/piso/clave cabms/clave saica/por contrato/
     {
         public int id { get; set; }
@@ -17,42 +17,28 @@ namespace SICOBIM_B.Entities
         public double IVA { get; set; }
         public double subtotal { get; set; }
         public double costoTotal { get; set; }
-        public TblBienesSistemas IdBienesSistema
-        {
-            get;
-            set;
-        }
-        public TblBienesEquMedico IdBienesEquMedico
-        {
-            get;
-            set;
-        }
-        public TblBienes IdBienesMuebles
-        {
-            get;
-            set;
-        }
-        public TblInstrumentalMedico InstrumentalMedico
-        {
-            get;
-            set;
-        }
+
+        public CatTipoDeBien CatTipoDeBien { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
+
+    //    public TblBienesEquMedico tblBienesEquMedico { get; set; } ///1|
+    //    public TblBienes TblBienes { get; set; }//2
+    //    public TblBienesSistemas tblBienesSistemas { get; set; }//3
+    public ICollection<TblBienesSistemas> tblBienesSistemas
+        {
+            get;
+            set;
+       }
         public ICollection<TblBienes> tblBienes
         {
             get;
             set;
         }
         public ICollection<TblBienesEquMedico> tblBienesEquMedico
-        {
-            get;
-            set;
-        }
-        public ICollection<TblBienesSistemas> tblBienesSistemas
         {
             get;
             set;

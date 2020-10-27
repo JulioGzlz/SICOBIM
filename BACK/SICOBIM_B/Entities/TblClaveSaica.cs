@@ -11,26 +11,7 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
         public string clavesaica { get; set; }
-        public TblBienesSistemas IdBienesSistema
-        {
-            get;
-            set;
-        }
-        public TblBienesEquMedico IdBienesEquMedico
-        {
-            get;
-            set;
-        }
-        public TblBienes IdBienesMuebles
-        {
-            get;
-            set;
-        }
-        public TblInstrumentalMedico InstrumentalMedico
-        {
-            get;
-            set;
-        }
+        public CatTipoDeBien CatTipoDeBien { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }

@@ -11,6 +11,7 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
         public string contratobien { get; set; }
+        public CatTipoDeBien CatTipoDeBien { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
@@ -21,11 +22,14 @@ namespace SICOBIM_B.Entities
             get;
             set;
         }
+
         public ICollection<TblBienesEquMedico> tblBienesEquMedico
         {
             get;
             set;
         }
+
+
         public ICollection<TblBienesSistemas> tblBienesSistemas
         {
             get;

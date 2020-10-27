@@ -10,28 +10,28 @@ namespace SICOBIM_B.Entities
     public class TblSalidaBien
     {
         public int id { get; set; }
-        public int idbien { get; set; }
-        public TblBienes tblbienes
+
+        public TblBienes Idbienes
         {
             set;
             get;
         }
 
 
-        public int idtiposalida { get; set; }
+   
         public CatTipoSalida catTipoSalida
         {
             set;
             get;
         }
-        public int idunidaddestino { get; set; }
+
         public CatUnidadDestino catUnidadDestino
         {
             set;
             get;
         }
 
-
+        public CatTipoDeBien CatTipoDeBien { get; set; }
 
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }

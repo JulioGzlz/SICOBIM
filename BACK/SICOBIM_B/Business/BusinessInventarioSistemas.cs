@@ -44,6 +44,29 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+        public List<TblFacturas> getFacturasTipoInventario(int idBienSistema)
+        {
+            List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
+            try
+            {
+                tblFacturastipoinventario = _objApplicationDbContext.tblFacturas.Where(x => x.CatTipoDeBien.id == idBienSistema).ToList();
+
+                if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
+                    throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");
+
+            }
+            catch (Exception ex)
+            {
+                string m = ex.Message;
+            }
+            return tblFacturastipoinventario;
+        }
+
+        public List<TblBienesSistemas> GetTblBienesPorFactura (string factura)
+        {
+            return _objApplicationDbContext.tblBienesSistemas.Where(x => x.IdFacturas.factura == factura).ToList();
+
+        }
 
 
 

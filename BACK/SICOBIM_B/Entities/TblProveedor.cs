@@ -11,37 +11,19 @@ namespace SICOBIM_B.Entities
     {
         public int id { get; set; }
         public string proveedor { get; set; }
-        public TblBienesSistemas IdBienesSistema
-        {
-            get;
-            set;
-        }
-        public TblBienesEquMedico IdBienesEquMedico
-        {
-            get;
-            set;
-        }
-        public TblBienes IdBienesMuebles
-        {
-            get;
-            set;
-        }
-        public TblInstrumentalMedico InstrumentalMedico
-        {
-            get;
-            set;
-        }
+        public CatTipoDeBien CatTipoDeBien { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
-        public ICollection<TblBienes> tblBienes
+       
+        public ICollection<TblBienesEquMedico> tblBienesEquMedico
         {
             get;
             set;
         }
-        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        public ICollection<TblBienes> tblBienes
         {
             get;
             set;
