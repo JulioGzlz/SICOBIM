@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SICOBIM_B.Entities
 {
     [Table("TblClaveCambs")]
-    public class TblClaveCambs
+    public class TblClaveCabms
     {
 
         public int id { get; set; }

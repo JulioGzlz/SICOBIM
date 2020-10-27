@@ -75,7 +75,7 @@ namespace SICOBIM_B.Data
         public virtual DbSet<TblFederalizacion> tblFederalizacion { set; get; }
         public virtual DbSet<TblContratoBien> tblContratoBien { set; get; }
         public virtual DbSet<TblProveedor> tblProveedor { set; get; }
-        public virtual DbSet<TblClaveCambs> tblClaveCambs { set; get; }
+        public virtual DbSet<TblClaveCabms> tblClaveCambs { set; get; }
         public virtual DbSet<TblClaveSaica> tblClaveSaica { set; get; }
         public virtual DbSet<TblBienesEquMedico> tblBienesEquMedicos { set; get; }
         public virtual DbSet<TblBienesSistemas> tblBienesSistemas { set; get; }

@@ -62,7 +62,7 @@ namespace SICOBIM_B.Entities
             set;
         }
 
-        public TblClaveCambs IdClaveCambs
+        public TblClaveCabms IdClaveCabms
         {
             get;
             set;

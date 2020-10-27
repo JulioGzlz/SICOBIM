@@ -14,7 +14,7 @@ namespace SICOBIM_B.Services
         IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
         IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
         IEnumerable<TblAreaServicio> GetTblAreaServicio();
-        IEnumerable<TblClaveCambs> GetTblClaveCambs();
+        IEnumerable<TblClaveCabms> GetTblClaveCambs();
         IEnumerable<TblClaveSaica> GetTblClaveSaica();
         IEnumerable<TblConfPerfil> GetTblConfPerfil();
         IEnumerable<TblContratoBien> GetTblContratoBien();
@@ -60,7 +60,7 @@ namespace SICOBIM_B.Services
             return _applicationDbContext.tblBienesSistemas;
         }
 
-        public IEnumerable<TblClaveCambs> GetTblClaveCambs()
+        public IEnumerable<TblClaveCabms> GetTblClaveCambs()
         {
             return _applicationDbContext.tblClaveCambs;
         }
