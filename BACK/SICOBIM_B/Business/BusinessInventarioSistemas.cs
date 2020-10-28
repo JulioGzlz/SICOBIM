@@ -34,7 +34,7 @@ namespace SICOBIM_B.Business
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().ToList();
                 lstSistemas = resul;
 
-                if(lstSistemas == null || lstSistemas.Count <=0 )
+                if (lstSistemas == null || lstSistemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
                 return new RespuestaApi<TblBienesSistemas>
                 {
@@ -61,8 +61,8 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesSistemas> ltsFederalizacionSistemas = null; 
-                
+                List<TblBienesSistemas> ltsFederalizacionSistemas = null;
+
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFederalizacion).ToList();
 
                 if (ltsFederalizacionSistemas == null || ltsFederalizacionSistemas.Count <= 0)
@@ -106,10 +106,12 @@ namespace SICOBIM_B.Business
                 };
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    Mensaje = ex.Message
+                };
             }
 
         }
@@ -135,10 +137,12 @@ namespace SICOBIM_B.Business
                 };
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    Mensaje = ex.Message
+                };
             }
 
         }
@@ -164,20 +168,86 @@ namespace SICOBIM_B.Business
                 };
 
             }
-            catch (Exception)
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+        }
+
+        /// <summary>
+        /// Consulta Bienes por factura
+        /// </summary>
+        /// <param name="factura"></param>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetTblBienesPorFactura()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstBienesFactura = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFacturas).ToList();
+                lstBienesFactura = resul;
+
+
+                if (lstBienesFactura == null || lstBienesFactura.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesFactura
+                };
+            }
+            catch (Exception ex)
             {
 
-                throw;
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por clave saica
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaClaveSaica()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstBienesClaveSaica = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdClaveSaica).ToList();
+                lstBienesClaveSaica = resul;
+
+
+                if (lstBienesClaveSaica == null || lstBienesClaveSaica.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesClaveSaica
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
             }
         }
 
 
-            /// <summary>
-            /// Te retorna las facturas por tipo de bien 
-            /// </summary>
-            /// <param name="idBienSistema"></param>
-            /// <returns></returns>
-            public List<TblFacturas> getFacturasTipoInventario(int idBienSistema)
+
+
+
+
+        /// <summary>
+        /// Te retorna las facturas por tipo de bien sistemas 
+        /// </summary>
+        /// <param name="idBienSistema"></param>
+        /// <returns></returns>
+        public List<TblFacturas> getFacturasTipoInventario(int idBienSistema)
         {
             List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
             try
@@ -195,11 +265,6 @@ namespace SICOBIM_B.Business
             return tblFacturastipoinventario;
         }
 
-        public List<TblBienesSistemas> GetTblBienesPorFactura (string factura)
-        {
-            return _objApplicationDbContext.tblBienesSistemas.Where(x => x.IdFacturas.factura == factura).ToList();
-
-        }
 
 
 
