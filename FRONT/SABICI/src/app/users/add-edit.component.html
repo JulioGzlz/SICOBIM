@@ -1,16 +1,16 @@
-﻿<h1 *ngIf="isAddMode">Add User</h1>
-<h1 *ngIf="!isAddMode">Edit User</h1>
+﻿<h1 *ngIf="isAddMode">Agregar usuario</h1>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-row">
-        <div class="form-group col">
-            <label for="firstName">First Name</label>
+        <div class="col-md-4 mb-3">
+            <label for="firstName">Nombre(s): </label>
             <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
             </div>
         </div>
-        <div class="form-group col">
-            <label for="lastName">Last Name</label>
+        <div class="col-md-4 mb-3">
+            <label for="lastName">Primer apellido: </label>
             <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
             <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                 <div *ngIf="f.lastName.errors.required">Last Name is required</div>

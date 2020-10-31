@@ -61,6 +61,14 @@ namespace SICOBIM_B.Controllers
             var result = _businessSistemas.GetConsultaClaveSaica();
             return Ok(result);
         }
+        //[HttpGet("ObtenerFacturasPorInventario")]
+        ///public IActionResult GetFacturasTipoInventario()
+        ///{
+          ///  var result = _businessSistemas.GetFacturasTipoInventario();
+          ///  return Ok(result);
+        ///}
+
+
 
     }
 }

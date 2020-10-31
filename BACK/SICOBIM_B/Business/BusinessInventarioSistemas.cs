@@ -26,7 +26,7 @@ namespace SICOBIM_B.Business
         /// Te retorna la lista de Bienes de tipo sistema 
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblBienesSistemas> GetSistemas() //esto se tienes que llamar en el controlador que le pertenece
+        public RespuestaApi<TblBienesSistemas> GetSistemas()
         {
             try
             {
@@ -57,7 +57,7 @@ namespace SICOBIM_B.Business
         /// Muestra una lista de los bienes por Federalizacion
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblBienesSistemas> GetConsultaFederalizacion() //esto se tienes que llamar en el controlador que le pertenece
+        public RespuestaApi<TblBienesSistemas> GetConsultaFederalizacion() 
         {
             try
             {
@@ -168,17 +168,15 @@ namespace SICOBIM_B.Business
                 };
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return new RespuestaApi<TblBienesSistemas>()
-                {
-                    Mensaje = ex.Message
-                };
+
+                throw;
             }
         }
 
         /// <summary>
-        /// Consulta Bienes por factura
+        /// Consulta de bienes sistemas por factura
         /// </summary>
         /// <param name="factura"></param>
         /// <returns></returns>
@@ -247,7 +245,7 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="idBienSistema"></param>
         /// <returns></returns>
-        public List<TblFacturas> getFacturasTipoInventario(int idBienSistema)
+        public List<TblFacturas> GetFacturasTipoInventario(int idBienSistema)
         {
             List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
             try
@@ -264,9 +262,6 @@ namespace SICOBIM_B.Business
             }
             return tblFacturastipoinventario;
         }
-
-
-
 
 
 

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SICOBIM_B.Business;
 using SICOBIM_B.Entities;
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
@@ -24,19 +25,22 @@ namespace SICOBIM_B.Controllers
 {
 
 
-  
+
     //[Authorize]
 
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
+
+        BusinessPerfiles _businessPerfiles ;
         private IUserService _userService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
 
-        public UsersController(IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
+        public UsersController(IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings, BusinessPerfiles objperfiles)
         {
+            _businessPerfiles = objperfiles;
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
@@ -51,7 +55,7 @@ namespace SICOBIM_B.Controllers
             var response = _userService.Authenticate(model, ipAddress());
 
             if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "Nombre de usuario o contraseña incorrecta" });
 
             setTokenCookie(response.RefreshToken);
 
@@ -59,7 +63,7 @@ namespace SICOBIM_B.Controllers
 
         }
 
-        
+
         [AllowAnonymous]
         [DisableCors]
         [HttpPost("refresh-token")]
@@ -115,13 +119,13 @@ namespace SICOBIM_B.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Register ([FromBody]ModeloRegistro model)
+        public IActionResult Register([FromBody] ModeloRegistro model)
         {
             var user = _mapper.Map<User>(model);
             try
             {
                 _userService.Create(user, model.Password);
-                 return Ok();
+                return Ok();
             }
             catch (AppException ex)
             {
@@ -149,7 +153,7 @@ namespace SICOBIM_B.Controllers
 
             return Ok(user);
         }
-      
+
         [HttpGet("{id}/refresh-tokens")]
         public IActionResult GetRefreshTokens(int id)
         {
@@ -158,6 +162,10 @@ namespace SICOBIM_B.Controllers
 
             return Ok(user.RefreshTokens);
         }
+
+
+
+    
 
 
 
