@@ -21,12 +21,5 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
-        public ICollection<TblConfPerfil> tblConfPerfil
-        {
-            get;
-            set;
-        }
-
-
     }
 }

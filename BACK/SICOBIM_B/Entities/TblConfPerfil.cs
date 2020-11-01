@@ -9,12 +9,7 @@ namespace SICOBIM_B.Entities
 {
     [Table("TblConfPerfil")]
     public class TblConfPerfil
-
-
-
     {
-
-
         public CatPermiso IdPermiso
         {
             get;
