@@ -114,7 +114,12 @@ namespace SICOBIM_B.Controllers
             var result = _businessPerfiles.getTipoSalida();
             return Ok(result);
         }
-       
+        [HttpGet("obtenerRoles")]
+        public IActionResult GetRoles()
+        {
+            var result = _businessPerfiles.getRoles();
+            return Ok(result);
+        }
 
     }
     
