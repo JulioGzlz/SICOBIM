@@ -9,13 +9,23 @@ namespace SICOBIM_B.Entities
 {
     [Table("TblConfPerfil")]
     public class TblConfPerfil
-    {
-        [ForeignKey("idRol")]
-        public virtual CatRol CatRol { get; set; }
 
-        [ForeignKey("idPermiso")]
+
+
+    {
+
+
+        public CatPermiso IdPermiso
+        {
+            get;
+            set;
+        }
+        public CatRol IdRol
+        {
+            get;
+            set;
+        }
         public bool activo { get; set; }
-        public virtual CatPermiso CatPermiso { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
