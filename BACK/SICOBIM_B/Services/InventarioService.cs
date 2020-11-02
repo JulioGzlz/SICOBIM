@@ -9,6 +9,7 @@ namespace SICOBIM_B.Services
 {
     public interface IInventarioService
     {
+        #region Consulta de tablas, se retornan LISTAS 
         IEnumerable<TblBienes> GetTblBienes();
         IEnumerable<TblBienesEquMedico> GetTblBienesEquMedicos();
         IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
@@ -24,14 +25,19 @@ namespace SICOBIM_B.Services
         IEnumerable<TblProveedor> GetTblProveedor();
         IEnumerable<TblResguardatarios> GetTblResguardatarios();
         IEnumerable<TblSalidaBien> GetTblSalidaBien();
+        #endregion
 
+        #region Guardado de los objetos de las entidades
+        TblBienesEquMedico GuardarTblBienes(TblBienesEquMedico tblBienesEquMedico);
+        TblFacturas GuardarTblFacturas(TblFacturas tblFacturas);
 
-
+        #endregion
 
     }
 
     public class InventarioService : IInventarioService
     {
+        
 
         private ApplicationDbContext _applicationDbContext;
 
@@ -39,7 +45,7 @@ namespace SICOBIM_B.Services
         {
             _applicationDbContext = dbContext;
         }
-
+        #region Retorno de consultas de las tablas
         public IEnumerable<TblAreaServicio> GetTblAreaServicio()
         {
             return _applicationDbContext.tblAreaServicio;
@@ -114,7 +120,32 @@ namespace SICOBIM_B.Services
         {
             return _applicationDbContext.tblSalidaBien;
         }
+
+        #endregion
+
+
+        #region Guardado de mis objetos
+        public TblBienesEquMedico GuardarTblBienes(TblBienesEquMedico tblBienesEquMedico)
+        {
+            _applicationDbContext.tblBienesEquMedicos.Add(tblBienesEquMedico);
+            _applicationDbContext.SaveChanges();
+
+            return tblBienesEquMedico;
+        }
+
+
+        public TblFacturas GuardarTblFacturas(TblFacturas tblFacturas)
+        {
+            _applicationDbContext.tblFacturas.Add(tblFacturas);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblFacturas;
+        }
+
+
+        #endregion
     }
- 
+
 
 }

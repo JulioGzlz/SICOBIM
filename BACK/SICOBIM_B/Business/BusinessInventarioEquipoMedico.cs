@@ -11,8 +11,10 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioEquipoMedico
     {
+        #region  Metodos de consultas de listas
         //private ApplicationDbContext _objApplicationDbContext;
         IInventarioService _inventarioServiceEquipoMedico;
+
         //BusinessInventarioEquipoMedico _objBEnventarioEquipoMedico;
 
         public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico)
@@ -88,7 +90,7 @@ namespace SICOBIM_B.Business
 
         //        if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
         //            throw new System.Exception("No existen registros con el Bien Equipo Médico insertado, favor de verificar");
-               
+
         //    }
         //    catch (Exception ex)
         //    {
@@ -106,16 +108,16 @@ namespace SICOBIM_B.Business
         //    TblFacturas tblFacturas = new TblFacturas();
         //    try
         //    {
-               
+
         //        tblFacturas = _objApplicationDbContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
         //        //if (  )
 
-                   
+
         //    }
         //    catch (Exception ex)
         //    {
-              
-             
+
+
         //    }
         //    return tblFacturas;
         //}
@@ -145,10 +147,22 @@ namespace SICOBIM_B.Business
         //            Mensaje = ex.Message
         //        };
         //    }
-            
+
         //}
+        #endregion
 
 
+        #region Metodos para guardar
+
+        public TblFacturas GuardarFacturaInventarioEquipoMedico( TblFacturas tblFacturas)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblFacturas(tblFacturas);
+
+        }
+
+
+        #endregion
     }
 
 
