@@ -11,18 +11,17 @@ namespace SICOBIM_B.Business
 {
     public class BusinessPerfiles
     {
+        IInventarioService _tblPerfilesService;
         private ApplicationDbContext _objApplicationDbContext;
-
-
-
 
         ICatalogoPerfilesService _catalogoPerfilesService;
 
 
-        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, ApplicationDbContext applicationDbContext)
+        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, ApplicationDbContext applicationDbContext, IInventarioService objperfil)
         {
             _catalogoPerfilesService = objIcatalogos;
             _objApplicationDbContext = applicationDbContext;
+            _tblPerfilesService = objperfil;
 
         }
 
@@ -136,18 +135,43 @@ namespace SICOBIM_B.Business
             }
         }
   
+        //public RespuestaApi<CatPermiso> getCatPermiso()
+        //{
+        //    try
+        //    {
+        //        List<CatPermiso> lstPermisos = new List<CatPermiso>();
+
+        //        return new RespuestaApi<CatPermiso>()
+        //        {
+        //            correcto = true,
+        //            ObjetoRespuesta = lstPermisos
+        //        };
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new RespuestaApi<CatPermiso>()
+        //        {
+        //            Mensaje = ex.Message
+        //        };
+        //    }
+        //}
         public RespuestaApi<CatPermiso> getCatPermiso()
         {
             try
             {
-                List<CatPermiso> lstPermisos = new List<CatPermiso>();
+                List<CatPermiso> lstPermisos = null;
+                var resul = _catalogoPerfilesService.GetCatPermiso().ToList();
+                lstPermisos = resul;
 
-                return new RespuestaApi<CatPermiso>()
+                if (lstPermisos == null || lstPermisos.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+                return new RespuestaApi<CatPermiso>
                 {
                     correcto = true,
                     ObjetoRespuesta = lstPermisos
-                };
 
+                };
             }
             catch (Exception ex)
             {
@@ -157,7 +181,8 @@ namespace SICOBIM_B.Business
                 };
             }
         }
-    
+
+
         public RespuestaApi<CatPisos> getCatPisos()
         {
             try
@@ -179,17 +204,22 @@ namespace SICOBIM_B.Business
                 };
             }
         }
-    
+   
         public RespuestaApi<CatRol> getRoles()
         {
             try
             {
-                List<CatRol> lstRoles = new List<CatRol>();
+                List<CatRol> lstRol = null;
+                var resul = _catalogoPerfilesService.GetCatRol().ToList();
+                lstRol = resul;
 
-                return new RespuestaApi<CatRol>()
+                if (lstRol == null || lstRol.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+                return new RespuestaApi<CatRol>
                 {
                     correcto = true,
-                    ObjetoRespuesta = lstRoles
+                    ObjetoRespuesta = lstRol
+
                 };
             }
             catch (Exception ex)
@@ -200,7 +230,30 @@ namespace SICOBIM_B.Business
                 };
             }
         }
-    
+        
+        public List<TblConfPerfil> getRolPerfil(int IdPerfil)
+        {
+            List<TblConfPerfil> lstperfil = null;
+            try
+            {
+               
+                var resul =_objApplicationDbContext.tblConfPerfil.Where(x => x.IdPermiso.id == IdPerfil).ToList();
+                lstperfil = resul;
+
+                if (lstperfil == null || lstperfil.Count <= 0)
+                    throw new System.Exception("No existen registros con Perfil insertado, favor de verificar");
+
+                return lstperfil;
+         
+            }
+            catch (Exception ex)
+            {
+              
+            }
+            return lstperfil;
+        }
+       
+
         public RespuestaApi<CatServicio> getServicios()
         {
 

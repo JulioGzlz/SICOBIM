@@ -7,21 +7,17 @@ namespace SICOBIM_B.Models
 {
     public class ModeloInventario
     {
-        public int catTipoBien { get; set; }
-
-        public string descripcion { get; set; }
-        public int MyProperty { get; set; }
-
-        public int id { get; set; }
-
-
-        public int idFederalizacion { get; set; }
-
-        public int IdInventario { get; set; }
-
-
-
-
+        /// <summary>
+        /// IdFederalizacion tabla TblFederalizacion
+        /// </summary>
+        public string Federalizacion { get; set; }
+        /// <summary>
+        /// IdInventario tabla TblInventarios
+        /// </summary>
+        public string Inventarios { get; set; }
+        /// <summary>
+        /// marca, modelo y serie parte de la Tbls por tipo de inventario
+        /// </summary>
         public string marca { get; set; }
         public string modelo { get; set; }
         public string serie { get; set; }
@@ -29,59 +25,77 @@ namespace SICOBIM_B.Models
         /// es la cantidad fisica de bienes   1 bien = n pzs
         /// </summary>
         public int cantidad { get; set; }
-
-        public int IdContratoBien { get; set; }
-
-
-        public int IdProveedor { get; set; }
-
+        /// <summary>
+        /// IdContratoBien tabla TblContratoBien
+        /// </summary>
+        public string ContratoBien { get; set; }
+        /// <summary>
+        /// IdProveedor tabla TblProveedores
+        /// </summary>
+        public string Proveedor { get; set; }
+        /// <summary>
+        /// factura, subtotal,iva,total datos que son parte de  tabla TblFacturas
+        /// </summary>
         public string factura { get; set; }
-
-
         public double subtotal { get; set; }
         public double iva { get; set; }
-        public decimal total { get; set; }
+        public double total { get; set; }
+        /// <summary>
+        /// IdGarantia  catalogo garantia
+        /// </summary>
+        public int IdGarantia { get; set; }
 
         /// <summary>
-        /// Id  catalogo garantia
+        /// IdTipoPartida Catalogo CatTipoPartida
         /// </summary>
-        public int idGarantia { get; set; }
-        public string IdcatTipoPartida { get; set; }
-        public string IdClaveCabms { get; set; }
-        public string IdClaveSaica { get; set; }
+        public int IdTipoPartida { get; set; }
+
+        /// <summary>
+        /// IdClaveCabms tabla TblClaveCabms
+        /// </summary>
+        public string ClaveCabms { get; set; }
+
+        /// <summary>
+        /// IdClaveSaica tabla TblClaveSaica
+        /// </summary>
+        public string ClaveSaica { get; set; }
+        /// <summary>
+        /// IdTipoEntrada Catalogo CatTipodeentrada
+        /// </summary>
         public int IdTipoEntrada { get; set; }
-        public int catTipoEntrada { get; set; }
+
         /// <summary>
         /// Es el resultado de la busqueda en cascada del area
         /// </summary>
         public int IdAreaServicio { get; set; }
-        public int catPisos { get; set; }
         /// <summary>
-        /// campo no obligatorio
+        /// IdPisos Catalogo CatPisos
         /// </summary>
-        public int IdResguardatarios
-        {
-            get;
-            set;
-        }
-        //FK
-
-        public int catTipoDeBienes
-        {
-            get;
-            set;
-        }
-        //FK
-
-        public int catEstadoDelBien
-        {
-            get;
-            set;
-        }
-
+        public int IdPisos { get; set; }
+        /// <summary>
+        /// campo no obligatorio Tbl resguardatorios
+        /// </summary>
+        public int IdResguardatarios {get; set; }
+        /// <summary>
+        /// IdTipoDeBien Catalogo tipo de bien 
+        /// </summary>
+        public int IdTipoDeBien { get; set; }
+        /// <summary>
+        /// IdEstadodelBien Catalogo campo no obligatorio
+        /// </summary>
+        public int IdEstadodelBien { get; set; }
+        /// <summary>
+        /// observaciones campo no obligatorio
+        /// </summary>
         public String observaciones { get; set; }
+        /// <summary>
+        /// Campo que se manadara por front 
+        /// </summary>
         public int idUsuarioAlta { get; set; }
-      
+
+
+
+
 
     }
 }

@@ -84,6 +84,12 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+
+        internal object GetFacturasTipoInventario()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Consulta de bienes por clave cabms 
         /// </summary>
@@ -245,22 +251,30 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="idBienSistema"></param>
         /// <returns></returns>
-        public List<TblFacturas> GetFacturasTipoInventario(int idBienSistema)
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBienSistema)
         {
-            List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
+       
             try
             {
-                tblFacturastipoinventario = _objApplicationDbContext.tblFacturas.Where(x => x.CatTipoDeBien.id == idBienSistema).ToList();
-
-                if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
+                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objApplicationDbContext.tblFacturas.Where(x => x.CatTipoDeBien.id == idBienSistema).ToList();
+                lstFacturasporInventario = resul;
+                if (lstFacturasporInventario == null  || lstFacturasporInventario.Count <= 0)
                     throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");
+                return new RespuestaApi<TblFacturas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstFacturasporInventario
 
+                };
             }
             catch (Exception ex)
             {
-                string m = ex.Message;
+                return new RespuestaApi<TblFacturas>()
+                {
+                    Mensaje = ex.Message
+                };
             }
-            return tblFacturastipoinventario;
+
         }
 
 

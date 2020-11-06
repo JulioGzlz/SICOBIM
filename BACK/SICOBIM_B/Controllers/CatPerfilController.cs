@@ -120,7 +120,14 @@ namespace SICOBIM_B.Controllers
             var result = _businessPerfiles.getRoles();
             return Ok(result);
         }
-
+        
+        [HttpGet]
+        [Route("obtenerRol/{IdPerfil}")]
+        public IActionResult GetPerfil(int IdPerfil)
+        {
+            var result = _businessPerfiles.getRolPerfil(IdPerfil);
+            return Ok(result);
+        }
     }
     
 }

@@ -28,8 +28,22 @@ namespace SICOBIM_B.Services
         #endregion
 
         #region Guardado de los objetos de las entidades
-        TblBienesEquMedico GuardarTblBienes(TblBienesEquMedico tblBienesEquMedico);
+        TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico);
         TblFacturas GuardarTblFacturas(TblFacturas tblFacturas);
+        TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica);
+        TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien);
+
+        TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion);
+
+        TblInventarios GuardarTblInventarios(TblInventarios tblInventarios);
+
+        TblProveedor GuardarTblProveedor(TblProveedor tblProveedor);
+
+         TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms);
+
+
+
+
 
         #endregion
 
@@ -125,7 +139,7 @@ namespace SICOBIM_B.Services
 
 
         #region Guardado de mis objetos
-        public TblBienesEquMedico GuardarTblBienes(TblBienesEquMedico tblBienesEquMedico)
+        public TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico)
         {
             _applicationDbContext.tblBienesEquMedicos.Add(tblBienesEquMedico);
             _applicationDbContext.SaveChanges();
@@ -141,6 +155,54 @@ namespace SICOBIM_B.Services
 
 
             return tblFacturas;
+        }
+        public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
+        {
+            _applicationDbContext.tblClaveSaica.Add(tblClaveSaica);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblClaveSaica;
+        }
+        public TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien)
+        {
+            _applicationDbContext.tblContratoBien.Add(tblContratoBien);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblContratoBien;
+        }
+        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        {
+            _applicationDbContext.tblFederalizacion.Add(tblFederalizacion);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblFederalizacion;
+        }
+        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        {
+            _applicationDbContext.tblInventarios.Add(tblInventarios);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblInventarios;
+        }
+        public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
+        {
+            _applicationDbContext.tblProveedor.Add(tblProveedor);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblProveedor;
+        }
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        {
+            _applicationDbContext.tblClaveCambs.Add(tblClaveCabms);
+            _applicationDbContext.SaveChanges();
+
+
+            return tblClaveCabms;
         }
 
 

@@ -160,6 +160,50 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblFacturas(tblFacturas);
 
         }
+        public TblBienesEquMedico GuardarTblEquiMedico(TblBienesEquMedico tblBienesEquMedico)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblBienesEquMedico(tblBienesEquMedico);
+
+        }
+        public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblClaveSaica(tblClaveSaica);
+
+        }
+        public TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblContratoBien(tblContratoBien);
+
+        }
+        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
+
+        }
+        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblInventarios(tblInventarios);
+
+        }
+        public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblProveedor(tblProveedor);
+
+        }
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        {
+
+            return _inventarioServiceEquipoMedico.GuardarTblClaveCabms(tblClaveCabms);
+
+        }
+
+
 
 
         #endregion
