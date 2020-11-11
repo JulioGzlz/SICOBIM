@@ -59,7 +59,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacion).ToList();
+                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.TblFederalizacionId).ToList();
                 return new RespuestaApi<TblBienesEquMedico>
                 {
                     correcto = true,

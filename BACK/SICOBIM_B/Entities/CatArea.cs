@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace SICOBIM_B.Entities
 
     public class CatArea
     {
-        public int id { get; set; }
+        [Key]
+        public int CatAreaid { get; set; }
         public string area { get; set; }
         public String descripcion { get; set; }
         public int usuarioAlta { get; set; }
@@ -20,7 +22,7 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
-        public ICollection<TblAreaServicio> tblAreaServicios
+        public virtual ICollection<TblAreaServicio> tblAreaServicios
         {
             get;
             set;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,127 +11,61 @@ namespace SICOBIM_B.Entities
     [Table("TblBienesEquMedico")]
     public class TblBienesEquMedico
     {
+        [Key]
+        public int TblBienesEquMedicoId { get; set; }
 
-        public int id { get; set; }
+        public int TblFederalizacionId { get; set; }
 
-        public TblFederalizacion IdFederalizacion
-        {
-            get;
-            set;
-        }
+        public int TblInventariosId { get; set; }
 
-        public TblInventarios IdInventario
-        {
-            get;
-            set;
-        }
-
+        public string descripcion { get; set; }
 
         public string marca { get; set; }
         public string modelo { get; set; }
         public string serie { get; set; }
         public int cantidad { get; set; }
 
+        public int TblContratoBienId { get; set; }
+        public int TblProveedorId { get; set; }
 
-        public TblContratoBien IdContratoBien
-        {
-            get;
-            set;
-        }
+        public int TblFacturasId { get; set; }
+        /// <summary>
+        /// costo unitario
+        /// subtotal
+        /// c
+        /// iva
+        /// </summary>
+        public int CatGarantiaId { get; set; }
 
+        public int CatTipoPartidaId { get; set; }
+        public int TblClaveCabmsId { get; set; }
 
-        public TblProveedor IdProveedor
-        {
-            get;
-            set;
-        }
-
-
-        public TblFacturas IdFacturas
-        {
-            get;
-            set;
-        }
-
-        public CatGarantia catGarantia
-        {
-            get;
-            set;
-        }
-
-        public CatTipoPartida catTipoPartida
-        {
-            get;
-            set;
-        }
-
-        public TblClaveCabms IdClaveCabms
-        {
-            get;
-            set;
-        }
+        public int TblClaveSaicaId { get; set; }
 
 
-
-        public TblClaveSaica IdClaveSaica
-        {
-            get;
-            set;
-        }
+        public int CatTipoEntradaId { get; set; }
 
 
-        public CatTipoEntrada catTipoEntrada
-        {
-            get;
-            set;
-        }
+        public int TblAreaServicioId { get; set; }
+        public int CatPisosId { get; set; }
 
-
-        public TblAreaServicio IdAreaServicio
-        {
-            get;
-            set;
-        }
-
-        public CatPisos catPisos
-
-        {
-            get;
-            set;
-        }
-
-        public TblResguardatarios IdResguardatarios
-        {
-            get;
-            set;
-        }
+        public int TblResguardatariosId { get; set; }
         //FK
-
-        public CatTipoDeBien catTipoDeBienes
-        {
-            get;
-            set;
-        }
-        //FK
-
-        public CatEstadoDelBien catEstadoDelBien
-        {
-            get;
-            set;
-        }
-
-        public String observaciones { get; set; }
+        public int CatTipoDeBienId { get; set; }
 
 
+        public int CatEstadoDelBienId { get; set; }
 
+        public string observaciones { get; set; }
 
+        //falta por relasionar 
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public ICollection<TblSalidaBien> tblSalidaBien
+        public virtual ICollection<TblSalidaBienEquMedico> tblSalidaBien
         {
             get;
             set;

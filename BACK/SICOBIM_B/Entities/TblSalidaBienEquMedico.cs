@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,31 +8,17 @@ using System.Threading.Tasks;
 namespace SICOBIM_B.Entities
 {
     [Table("TblSalidaBien")]
-    public class TblSalidaBien
+    public class TblSalidaBienEquMedico
     {
-        public int id { get; set; }
+        [Key]
+        public int TblSalidaBienEquMedicoId { get; set; }
 
-        public TblBienes Idbienes
-        {
-            set;
-            get;
-        }
+        public int TblBienesEquMedicoId { get; set; }
 
+        public int CatTipoSalidaId { get; set; }
 
-   
-        public CatTipoSalida catTipoSalida
-        {
-            set;
-            get;
-        }
-
-        public CatUnidadDestino catUnidadDestino
-        {
-            set;
-            get;
-        }
-
-        public CatTipoDeBien CatTipoDeBien { get; set; }
+        public int CatUnidadDestinoId { get; set; }
+        public int CatTipoDeBienId { get; set; }
 
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace SICOBIM_B.Entities
     [Table("CatTipoEntrada")]
     public class CatTipoEntrada
     {
-        public int id { get; set; }
+        [Key]
+        public int CatTipoEntradaId { get; set; }
 
         public String tipoentrada { get; set; }
         public String descripcion { get; set; }
@@ -19,22 +21,22 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public ICollection<TblBienes> tblBienes
+        public virtual ICollection<TblBienes> tblBienes
         {
             get;
             set;
         }
-        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        public virtual ICollection<TblBienesEquMedico> tblBienesEquMedico
         {
             get;
             set;
         }
-        public ICollection<TblBienesSistemas> tblBienesSistemas
+        public virtual ICollection<TblBienesSistemas> tblBienesSistemas
         {
             get;
             set;
         }
-        public ICollection<TblInstrumentalMedico> tblInstrumentalMedico
+        public virtual ICollection<TblInstrumentalMedico> tblInstrumentalMedico
         {
             get;
             set;

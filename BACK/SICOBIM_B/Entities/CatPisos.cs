@@ -11,7 +11,7 @@ namespace SICOBIM_B.Entities
     public class CatPisos
     {
         [Key]
-        public int id { get; set; }
+        public int CatPisosId { get; set; }
         public string piso { get; set; }
         public string descripcion { get; set; }
         public int idUsuarioAlta { get; set; }
@@ -21,22 +21,22 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
-        public ICollection<TblBienes> tblBienes
+        public virtual ICollection<TblBienes> tblBienes
         {
             get;
             set;
         }
-        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        public virtual ICollection<TblBienesEquMedico> tblBienesEquMedico
         {
             get;
             set;
         }
-        public ICollection<TblBienesSistemas> tblBienesSistemas
+        public virtual ICollection<TblBienesSistemas> tblBienesSistemas
         {
             get;
             set;
         }
-        public ICollection<TblInstrumentalMedico> tblInstrumentalMedico
+        public virtual ICollection<TblInstrumentalMedico> tblInstrumentalMedico
         {
             get;
             set;

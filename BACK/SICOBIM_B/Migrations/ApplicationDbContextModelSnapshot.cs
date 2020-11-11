@@ -21,7 +21,7 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatArea", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatAreaid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -47,14 +47,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioAlta")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatAreaid");
 
                     b.ToTable("CatArea");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatEstadoDelBien", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatEstadoDelBienId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -80,14 +80,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatEstadoDelBienId");
 
                     b.ToTable("CatEstadoDelBien");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatEstatus", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatEstatusId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -113,14 +113,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatEstatusId");
 
                     b.ToTable("CatEstatus");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatGarantia", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatGarantiaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -146,7 +146,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatGarantiaId");
 
                     b.ToTable("CatGarantia");
                 });
@@ -186,7 +186,7 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatPisos", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatPisosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -212,7 +212,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatPisosId");
 
                     b.ToTable("CatPiso");
                 });
@@ -252,7 +252,7 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatServicio", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatServicioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -278,14 +278,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioAlta")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatServicioId");
 
                     b.ToTable("CatServicio");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatSexo", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatSexoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -311,14 +311,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatSexoId");
 
                     b.ToTable("CatSexo");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoContrato", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTipoContratoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -344,14 +344,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTipoContratoId");
 
                     b.ToTable("CatTipoContrato");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoDeBien", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTipoDeBienId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -377,14 +377,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTipoDeBienId");
 
                     b.ToTable("CatTipoDeBien");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoEntrada", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTipoEntradaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -410,14 +410,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTipoEntradaId");
 
                     b.ToTable("CatTipoEntrada");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoPartida", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTipoPartidaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -443,14 +443,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTipoPartidaId");
 
                     b.ToTable("CatTipoPartida");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTipoSalida", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTipoSalidaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -476,14 +476,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTipoSalidaId");
 
                     b.ToTable("CatTipoSalida");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatTurno", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatTurnoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -509,14 +509,14 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatTurnoId");
 
                     b.ToTable("CatTurno");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.CatUnidadDestino", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("CatUnidadDestinoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -542,26 +542,26 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("idusuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("CatUnidadDestinoId");
 
                     b.ToTable("CatUnidadDestino");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblAreaServicio", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblAreaServicioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("CatAreaid")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatServicioId")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("activo")
                         .HasColumnType("boolean");
-
-                    b.Property<int?>("catareaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catservicioid")
-                        .HasColumnType("integer");
 
                     b.Property<string>("descripcion")
                         .HasColumnType("text");
@@ -575,47 +575,65 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblAreaServicioId");
 
-                    b.HasIndex("catareaid");
+                    b.HasIndex("CatAreaid");
 
-                    b.HasIndex("catservicioid");
+                    b.HasIndex("CatServicioId");
 
                     b.ToTable("TblAreaServicio");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienes", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblBienesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("IProveedorid")
+                    b.Property<int>("CatEstadoDelBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdAreaServicioid")
+                    b.Property<int>("CatGarantiaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveCabmsid")
+                    b.Property<int>("CatPisosId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveSaicaid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdContratoBienid")
+                    b.Property<int>("CatTipoEntradaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int>("CatTipoPartidaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFederalizacionid")
+                    b.Property<int>("TblAreaServicioId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdInventariosid")
+                    b.Property<int>("TblClaveCabmsId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdResguardatariosid")
+                    b.Property<int>("TblClaveSaicaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblContratoBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFacturasId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFederalizacionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblInventariosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblProveedorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblResguardatariosId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -624,23 +642,8 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("catEstadoDelBienid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catGarantiaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catPisosid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoDeBienesid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoEntradaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoPartidaid")
-                        .HasColumnType("integer");
+                    b.Property<string>("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -666,73 +669,91 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblBienesId");
 
-                    b.HasIndex("IProveedorid");
+                    b.HasIndex("CatEstadoDelBienId");
 
-                    b.HasIndex("IdAreaServicioid");
+                    b.HasIndex("CatGarantiaId");
 
-                    b.HasIndex("IdClaveCabmsid");
+                    b.HasIndex("CatPisosId");
 
-                    b.HasIndex("IdClaveSaicaid");
+                    b.HasIndex("CatTipoDeBienId");
 
-                    b.HasIndex("IdContratoBienid");
+                    b.HasIndex("CatTipoEntradaId");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("CatTipoPartidaId");
 
-                    b.HasIndex("IdFederalizacionid");
+                    b.HasIndex("TblAreaServicioId");
 
-                    b.HasIndex("IdInventariosid");
+                    b.HasIndex("TblClaveCabmsId");
 
-                    b.HasIndex("IdResguardatariosid");
+                    b.HasIndex("TblClaveSaicaId");
 
-                    b.HasIndex("catEstadoDelBienid");
+                    b.HasIndex("TblContratoBienId");
 
-                    b.HasIndex("catGarantiaid");
+                    b.HasIndex("TblFacturasId");
 
-                    b.HasIndex("catPisosid");
+                    b.HasIndex("TblFederalizacionId");
 
-                    b.HasIndex("catTipoDeBienesid");
+                    b.HasIndex("TblInventariosId");
 
-                    b.HasIndex("catTipoEntradaid");
+                    b.HasIndex("TblProveedorId");
 
-                    b.HasIndex("catTipoPartidaid");
+                    b.HasIndex("TblResguardatariosId");
 
                     b.ToTable("TblBienesMuebles");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienesEquMedico", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblBienesEquMedicoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("IdAreaServicioid")
+                    b.Property<int>("CatEstadoDelBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveCabmsid")
+                    b.Property<int>("CatGarantiaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveSaicaid")
+                    b.Property<int>("CatPisosId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdContratoBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int>("CatTipoEntradaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFederalizacionid")
+                    b.Property<int>("CatTipoPartidaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdInventarioid")
+                    b.Property<int>("TblAreaServicioId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdProveedorid")
+                    b.Property<int>("TblClaveCabmsId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdResguardatariosid")
+                    b.Property<int>("TblClaveSaicaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblContratoBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFacturasId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFederalizacionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblInventariosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblProveedorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblResguardatariosId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -741,23 +762,8 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("catEstadoDelBienid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catGarantiaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catPisosid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoDeBienesid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoEntradaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoPartidaid")
-                        .HasColumnType("integer");
+                    b.Property<string>("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -783,73 +789,91 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblBienesEquMedicoId");
 
-                    b.HasIndex("IdAreaServicioid");
+                    b.HasIndex("CatEstadoDelBienId");
 
-                    b.HasIndex("IdClaveCabmsid");
+                    b.HasIndex("CatGarantiaId");
 
-                    b.HasIndex("IdClaveSaicaid");
+                    b.HasIndex("CatPisosId");
 
-                    b.HasIndex("IdContratoBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("CatTipoEntradaId");
 
-                    b.HasIndex("IdFederalizacionid");
+                    b.HasIndex("CatTipoPartidaId");
 
-                    b.HasIndex("IdInventarioid");
+                    b.HasIndex("TblAreaServicioId");
 
-                    b.HasIndex("IdProveedorid");
+                    b.HasIndex("TblClaveCabmsId");
 
-                    b.HasIndex("IdResguardatariosid");
+                    b.HasIndex("TblClaveSaicaId");
 
-                    b.HasIndex("catEstadoDelBienid");
+                    b.HasIndex("TblContratoBienId");
 
-                    b.HasIndex("catGarantiaid");
+                    b.HasIndex("TblFacturasId");
 
-                    b.HasIndex("catPisosid");
+                    b.HasIndex("TblFederalizacionId");
 
-                    b.HasIndex("catTipoDeBienesid");
+                    b.HasIndex("TblInventariosId");
 
-                    b.HasIndex("catTipoEntradaid");
+                    b.HasIndex("TblProveedorId");
 
-                    b.HasIndex("catTipoPartidaid");
+                    b.HasIndex("TblResguardatariosId");
 
                     b.ToTable("TblBienesEquMedico");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienesSistemas", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblBienesSistemasId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("IdAreaServicioid")
+                    b.Property<int>("CatEstadoDelBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveCabmsid")
+                    b.Property<int>("CatGarantiaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveSaicaid")
+                    b.Property<int>("CatPisosId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdContratoBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int>("CatTipoEntradaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFederalizacionid")
+                    b.Property<int>("CatTipoPartidaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdInventariosid")
+                    b.Property<int>("TblAreaServicioId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdProveedorid")
+                    b.Property<int>("TblClaveCabmsId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdResguardatariosid")
+                    b.Property<int>("TblClaveSaicaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblContratoBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFacturasId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFederalizacionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblInventariosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblProveedorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblResguardatariosId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -858,23 +882,8 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("catEstadoDelBienid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catGarantiaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catPisosid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoDeBienesid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoEntradaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoPartidaid")
-                        .HasColumnType("integer");
+                    b.Property<string>("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -900,49 +909,49 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblBienesSistemasId");
 
-                    b.HasIndex("IdAreaServicioid");
+                    b.HasIndex("CatEstadoDelBienId");
 
-                    b.HasIndex("IdClaveCabmsid");
+                    b.HasIndex("CatGarantiaId");
 
-                    b.HasIndex("IdClaveSaicaid");
+                    b.HasIndex("CatPisosId");
 
-                    b.HasIndex("IdContratoBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("CatTipoEntradaId");
 
-                    b.HasIndex("IdFederalizacionid");
+                    b.HasIndex("CatTipoPartidaId");
 
-                    b.HasIndex("IdInventariosid");
+                    b.HasIndex("TblAreaServicioId");
 
-                    b.HasIndex("IdProveedorid");
+                    b.HasIndex("TblClaveCabmsId");
 
-                    b.HasIndex("IdResguardatariosid");
+                    b.HasIndex("TblClaveSaicaId");
 
-                    b.HasIndex("catEstadoDelBienid");
+                    b.HasIndex("TblContratoBienId");
 
-                    b.HasIndex("catGarantiaid");
+                    b.HasIndex("TblFacturasId");
 
-                    b.HasIndex("catPisosid");
+                    b.HasIndex("TblFederalizacionId");
 
-                    b.HasIndex("catTipoDeBienesid");
+                    b.HasIndex("TblInventariosId");
 
-                    b.HasIndex("catTipoEntradaid");
+                    b.HasIndex("TblProveedorId");
 
-                    b.HasIndex("catTipoPartidaid");
+                    b.HasIndex("TblResguardatariosId");
 
                     b.ToTable("TblBienesSistemas");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblClaveCabms", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblClaveCabmsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -963,21 +972,21 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblClaveCabmsId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblClaveCambs");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblClaveSaica", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblClaveSaicaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -998,9 +1007,9 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblClaveSaicaId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblClaveSaica");
                 });
@@ -1037,12 +1046,12 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblContratoBien", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblContratoBienId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -1063,21 +1072,21 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblContratoBienId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblContratoBien");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblFacturas", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblFacturasId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<double>("IVA")
@@ -1088,6 +1097,9 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<double>("costoTotal")
                         .HasColumnType("double precision");
+
+                    b.Property<int>("costounitario")
+                        .HasColumnType("integer");
 
                     b.Property<string>("factura")
                         .HasColumnType("text");
@@ -1107,21 +1119,21 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblFacturasId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblFacturas");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblFederalizacion", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblFederalizacionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -1142,45 +1154,63 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblFederalizacionId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblFederalizacion");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblInstrumentalMedico", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblInstrumentalMedicoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("IdAreaServicioid")
+                    b.Property<int>("CatEstadoDelBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveCambsid")
+                    b.Property<int>("CatGarantiaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdClaveSaicaid")
+                    b.Property<int>("CatPisosId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdContratoBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int>("CatTipoEntradaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFederalizacionid")
+                    b.Property<int>("CatTipoPartidaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdInventariosid")
+                    b.Property<int>("TblAreaServicioId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdProveedorid")
+                    b.Property<int>("TblClaveCabmsId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdResguardatariosid")
+                    b.Property<int>("TblClaveSaicaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblContratoBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFacturasId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblFederalizacionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblInventariosId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblProveedorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblResguardatariosId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -1189,23 +1219,8 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("catEstadoDelBienid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catGarantiaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catPisosid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoDeBienesid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoEntradaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoPartidaid")
-                        .HasColumnType("integer");
+                    b.Property<string>("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -1231,49 +1246,49 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblInstrumentalMedicoId");
 
-                    b.HasIndex("IdAreaServicioid");
+                    b.HasIndex("CatEstadoDelBienId");
 
-                    b.HasIndex("IdClaveCambsid");
+                    b.HasIndex("CatGarantiaId");
 
-                    b.HasIndex("IdClaveSaicaid");
+                    b.HasIndex("CatPisosId");
 
-                    b.HasIndex("IdContratoBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("CatTipoEntradaId");
 
-                    b.HasIndex("IdFederalizacionid");
+                    b.HasIndex("CatTipoPartidaId");
 
-                    b.HasIndex("IdInventariosid");
+                    b.HasIndex("TblAreaServicioId");
 
-                    b.HasIndex("IdProveedorid");
+                    b.HasIndex("TblClaveCabmsId");
 
-                    b.HasIndex("IdResguardatariosid");
+                    b.HasIndex("TblClaveSaicaId");
 
-                    b.HasIndex("catEstadoDelBienid");
+                    b.HasIndex("TblContratoBienId");
 
-                    b.HasIndex("catGarantiaid");
+                    b.HasIndex("TblFacturasId");
 
-                    b.HasIndex("catPisosid");
+                    b.HasIndex("TblFederalizacionId");
 
-                    b.HasIndex("catTipoDeBienesid");
+                    b.HasIndex("TblInventariosId");
 
-                    b.HasIndex("catTipoEntradaid");
+                    b.HasIndex("TblProveedorId");
 
-                    b.HasIndex("catTipoPartidaid");
+                    b.HasIndex("TblResguardatariosId");
 
                     b.ToTable("TblInstrumentalMedico");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblInventarios", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblInventariosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<string>("NumeroInventario")
@@ -1294,21 +1309,21 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblInventariosId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblInventarios");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblProveedor", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblProveedorId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -1329,27 +1344,36 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblProveedorId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
                     b.ToTable("TblProveedor");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblResguardatarios", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblResguardatariosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatServicioid")
+                    b.Property<int>("CatEstatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatSexoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTipoContratoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTurnoId")
                         .HasColumnType("integer");
 
                     b.Property<string>("RFC")
                         .HasColumnType("text");
 
-                    b.Property<int?>("TblAreaServicioid")
+                    b.Property<int>("TblAreaServicioId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
@@ -1363,18 +1387,6 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<string>("cargo")
                         .HasColumnType("text");
-
-                    b.Property<int?>("catEstatusid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catSexoid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoContratoid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTurnoid")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -1397,53 +1409,42 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblResguardatariosId");
 
-                    b.HasIndex("CatServicioid");
+                    b.HasIndex("CatEstatusId");
 
-                    b.HasIndex("TblAreaServicioid");
+                    b.HasIndex("CatSexoId");
 
-                    b.HasIndex("catEstatusid");
+                    b.HasIndex("CatTipoContratoId");
 
-                    b.HasIndex("catSexoid");
+                    b.HasIndex("CatTurnoId");
 
-                    b.HasIndex("catTipoContratoid");
-
-                    b.HasIndex("catTurnoid");
+                    b.HasIndex("TblAreaServicioId");
 
                     b.ToTable("TblResguardatarios");
                 });
 
-            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBien", b =>
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienEquMedico", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("TblSalidaBienEquMedicoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CatTipoDeBienid")
+                    b.Property<int>("CatTipoDeBienId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Idbienesid")
+                    b.Property<int>("CatTipoSalidaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TblBienesEquMedicoid")
+                    b.Property<int>("CatUnidadDestinoId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TblBienesSistemasid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("TblInstrumentalMedicoid")
+                    b.Property<int>("TblBienesEquMedicoId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("activo")
                         .HasColumnType("boolean");
-
-                    b.Property<int?>("catTipoSalidaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catUnidadDestinoid")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -1457,23 +1458,158 @@ namespace SICOBIM_B.Migrations
                     b.Property<int>("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("id");
+                    b.HasKey("TblSalidaBienEquMedicoId");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienId");
 
-                    b.HasIndex("Idbienesid");
+                    b.HasIndex("CatTipoSalidaId");
 
-                    b.HasIndex("TblBienesEquMedicoid");
+                    b.HasIndex("CatUnidadDestinoId");
 
-                    b.HasIndex("TblBienesSistemasid");
-
-                    b.HasIndex("TblInstrumentalMedicoid");
-
-                    b.HasIndex("catTipoSalidaid");
-
-                    b.HasIndex("catUnidadDestinoid");
+                    b.HasIndex("TblBienesEquMedicoId");
 
                     b.ToTable("TblSalidaBien");
+                });
+
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienInstrumentalMedico", b =>
+                {
+                    b.Property<int>("TblSalidaBienInstrumentalMedicoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CatTipoDeBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTipoSalidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatUnidadDestinoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblInstrumentalMedicoId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fechaMod")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("idUsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("usuarioMod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TblSalidaBienInstrumentalMedicoId");
+
+                    b.HasIndex("CatTipoDeBienId");
+
+                    b.HasIndex("CatTipoSalidaId");
+
+                    b.HasIndex("CatUnidadDestinoId");
+
+                    b.HasIndex("TblInstrumentalMedicoId");
+
+                    b.ToTable("tblSalidaBienInstrumentalMedico");
+                });
+
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienMobiliario", b =>
+                {
+                    b.Property<int>("TblSalidaBienMobiliarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CatTipoDeBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTipoSalidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatUnidadDestinoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblBienesId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fechaMod")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("idUsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("usuarioMod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TblSalidaBienMobiliarioId");
+
+                    b.HasIndex("CatTipoDeBienId");
+
+                    b.HasIndex("CatTipoSalidaId");
+
+                    b.HasIndex("CatUnidadDestinoId");
+
+                    b.HasIndex("TblBienesId");
+
+                    b.ToTable("tblSalidaBienMobiliario");
+                });
+
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienSistemas", b =>
+                {
+                    b.Property<int>("TblSalidaBienSistemasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CatTipoDeBienId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTipoSalidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatUnidadDestinoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TblBienesSistemasId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fechaMod")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("idUsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("usuarioMod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TblSalidaBienSistemasId");
+
+                    b.HasIndex("CatTipoDeBienId");
+
+                    b.HasIndex("CatTipoSalidaId");
+
+                    b.HasIndex("CatUnidadDestinoId");
+
+                    b.HasIndex("TblBienesSistemasId");
+
+                    b.ToTable("tblSalidaBienSistema");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.User", b =>
@@ -1483,11 +1619,20 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("CatEstatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatSexoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CatTipoContratoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CatTurnoId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
-
-                    b.Property<int?>("IdAreaServicioid")
-                        .HasColumnType("integer");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text");
@@ -1501,28 +1646,16 @@ namespace SICOBIM_B.Migrations
                     b.Property<string>("RFC")
                         .HasColumnType("text");
 
+                    b.Property<int>("TblAreaServicioId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.Property<bool>("activo")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("cargo")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("catEstatusid")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("catRolid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catSexoid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTipoContratoid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("catTurnoid")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("fechaAlta")
@@ -1548,233 +1681,331 @@ namespace SICOBIM_B.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("IdAreaServicioid");
+                    b.HasIndex("CatEstatusId");
 
-                    b.HasIndex("catEstatusid");
+                    b.HasIndex("CatSexoId");
+
+                    b.HasIndex("CatTipoContratoId");
+
+                    b.HasIndex("CatTurnoId");
+
+                    b.HasIndex("TblAreaServicioId");
 
                     b.HasIndex("catRolid");
-
-                    b.HasIndex("catSexoid");
-
-                    b.HasIndex("catTipoContratoid");
-
-                    b.HasIndex("catTurnoid");
 
                     b.ToTable("CtrlUsuarios");
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblAreaServicio", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatArea", "catarea")
+                    b.HasOne("SICOBIM_B.Entities.CatArea", null)
                         .WithMany("tblAreaServicios")
-                        .HasForeignKey("catareaid");
+                        .HasForeignKey("CatAreaid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatServicio", "catservicio")
+                    b.HasOne("SICOBIM_B.Entities.CatServicio", null)
                         .WithMany("tblAreaServicios")
-                        .HasForeignKey("catservicioid");
+                        .HasForeignKey("CatServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienes", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.TblProveedor", "IProveedor")
+                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IProveedorid");
+                        .HasForeignKey("CatEstadoDelBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "IdAreaServicio")
+                    b.HasOne("SICOBIM_B.Entities.CatGarantia", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdAreaServicioid");
+                        .HasForeignKey("CatGarantiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", "IdClaveCabms")
+                    b.HasOne("SICOBIM_B.Entities.CatPisos", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdClaveCabmsid");
+                        .HasForeignKey("CatPisosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", "IdClaveSaica")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdClaveSaicaid");
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", "IdContratoBien")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdContratoBienid");
+                        .HasForeignKey("CatTipoEntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFacturas", "IdFacturas")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("CatTipoPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", "IdFederalizacion")
+                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
+                        .WithMany("tblBienes")
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", null)
+                        .WithMany("tblBienes")
+                        .HasForeignKey("TblClaveCabmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", null)
+                        .WithMany("tblBienes")
+                        .HasForeignKey("TblClaveSaicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", null)
+                        .WithMany("tblBienes")
+                        .HasForeignKey("TblContratoBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblFacturas", null)
+                        .WithMany("tblBienes")
+                        .HasForeignKey("TblFacturasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", null)
                         .WithMany("TblBienes")
-                        .HasForeignKey("IdFederalizacionid");
+                        .HasForeignKey("TblFederalizacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "IdInventarios")
+                    b.HasOne("SICOBIM_B.Entities.TblInventarios", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdInventariosid");
+                        .HasForeignKey("TblInventariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", "IdResguardatarios")
+                    b.HasOne("SICOBIM_B.Entities.TblProveedor", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("IdResguardatariosid");
+                        .HasForeignKey("TblProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", "catEstadoDelBien")
+                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", null)
                         .WithMany("tblBienes")
-                        .HasForeignKey("catEstadoDelBienid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatGarantia", "catGarantia")
-                        .WithMany("tblBienes")
-                        .HasForeignKey("catGarantiaid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatPisos", "catPisos")
-                        .WithMany("tblBienes")
-                        .HasForeignKey("catPisosid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "catTipoDeBienes")
-                        .WithMany("tblBienes")
-                        .HasForeignKey("catTipoDeBienesid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", "catTipoEntrada")
-                        .WithMany("tblBienes")
-                        .HasForeignKey("catTipoEntradaid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", "catTipoPartida")
-                        .WithMany("tblBienes")
-                        .HasForeignKey("catTipoPartidaid");
+                        .HasForeignKey("TblResguardatariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienesEquMedico", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "IdAreaServicio")
+                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdAreaServicioid");
+                        .HasForeignKey("CatEstadoDelBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", "IdClaveCabms")
+                    b.HasOne("SICOBIM_B.Entities.CatGarantia", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdClaveCabmsid");
+                        .HasForeignKey("CatGarantiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", "IdClaveSaica")
+                    b.HasOne("SICOBIM_B.Entities.CatPisos", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdClaveSaicaid");
+                        .HasForeignKey("CatPisosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", "IdContratoBien")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdContratoBienid");
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFacturas", "IdFacturas")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("CatTipoEntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", "IdFederalizacion")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdFederalizacionid");
+                        .HasForeignKey("CatTipoPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "IdInventario")
+                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdInventarioid");
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblProveedor", "IdProveedor")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdProveedorid");
+                        .HasForeignKey("TblClaveCabmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", "IdResguardatarios")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("IdResguardatariosid");
+                        .HasForeignKey("TblClaveSaicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", "catEstadoDelBien")
+                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catEstadoDelBienid");
+                        .HasForeignKey("TblContratoBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatGarantia", "catGarantia")
+                    b.HasOne("SICOBIM_B.Entities.TblFacturas", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catGarantiaid");
+                        .HasForeignKey("TblFacturasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatPisos", "catPisos")
+                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catPisosid");
+                        .HasForeignKey("TblFederalizacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "catTipoDeBienes")
+                    b.HasOne("SICOBIM_B.Entities.TblInventarios", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catTipoDeBienesid");
+                        .HasForeignKey("TblInventariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", "catTipoEntrada")
+                    b.HasOne("SICOBIM_B.Entities.TblProveedor", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catTipoEntradaid");
+                        .HasForeignKey("TblProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", "catTipoPartida")
+                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", null)
                         .WithMany("tblBienesEquMedico")
-                        .HasForeignKey("catTipoPartidaid");
+                        .HasForeignKey("TblResguardatariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblBienesSistemas", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "IdAreaServicio")
+                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdAreaServicioid");
+                        .HasForeignKey("CatEstadoDelBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", "IdClaveCabms")
+                    b.HasOne("SICOBIM_B.Entities.CatGarantia", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdClaveCabmsid");
+                        .HasForeignKey("CatGarantiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", "IdClaveSaica")
+                    b.HasOne("SICOBIM_B.Entities.CatPisos", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdClaveSaicaid");
+                        .HasForeignKey("CatPisosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", "IdContratoBien")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdContratoBienid");
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFacturas", "IdFacturas")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("CatTipoEntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", "IdFederalizacion")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdFederalizacionid");
+                        .HasForeignKey("CatTipoPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "IdInventarios")
+                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdInventariosid");
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblProveedor", "IdProveedor")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdProveedorid");
+                        .HasForeignKey("TblClaveCabmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", "IdResguardatarios")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("IdResguardatariosid");
+                        .HasForeignKey("TblClaveSaicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", "catEstadoDelBien")
+                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catEstadoDelBienid");
+                        .HasForeignKey("TblContratoBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatGarantia", "catGarantia")
+                    b.HasOne("SICOBIM_B.Entities.TblFacturas", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catGarantiaid");
+                        .HasForeignKey("TblFacturasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatPisos", "catPisos")
+                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catPisosid");
+                        .HasForeignKey("TblFederalizacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "catTipoDeBienes")
+                    b.HasOne("SICOBIM_B.Entities.TblInventarios", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catTipoDeBienesid");
+                        .HasForeignKey("TblInventariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", "catTipoEntrada")
+                    b.HasOne("SICOBIM_B.Entities.TblProveedor", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catTipoEntradaid");
+                        .HasForeignKey("TblProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", "catTipoPartida")
+                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", null)
                         .WithMany("tblBienesSistemas")
-                        .HasForeignKey("catTipoPartidaid");
+                        .HasForeignKey("TblResguardatariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblClaveCabms", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblClaveCabms")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblClaveSaica", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblClaveSaica")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblConfPerfil", b =>
@@ -1790,185 +2021,316 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblContratoBien", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblContratoBien")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblFacturas", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
                         .WithMany("tblFacturas")
-                        .HasForeignKey("CatTipoDeBienid");
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblFederalizacion", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblFederalizacion")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblInstrumentalMedico", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "IdAreaServicio")
+                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdAreaServicioid");
+                        .HasForeignKey("CatEstadoDelBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", "IdClaveCambs")
+                    b.HasOne("SICOBIM_B.Entities.CatGarantia", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdClaveCambsid");
+                        .HasForeignKey("CatGarantiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", "IdClaveSaica")
+                    b.HasOne("SICOBIM_B.Entities.CatPisos", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdClaveSaicaid");
+                        .HasForeignKey("CatPisosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", "IdContratoBien")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdContratoBienid");
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFacturas", "IdFacturas")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("CatTipoEntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", "IdFederalizacion")
+                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdFederalizacionid");
+                        .HasForeignKey("CatTipoPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblInventarios", "IdInventarios")
+                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdInventariosid");
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblProveedor", "IdProveedor")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveCabms", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdProveedorid");
+                        .HasForeignKey("TblClaveCabmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", "IdResguardatarios")
+                    b.HasOne("SICOBIM_B.Entities.TblClaveSaica", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("IdResguardatariosid");
+                        .HasForeignKey("TblClaveSaicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatEstadoDelBien", "catEstadoDelBien")
+                    b.HasOne("SICOBIM_B.Entities.TblContratoBien", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catEstadoDelBienid");
+                        .HasForeignKey("TblContratoBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatGarantia", "catGarantia")
+                    b.HasOne("SICOBIM_B.Entities.TblFacturas", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catGarantiaid");
+                        .HasForeignKey("TblFacturasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatPisos", "catPisos")
+                    b.HasOne("SICOBIM_B.Entities.TblFederalizacion", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catPisosid");
+                        .HasForeignKey("TblFederalizacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "catTipoDeBienes")
+                    b.HasOne("SICOBIM_B.Entities.TblInventarios", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catTipoDeBienesid");
+                        .HasForeignKey("TblInventariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoEntrada", "catTipoEntrada")
+                    b.HasOne("SICOBIM_B.Entities.TblProveedor", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catTipoEntradaid");
+                        .HasForeignKey("TblProveedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoPartida", "catTipoPartida")
+                    b.HasOne("SICOBIM_B.Entities.TblResguardatarios", null)
                         .WithMany("tblInstrumentalMedico")
-                        .HasForeignKey("catTipoPartidaid");
+                        .HasForeignKey("TblResguardatariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblInventarios", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblInventarios")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblProveedor", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblProveedor")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.TblResguardatarios", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatServicio", "CatServicio")
-                        .WithMany()
-                        .HasForeignKey("CatServicioid");
+                    b.HasOne("SICOBIM_B.Entities.CatEstatus", null)
+                        .WithMany("tblResguardatarios")
+                        .HasForeignKey("CatEstatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatSexo", null)
+                        .WithMany("tblResguardatarios")
+                        .HasForeignKey("CatSexoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTipoContrato", null)
+                        .WithMany("tblResguardatarios")
+                        .HasForeignKey("CatTipoContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTurno", null)
+                        .WithMany("tblResguardatarios")
+                        .HasForeignKey("CatTurnoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
                         .WithMany("tblResguardatarios")
-                        .HasForeignKey("TblAreaServicioid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatEstatus", "catEstatus")
-                        .WithMany("tblResguardatarios")
-                        .HasForeignKey("catEstatusid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatSexo", "catSexo")
-                        .WithMany("tblResguardatarios")
-                        .HasForeignKey("catSexoid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTipoContrato", "catTipoContrato")
-                        .WithMany("tblResguardatarios")
-                        .HasForeignKey("catTipoContratoid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTurno", "catTurno")
-                        .WithMany("tblResguardatarios")
-                        .HasForeignKey("catTurnoid");
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBien", b =>
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienEquMedico", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", "CatTipoDeBien")
-                        .WithMany()
-                        .HasForeignKey("CatTipoDeBienid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("tblSalidaBienEquMedico")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.TblBienes", "Idbienes")
-                        .WithMany("tblSalidaBien")
-                        .HasForeignKey("Idbienesid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoSalida", null)
+                        .WithMany("tblSalidaBienEquMedico")
+                        .HasForeignKey("CatTipoSalidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatUnidadDestino", null)
+                        .WithMany("tblsalidaBienEquMedico")
+                        .HasForeignKey("CatUnidadDestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SICOBIM_B.Entities.TblBienesEquMedico", null)
                         .WithMany("tblSalidaBien")
-                        .HasForeignKey("TblBienesEquMedicoid");
+                        .HasForeignKey("TblBienesEquMedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasOne("SICOBIM_B.Entities.TblBienesSistemas", null)
-                        .WithMany("tblSalidaBien")
-                        .HasForeignKey("TblBienesSistemasid");
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienInstrumentalMedico", b =>
+                {
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("TblSalidaBienInstrumentalMedico")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTipoSalida", null)
+                        .WithMany("TblSalidaBienInstrumentalMedico")
+                        .HasForeignKey("CatTipoSalidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatUnidadDestino", null)
+                        .WithMany("TblSalidaBienInstrumentalMedico")
+                        .HasForeignKey("CatUnidadDestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SICOBIM_B.Entities.TblInstrumentalMedico", null)
-                        .WithMany("tblSalidaBien")
-                        .HasForeignKey("TblInstrumentalMedicoid");
+                        .WithMany("TblSalidaBienInstrumentalMedico")
+                        .HasForeignKey("TblInstrumentalMedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasOne("SICOBIM_B.Entities.CatTipoSalida", "catTipoSalida")
-                        .WithMany("tblsalidaBien")
-                        .HasForeignKey("catTipoSalidaid");
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienMobiliario", b =>
+                {
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("TblSalidaBienMobiliario")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatUnidadDestino", "catUnidadDestino")
-                        .WithMany("tblsalidaBien")
-                        .HasForeignKey("catUnidadDestinoid");
+                    b.HasOne("SICOBIM_B.Entities.CatTipoSalida", null)
+                        .WithMany("TblSalidaBienMobiliario")
+                        .HasForeignKey("CatTipoSalidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatUnidadDestino", null)
+                        .WithMany("TblSalidaBienMobiliario")
+                        .HasForeignKey("CatUnidadDestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblBienes", null)
+                        .WithMany("TblSalidaBienMobiliario")
+                        .HasForeignKey("TblBienesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SICOBIM_B.Entities.TblSalidaBienSistemas", b =>
+                {
+                    b.HasOne("SICOBIM_B.Entities.CatTipoDeBien", null)
+                        .WithMany("TblSalidaBienSistema")
+                        .HasForeignKey("CatTipoDeBienId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTipoSalida", null)
+                        .WithMany("TblSalidaBienSistema")
+                        .HasForeignKey("CatTipoSalidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatUnidadDestino", null)
+                        .WithMany("TblSalidaBienSistema")
+                        .HasForeignKey("CatUnidadDestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.TblBienesSistemas", null)
+                        .WithMany("TblSalidaBienSistemas")
+                        .HasForeignKey("TblBienesSistemasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SICOBIM_B.Entities.User", b =>
                 {
-                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", "IdAreaServicio")
+                    b.HasOne("SICOBIM_B.Entities.CatEstatus", null)
                         .WithMany("users")
-                        .HasForeignKey("IdAreaServicioid");
+                        .HasForeignKey("CatEstatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SICOBIM_B.Entities.CatEstatus", "catEstatus")
+                    b.HasOne("SICOBIM_B.Entities.CatSexo", null)
                         .WithMany("users")
-                        .HasForeignKey("catEstatusid");
+                        .HasForeignKey("CatSexoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTipoContrato", null)
+                        .WithMany("users")
+                        .HasForeignKey("CatTipoContratoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SICOBIM_B.Entities.CatTurno", null)
+                        .WithMany("users")
+                        .HasForeignKey("CatTurnoId");
+
+                    b.HasOne("SICOBIM_B.Entities.TblAreaServicio", null)
+                        .WithMany("users")
+                        .HasForeignKey("TblAreaServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SICOBIM_B.Entities.CatRol", "catRol")
                         .WithMany("user")
                         .HasForeignKey("catRolid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatSexo", "catSexo")
-                        .WithMany("users")
-                        .HasForeignKey("catSexoid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTipoContrato", "catTipoContrato")
-                        .WithMany("users")
-                        .HasForeignKey("catTipoContratoid");
-
-                    b.HasOne("SICOBIM_B.Entities.CatTurno", "catTurno")
-                        .WithMany("users")
-                        .HasForeignKey("catTurnoid");
 
                     b.OwnsMany("SICOBIM_B.Entities.RefreshToken", "RefreshTokens", b1 =>
                         {

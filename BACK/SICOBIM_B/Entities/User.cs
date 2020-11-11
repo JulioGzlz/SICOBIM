@@ -21,45 +21,20 @@ namespace SICOBIM_B.Entities
         public string RFC { get; set; }
         public string plaza { get; set; }
         public string numeroempleado { get; set; }
-        public string cargo { get; set; }
 
-        public CatSexo catSexo
-        {
-            set;
-            get;
-        }
+        public int CatSexoId { get; set; }
 
-        public CatTurno catTurno
-        {
-            set;
-            get;
-        }
+        public int CatEstatusId { get; set; }
 
-        public CatTipoContrato catTipoContrato
-        {
-            set;
-            get;
-        }
+        public int CatTipoContratoId { get; set; }
 
-
-        public TblAreaServicio IdAreaServicio
-        {
-            set;
-            get;
-        }
+        public int TblAreaServicioId { get; set; }
 
         public CatRol catRol
         {
             get;
             set;
         }
-
-        public CatEstatus catEstatus
-        {
-            set;
-            get;
-        }
-
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }

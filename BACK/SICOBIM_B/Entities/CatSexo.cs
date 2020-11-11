@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace SICOBIM_B.Entities
     [Table("CatSexo")]
     public class CatSexo
     {
-        public int id { get; set; }
+        [Key]
+        public int CatSexoId { get; set; }
         public string sexo { get; set; }
         public String descripcion { get; set; }
         public int idUsuarioAlta { get; set; }
@@ -17,12 +19,12 @@ namespace SICOBIM_B.Entities
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
-        public ICollection<User> users
+        public virtual ICollection<User> users
         {
             get;
             set;
         }
-        public ICollection<TblResguardatarios> tblResguardatarios
+        public virtual ICollection<TblResguardatarios> tblResguardatarios
         {
             get;
             set;

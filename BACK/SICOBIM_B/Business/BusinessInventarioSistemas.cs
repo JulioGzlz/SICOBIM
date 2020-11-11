@@ -63,7 +63,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblBienesSistemas> ltsFederalizacionSistemas = null;
 
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFederalizacion).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblFederalizacionId).ToList();
 
                 if (ltsFederalizacionSistemas == null || ltsFederalizacionSistemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
@@ -100,7 +100,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblBienesSistemas> ltsCabmsSitemas = null;
 
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdClaveCabms).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblClaveCabmsId).ToList();
                 if (ltsCabmsSitemas == null || ltsCabmsSitemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
@@ -131,7 +131,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblBienesSistemas> ltsInventarioSitemas = null;
 
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdInventarios).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblInventariosId).ToList();
                 if (ltsInventarioSitemas == null || ltsInventarioSitemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
@@ -162,7 +162,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblBienesSistemas> ltsProveedorSistemas = null;
 
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdProveedor).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblProveedorId).ToList();
                 if (ltsProveedorSistemas == null || ltsProveedorSistemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
@@ -191,7 +191,7 @@ namespace SICOBIM_B.Business
             try
             {
                 List<TblBienesSistemas> lstBienesFactura = null;
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFacturas).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblFacturasId).ToList();
                 lstBienesFactura = resul;
 
 
@@ -220,7 +220,7 @@ namespace SICOBIM_B.Business
             try
             {
                 List<TblBienesSistemas> lstBienesClaveSaica = null;
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdClaveSaica).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.TblClaveSaicaId).ToList();
                 lstBienesClaveSaica = resul;
 
 
@@ -256,7 +256,7 @@ namespace SICOBIM_B.Business
        
             try
             {
-                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objApplicationDbContext.tblFacturas.Where(x => x.CatTipoDeBien.id == idBienSistema).ToList();
+                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objApplicationDbContext.tblFacturas.Where(x => x.CatTipoDeBienId == idBienSistema).ToList();
                 lstFacturasporInventario = resul;
                 if (lstFacturasporInventario == null  || lstFacturasporInventario.Count <= 0)
                     throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");

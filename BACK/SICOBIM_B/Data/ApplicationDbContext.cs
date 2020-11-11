@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SICOBIM_B.Data
 {
@@ -29,6 +30,10 @@ namespace SICOBIM_B.Data
         protected override void OnModelCreating( ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TblConfPerfil>().HasNoKey();
+
+
+
+            //modelBuilder.Entity<TblFacturas>().HasKey(x => new { x.CatTipoDeBien});
 
             //modelBuilder.Entity<TblConfPerfil>()
             //        .HasKey(m => new
@@ -65,12 +70,12 @@ namespace SICOBIM_B.Data
         public virtual DbSet<TblFacturas> tblFacturas { set; get; }
         public virtual DbSet<TblInventarios> tblInventarios { set; get; }
         public virtual DbSet<TblResguardatarios> tblResguardatarios { set; get; }
-        public virtual DbSet<TblSalidaBien> tblSalidaBien { set; get; }
-       
-        
-       
+        public virtual DbSet<TblSalidaBienEquMedico> tblSalidaBienEquMedico { set; get; }
+
+
+
         // se agregaron  nuevas tablas 
-     
+
 
         public virtual DbSet<TblFederalizacion> tblFederalizacion { set; get; }
         public virtual DbSet<TblContratoBien> tblContratoBien { set; get; }
@@ -80,7 +85,9 @@ namespace SICOBIM_B.Data
         public virtual DbSet<TblBienesEquMedico> tblBienesEquMedicos { set; get; }
         public virtual DbSet<TblBienesSistemas> tblBienesSistemas { set; get; }
         public virtual DbSet<TblInstrumentalMedico> tblInstrumentalMedico { set; get; }
-
+        public virtual DbSet<TblSalidaBienInstrumentalMedico> tblSalidaBienInstrumentalMedico { set; get; }
+        public virtual DbSet<TblSalidaBienMobiliario> tblSalidaBienMobiliario { set; get; }
+        public virtual DbSet<TblSalidaBienSistemas> tblSalidaBienSistema { set; get; }
 
 
 

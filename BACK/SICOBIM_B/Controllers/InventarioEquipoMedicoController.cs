@@ -66,7 +66,7 @@ namespace SICOBIM_B.Controllers
                 tblFacturas.subtotal = modeloInventario.subtotal;
                 tblFacturas.IVA = modeloInventario.iva;
                 tblFacturas.costoTotal = modeloInventario.total;
-                tblFacturas.CatTipoDeBien.id = 2;
+                tblFacturas.CatTipoDeBienId = 2;
                 tblFacturas.fechaAlta = DateTime.Now;
                 tblFacturas.activo = true;
                 tblFacturas.idUsuarioAlta = modeloInventario.idUsuarioAlta;
@@ -76,7 +76,7 @@ namespace SICOBIM_B.Controllers
 
 
                 tblClaveSaica.clavesaica = modeloInventario.ClaveSaica;
-                tblClaveSaica.CatTipoDeBien.id = 2;
+                tblClaveSaica.CatTipoDeBienId = 2;
                 tblClaveSaica.activo = true;
                 tblClaveSaica.fechaAlta = DateTime.Now;
                 tblClaveSaica.idUsuarioAlta = modeloInventario.idUsuarioAlta;
@@ -86,7 +86,7 @@ namespace SICOBIM_B.Controllers
 
 
                 tblContratoBien.contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBien.id = 2;
+                tblContratoBien.CatTipoDeBienId = 2;
                 tblContratoBien.fechaAlta = DateTime.Now;
                 tblContratoBien.activo = true;
                 tblContratoBien.idUsuarioAlta = modeloInventario.idUsuarioAlta;
@@ -94,7 +94,7 @@ namespace SICOBIM_B.Controllers
 
 
                 tblFederalizacion.federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBien.id = 2;
+                tblFederalizacion.CatTipoDeBienId = 2;
                 tblFederalizacion.fechaAlta = DateTime.Now;
                 tblFederalizacion.activo = true;
                 tblFederalizacion.idUsuarioAlta =  modeloInventario.idUsuarioAlta;
@@ -102,14 +102,14 @@ namespace SICOBIM_B.Controllers
 
 
                 tblInventarios.NumeroInventario = modeloInventario.Inventarios;
-                tblInventarios.CatTipoDeBien.id = 2;
+                tblInventarios.CatTipoDeBienId = 2;
                 tblInventarios.fechaAlta = DateTime.Now;
                 tblInventarios.activo = true;
                 tblInventarios.idUsuarioAlta = modeloInventario.idUsuarioAlta;
                 tblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
 
                 tblProveedor.proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBien.id = 2;
+                tblProveedor.CatTipoDeBienId = 2;
                 tblProveedor.fechaAlta = DateTime.Now;
                 tblProveedor.activo = true;
                 tblProveedor.idUsuarioAlta = modeloInventario.idUsuarioAlta;
@@ -117,7 +117,7 @@ namespace SICOBIM_B.Controllers
 
 
                 tblClaveCabms.clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBien.id = 2;
+                tblClaveCabms.CatTipoDeBienId = 2;
                 tblClaveCabms.fechaAlta = DateTime.Now;
                 tblClaveCabms.activo = true;
                 tblClaveCabms.idUsuarioAlta = modeloInventario.idUsuarioAlta;
@@ -127,21 +127,20 @@ namespace SICOBIM_B.Controllers
 
 
 
-                tblBienesEquMedico.IdFederalizacion.id = tblFederalizacion.id;
-                tblBienesEquMedico.IdInventario.id = tblInventarios.id;
+                tblBienesEquMedico.TblFederalizacionId = tblFederalizacion.TblFederalizacionId;
+                tblBienesEquMedico.TblInventariosId = tblInventarios.TblInventariosId;
                 tblBienesEquMedico.marca = modeloInventario.marca;
                 tblBienesEquMedico.modelo = modeloInventario.modelo;
                 tblBienesEquMedico.serie = modeloInventario.serie;
-                tblBienesEquMedico.IdContratoBien.id = tblContratoBien.id;
-                tblBienesEquMedico.IdProveedor.id = tblProveedor.id;
-                tblBienesEquMedico.IdFacturas.id = tblFacturas.id;
-                tblBienesEquMedico.catGarantia.id = modeloInventario.IdGarantia;
-                tblBienesEquMedico.catTipoDeBienes.id = 2;
+                tblBienesEquMedico.TblContratoBienId= tblContratoBien.TblContratoBienId;
+                tblBienesEquMedico.TblProveedorId= tblProveedor.TblProveedorId;
+                tblBienesEquMedico.TblFacturasId = tblFacturas.TblFacturasId;
+                //tblBienesEquMedico.catGarantia.id = modeloInventario.IdGarantia;
+                tblBienesEquMedico.CatTipoDeBienId = 2;
                 tblBienesEquMedico.cantidad = modeloInventario.cantidad;
                 tblBienesEquMedico.activo = true;
-    
-
-                tblBienesEquMedico.IdClaveSaica.id = tblClaveSaica.id;
+                tblBienesEquMedico.TblClaveCabmsId = tblClaveCabms.TblClaveCabmsId;
+                tblBienesEquMedico.TblClaveSaicaId = tblClaveSaica.TblClaveSaicaId;
                 _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico);
 
                 ///

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace SICOBIM_B.Entities
     [Table("CatServicio")]
     public class CatServicio
     {
-        public int id { get; set; }
+        [Key]
+        public int CatServicioId { get; set; }
         public string servicio { get; set; }
         public String descripcion { get; set; }
         public int usuarioAlta { get; set; }
@@ -20,7 +22,7 @@ namespace SICOBIM_B.Entities
 
 
 
-        public ICollection<TblAreaServicio> tblAreaServicios
+        public virtual ICollection<TblAreaServicio> tblAreaServicios
         {
             get;
             set;

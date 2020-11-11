@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace SICOBIM_B.Entities
     [Table("TblResguardatarios")]
     public class TblResguardatarios
     {
-        public int id { get; set; }
+        [Key]
+        public int TblResguardatariosId { get; set; }
         public string nombre { get; set; }
         public string apellidoUno { get; set; }
         public string apellidoDos { get; set; }
@@ -17,36 +19,15 @@ namespace SICOBIM_B.Entities
         public string plaza { get; set; }
         public string numeroempleado { get; set; }
         public string cargo { get; set; }
+        public int CatSexoId { get; set; }
 
-        public CatSexo catSexo
-        {
-            set;
-            get;
-        }
+        public int TblAreaServicioId { get; set; }
 
-        public CatServicio CatServicio
-        {
-            set;
-            get;
-        }
+        public int CatTurnoId { get; set; }
 
-        public CatTurno catTurno
-        {
-            set;
-            get;
-        }
+        public int CatEstatusId { get; set; }
 
-        public CatEstatus catEstatus
-        {
-            set;
-            get;
-        }
-
-        public CatTipoContrato catTipoContrato
-        {
-            set;
-            get;
-        }
+        public int CatTipoContratoId { get; set; }
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
@@ -54,22 +35,22 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
-        public ICollection<TblBienes> tblBienes
+        public virtual ICollection<TblBienes> tblBienes
         {
             get;
             set;
         }
-        public ICollection<TblBienesEquMedico> tblBienesEquMedico
+        public virtual ICollection<TblBienesEquMedico> tblBienesEquMedico
         {
             get;
             set;
         }
-        public ICollection<TblBienesSistemas> tblBienesSistemas
+        public virtual ICollection<TblBienesSistemas> tblBienesSistemas
         {
             get;
             set;
         }
-        public ICollection<TblInstrumentalMedico> tblInstrumentalMedico
+        public virtual ICollection<TblInstrumentalMedico> tblInstrumentalMedico
         {
             get;
             set;

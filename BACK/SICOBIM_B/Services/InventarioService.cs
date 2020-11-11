@@ -24,7 +24,10 @@ namespace SICOBIM_B.Services
         IEnumerable<TblInventarios> GetTblInventarios();
         IEnumerable<TblProveedor> GetTblProveedor();
         IEnumerable<TblResguardatarios> GetTblResguardatarios();
-        IEnumerable<TblSalidaBien> GetTblSalidaBien();
+        IEnumerable<TblSalidaBienEquMedico> GetTblSalidaBienEquMedico();
+        IEnumerable<TblSalidaBienInstrumentalMedico> GetTblSalidaBienInstrumentalMedico();
+        IEnumerable<TblSalidaBienMobiliario> GetTblSalidaBienMobiliario();
+        IEnumerable<TblSalidaBienSistemas> GetTblSalidaBienSistema();
         #endregion
 
         #region Guardado de los objetos de las entidades
@@ -130,11 +133,24 @@ namespace SICOBIM_B.Services
             return _applicationDbContext.tblResguardatarios;
         }
 
-        public IEnumerable<TblSalidaBien> GetTblSalidaBien()
+        public IEnumerable<TblSalidaBienEquMedico> GetTblSalidaBienEquMedico()
         {
-            return _applicationDbContext.tblSalidaBien;
+            return _applicationDbContext.tblSalidaBienEquMedico;
+        }
+        public IEnumerable<TblSalidaBienInstrumentalMedico> GetTblSalidaBienInstrumentalMedico()
+        {
+            return _applicationDbContext.tblSalidaBienInstrumentalMedico;
         }
 
+        public IEnumerable<TblSalidaBienMobiliario> GetTblSalidaBienMobiliario()
+        {
+            return _applicationDbContext.tblSalidaBienMobiliario;
+        }
+
+        public IEnumerable<TblSalidaBienSistemas> GetTblSalidaBienSistema()
+        {
+            return _applicationDbContext.tblSalidaBienSistema;
+        }
         #endregion
 
 
@@ -204,6 +220,7 @@ namespace SICOBIM_B.Services
 
             return tblClaveCabms;
         }
+
 
 
         #endregion
