@@ -121,7 +121,7 @@ namespace SICOBIM_B.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] ModeloRegistro model)
         {
-            var user = _mapper.Map<User>(model);
+            var user = _mapper.Map<CtrlUsuarios>(model);
             try
             {
                 _userService.Create(user, model.Password);
@@ -160,7 +160,7 @@ namespace SICOBIM_B.Controllers
             var user = _userService.GetById(id);
             if (user == null) return NotFound();
 
-            return Ok(user.RefreshTokens);
+            return Ok(user.RefreshToken);
         }
 
 

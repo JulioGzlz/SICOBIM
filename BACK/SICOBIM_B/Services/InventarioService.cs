@@ -1,4 +1,4 @@
-﻿using SICOBIM_B.Data;
+﻿
 using SICOBIM_B.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,12 +10,12 @@ namespace SICOBIM_B.Services
     public interface IInventarioService
     {
         #region Consulta de tablas, se retornan LISTAS 
-        IEnumerable<TblBienes> GetTblBienes();
+        IEnumerable<TblBienesMuebles> GetTblBienes();
         IEnumerable<TblBienesEquMedico> GetTblBienesEquMedicos();
         IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
         IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
         IEnumerable<TblAreaServicio> GetTblAreaServicio();
-        IEnumerable<TblClaveCabms> GetTblClaveCambs();
+        IEnumerable<TblClaveCambs> GetTblClaveCambs();
         IEnumerable<TblClaveSaica> GetTblClaveSaica();
         IEnumerable<TblConfPerfil> GetTblConfPerfil();
         IEnumerable<TblContratoBien> GetTblContratoBien();
@@ -24,10 +24,7 @@ namespace SICOBIM_B.Services
         IEnumerable<TblInventarios> GetTblInventarios();
         IEnumerable<TblProveedor> GetTblProveedor();
         IEnumerable<TblResguardatarios> GetTblResguardatarios();
-        IEnumerable<TblSalidaBienEquMedico> GetTblSalidaBienEquMedico();
-        IEnumerable<TblSalidaBienInstrumentalMedico> GetTblSalidaBienInstrumentalMedico();
-        IEnumerable<TblSalidaBienMobiliario> GetTblSalidaBienMobiliario();
-        IEnumerable<TblSalidaBienSistemas> GetTblSalidaBienSistema();
+
         #endregion
 
         #region Guardado de los objetos de las entidades
@@ -42,7 +39,7 @@ namespace SICOBIM_B.Services
 
         TblProveedor GuardarTblProveedor(TblProveedor tblProveedor);
 
-         TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms);
+        TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms);
 
 
 
@@ -56,109 +53,92 @@ namespace SICOBIM_B.Services
     {
         
 
-        private ApplicationDbContext _applicationDbContext;
+        private sicobimContext _sicobimContext;
 
-        public InventarioService(ApplicationDbContext dbContext)
+        public InventarioService(sicobimContext dbContext)
         {
-            _applicationDbContext = dbContext;
+            _sicobimContext = dbContext;
         }
         #region Retorno de consultas de las tablas
         public IEnumerable<TblAreaServicio> GetTblAreaServicio()
         {
-            return _applicationDbContext.tblAreaServicio;
+            return _sicobimContext.TblAreaServicio;
         }
 
-        public IEnumerable<TblBienes> GetTblBienes()
+        public IEnumerable<TblBienesMuebles> GetTblBienes()
         {
-            return _applicationDbContext.tblBienes;
+            return _sicobimContext.TblBienesMuebles;
 
         }
         public IEnumerable<TblBienesEquMedico> GetTblBienesEquMedicos()
         {
-            return _applicationDbContext.tblBienesEquMedicos;
+            return _sicobimContext.TblBienesEquMedico;
         }
 
         public IEnumerable<TblBienesSistemas> GetTblBienesSistemas()
         {
-            return _applicationDbContext.tblBienesSistemas;
+            return _sicobimContext.TblBienesSistemas;
         }
 
-        public IEnumerable<TblClaveCabms> GetTblClaveCambs()
+        public IEnumerable<TblClaveCambs> GetTblClaveCambs()
         {
-            return _applicationDbContext.tblClaveCambs;
+            return _sicobimContext.TblClaveCambs;
         }
 
         public IEnumerable<TblClaveSaica> GetTblClaveSaica()
         {
-            return _applicationDbContext.tblClaveSaica;
+            return _sicobimContext.TblClaveSaica;
         }
 
         public IEnumerable<TblConfPerfil> GetTblConfPerfil()
         {
-            return _applicationDbContext.tblConfPerfil;
+            return _sicobimContext.TblConfPerfil;
         }
 
         public IEnumerable<TblContratoBien> GetTblContratoBien()
         {
-            return _applicationDbContext.tblContratoBien;
+            return _sicobimContext.TblContratoBien;
         }
 
         public IEnumerable<TblFacturas> GetTblFacturas()
         {
-            return _applicationDbContext.tblFacturas;
+            return _sicobimContext.TblFacturas;
         }
 
         public IEnumerable<TblFederalizacion> GetTblFederalizacion()
         {
-            return _applicationDbContext.tblFederalizacion;
+            return _sicobimContext.TblFederalizacion;
         }
 
         public IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico()
         {
-            return _applicationDbContext.tblInstrumentalMedico;
+            return _sicobimContext.TblInstrumentalMedico;
         }
 
         public IEnumerable<TblInventarios> GetTblInventarios()
         {
-            return _applicationDbContext.tblInventarios;
+            return _sicobimContext.TblInventarios;
         }
 
         public IEnumerable<TblProveedor> GetTblProveedor()
         {
-            return _applicationDbContext.tblProveedor;
+            return _sicobimContext.TblProveedor;
         }
 
         public IEnumerable<TblResguardatarios> GetTblResguardatarios()
         {
-            return _applicationDbContext.tblResguardatarios;
+            return _sicobimContext.TblResguardatarios;
         }
 
-        public IEnumerable<TblSalidaBienEquMedico> GetTblSalidaBienEquMedico()
-        {
-            return _applicationDbContext.tblSalidaBienEquMedico;
-        }
-        public IEnumerable<TblSalidaBienInstrumentalMedico> GetTblSalidaBienInstrumentalMedico()
-        {
-            return _applicationDbContext.tblSalidaBienInstrumentalMedico;
-        }
-
-        public IEnumerable<TblSalidaBienMobiliario> GetTblSalidaBienMobiliario()
-        {
-            return _applicationDbContext.tblSalidaBienMobiliario;
-        }
-
-        public IEnumerable<TblSalidaBienSistemas> GetTblSalidaBienSistema()
-        {
-            return _applicationDbContext.tblSalidaBienSistema;
-        }
+      
         #endregion
 
 
         #region Guardado de mis objetos
         public TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico)
         {
-            _applicationDbContext.tblBienesEquMedicos.Add(tblBienesEquMedico);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblBienesEquMedico.Add(tblBienesEquMedico);
+            _sicobimContext.SaveChanges();
 
             return tblBienesEquMedico;
         }
@@ -166,56 +146,56 @@ namespace SICOBIM_B.Services
 
         public TblFacturas GuardarTblFacturas(TblFacturas tblFacturas)
         {
-            _applicationDbContext.tblFacturas.Add(tblFacturas);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblFacturas.Add(tblFacturas);
+            _sicobimContext.SaveChanges();
 
 
             return tblFacturas;
         }
         public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
         {
-            _applicationDbContext.tblClaveSaica.Add(tblClaveSaica);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblClaveSaica.Add(tblClaveSaica);
+            _sicobimContext.SaveChanges();
 
 
             return tblClaveSaica;
         }
         public TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien)
         {
-            _applicationDbContext.tblContratoBien.Add(tblContratoBien);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblContratoBien.Add(tblContratoBien);
+            _sicobimContext.SaveChanges();
 
 
             return tblContratoBien;
         }
         public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
         {
-            _applicationDbContext.tblFederalizacion.Add(tblFederalizacion);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblFederalizacion.Add(tblFederalizacion);
+            _sicobimContext.SaveChanges();
 
 
             return tblFederalizacion;
         }
         public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
         {
-            _applicationDbContext.tblInventarios.Add(tblInventarios);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblInventarios.Add(tblInventarios);
+            _sicobimContext.SaveChanges();
 
 
             return tblInventarios;
         }
         public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
         {
-            _applicationDbContext.tblProveedor.Add(tblProveedor);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblProveedor.Add(tblProveedor);
+            _sicobimContext.SaveChanges();
 
 
             return tblProveedor;
         }
-        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        public TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms)
         {
-            _applicationDbContext.tblClaveCambs.Add(tblClaveCabms);
-            _applicationDbContext.SaveChanges();
+            _sicobimContext.TblClaveCambs.Add(tblClaveCabms);
+            _sicobimContext.SaveChanges();
 
 
             return tblClaveCabms;

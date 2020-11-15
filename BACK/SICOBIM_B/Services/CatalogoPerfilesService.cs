@@ -1,4 +1,4 @@
-﻿using SICOBIM_B.Data;
+﻿
 using SICOBIM_B.Entities;
 using System;
 using System.Collections.Generic;
@@ -38,11 +38,11 @@ namespace SICOBIM_B.Services
     public class CatalogoPerfilesService : ICatalogoPerfilesService
     {
 
-        private ApplicationDbContext _applicationDbContext;
+        private sicobimContext _sicobimContext;
 
-        public CatalogoPerfilesService(ApplicationDbContext dbContext)
+        public CatalogoPerfilesService(sicobimContext dbContext)
         {
-            _applicationDbContext = dbContext;
+            _sicobimContext = dbContext;
         }
         /// <summary>
         /// Retorna las areas administrativas y operativas
@@ -50,17 +50,17 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatArea> GetCatArea()
         {
-            return _applicationDbContext.catArea; 
+            return _sicobimContext.CatArea; 
         }
 
         public IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien()
         {
-            return _applicationDbContext.catEstadoDelBien;
+            return _sicobimContext.CatEstadoDelBien;
         }
 
         public IEnumerable<CatEstatus> GetCatEstatus()
         {
-            return _applicationDbContext.catEstatus; 
+            return _sicobimContext.CatEstatus; 
         }
 
 
@@ -76,7 +76,7 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatPermiso> GetCatPermiso()
         {
-            return _applicationDbContext.catPermiso;
+            return _sicobimContext.CatPermiso;
         }
 
 
@@ -86,7 +86,7 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatRol> GetCatRol()
         {
-            return _applicationDbContext.catRol;
+            return _sicobimContext.CatRol;
         }
         /// <summary>
         /// Retorna los servicios(Departamentos) que integran a la unidad
@@ -94,7 +94,7 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatServicio> GetCatServicio()
         {
-            return _applicationDbContext.catServicio;
+            return _sicobimContext.CatServicio;
         }
         /// <summary>
         /// Retorna el sexo de usuario
@@ -102,7 +102,7 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatSexo> GetCatSexo()
         {
-            return _applicationDbContext.catSexo;
+            return _sicobimContext.CatSexo;
         }
         /// <summary>
         /// Retorna el tipo de contrato de usuarios y reguardatarios 
@@ -110,27 +110,27 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatTipoContrato> GetCatTipoContrato()
         {
-            return _applicationDbContext.catTipoContrato;
+            return _sicobimContext.CatTipoContrato;
         }
 
         public IEnumerable<CatTipoDeBien> GetCatTipoDeBien()
         {
-            return _applicationDbContext.catTipoDeBien;
+            return _sicobimContext.CatTipoDeBien;
         }
 
         public IEnumerable<CatTipoEntrada> GetCatTipoEntrada()
         {
-            return _applicationDbContext.catTipoEntrada;
+            return _sicobimContext.CatTipoEntrada;
         }
 
         public IEnumerable<CatTipoPartida> GetCatTipoPartida()
         {
-            return _applicationDbContext.catTipoPartida;
+            return _sicobimContext.CatTipoPartida;
         }
 
         public IEnumerable<CatTipoSalida> GetCatTipoSalida()
         {
-            return _applicationDbContext.catTipoSalida;
+            return _sicobimContext.CatTipoSalida;
         }
 
         /// <summary>
@@ -139,12 +139,12 @@ namespace SICOBIM_B.Services
         /// <returns></returns>
         public IEnumerable<CatTurno> GetCatTurno()
         {
-            return _applicationDbContext.catTurno;
+            return _sicobimContext.CatTurno;
         }
 
         public IEnumerable<CatUnidadDestino> GetCatUnidadDestino()
         {
-            return _applicationDbContext.catUnidadDestino;
+            return _sicobimContext.CatUnidadDestino;
         }
 
         /// <summary>

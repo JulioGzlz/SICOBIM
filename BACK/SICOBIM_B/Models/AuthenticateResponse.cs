@@ -18,9 +18,9 @@ namespace SICOBIM_B.Models
         [JsonIgnore] // refresh token is returned in http only cookie
         public string RefreshToken { get; set; }
 
-        public AuthenticateResponse(User user, string jwtToken, string refreshToken)
+        public AuthenticateResponse(CtrlUsuarios user, string jwtToken, string refreshToken)
         {
-            Id = user.id;
+            Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.Username;

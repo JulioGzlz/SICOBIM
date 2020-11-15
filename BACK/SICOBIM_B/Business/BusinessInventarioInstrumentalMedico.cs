@@ -1,5 +1,5 @@
 ﻿using SICOBIM_B.Common;
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Entities;
 using SICOBIM_B.Services;
 using System;
@@ -11,14 +11,14 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioInstrumentalMedico
     {
-        private ApplicationDbContext _objApplicationDbContext;
+        private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceInstrumentalMedico;
 
 
-        public BusinessInventarioInstrumentalMedico(IInventarioService objInstrumental, ApplicationDbContext applicationDbContext)
+        public BusinessInventarioInstrumentalMedico(IInventarioService objInstrumental, sicobimContext sicobimContext)
         {
             _inventarioServiceInstrumentalMedico = objInstrumental;
-            _objApplicationDbContext = applicationDbContext;
+            _objsicobimContext = sicobimContext;
 
         }
 

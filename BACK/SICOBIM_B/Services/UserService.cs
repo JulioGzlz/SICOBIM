@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Entities;
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
@@ -22,9 +22,9 @@ namespace SICOBIM_B.Services
         AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress);
         AuthenticateResponse RefreshToken(string token, string ipAddress);
         bool RevokeToken(string token, string ipAddress);
-        IEnumerable<User> getAll();
-        User GetById(int id);
-        User Create(User user, string password);
+        IEnumerable<CtrlUsuarios> getAll();
+        CtrlUsuarios GetById(int id);
+        CtrlUsuarios Create(CtrlUsuarios user, string password);
 
 
 
@@ -32,9 +32,9 @@ namespace SICOBIM_B.Services
     public class UserService: IUserService
     {
 
-        private ApplicationDbContext _context;
+        private sicobimContext _context;
         private readonly AppSettings _appSettings;
-        public UserService(ApplicationDbContext context, IOptions<AppSettings> appSettings)
+        public UserService(sicobimContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
             _appSettings = appSettings.Value;
@@ -42,13 +42,13 @@ namespace SICOBIM_B.Services
 
         public  AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            User objUser = new User();
+            CtrlUsuarios objUser = new CtrlUsuarios();
             if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))
                 return null;
            
             objUser.Username = model.Username;
 
-            var user = _context.users.SingleOrDefault(x => x.Username == model.Username);
+            var user = _context.CtrlUsuarios.SingleOrDefault(x => x.Username == model.Username);
 
             // return null if user not found
             if (user == null) return null;
@@ -61,7 +61,7 @@ namespace SICOBIM_B.Services
 
             // save refresh token
             // save refresh token
-            user.RefreshTokens.Add(refreshToken);
+            user.RefreshToken.Add(refreshToken);
             _context.Update(user);
             _context.SaveChanges();
 
@@ -87,7 +87,7 @@ namespace SICOBIM_B.Services
             }
         }
 
-        private string generateJwtToken(User user)
+        private string generateJwtToken(CtrlUsuarios user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -95,7 +95,7 @@ namespace SICOBIM_B.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.id.ToString())
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -123,22 +123,22 @@ namespace SICOBIM_B.Services
             return true;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<CtrlUsuarios> GetAll()
         {
-            return _context.users;
+            return _context.CtrlUsuarios;
         }
 
-        public User GetById(int id)
+        public CtrlUsuarios GetById(int id)
         {
-            return _context.users.Find(id);
+            return _context.CtrlUsuarios.Find(id);
         }
-        public User Create(User user, string password)
+        public CtrlUsuarios Create(CtrlUsuarios user, string password)
         {
             // validation
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.users.Any(x => x.Username == user.Username))
+            if (_context.CtrlUsuarios.Any(x => x.Username == user.Username))
                 throw new AppException("Username \"" + user.Username + "\" is already taken");
 
             byte[] passwordHash, passwordSalt;
@@ -147,9 +147,9 @@ namespace SICOBIM_B.Services
 
 
             DateTime fechaActual = DateTime.Now;
-            user.idUsuarioAlta = 1;
-            user.activo = true;
-            user.fechaAlta = fechaActual;
+            user.IdUsuarioAlta = 1;
+            user.Activo = true;
+            user.FechaAlta = fechaActual;
 
 
 
@@ -157,7 +157,7 @@ namespace SICOBIM_B.Services
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            _context.users.Add(user);
+            _context.CtrlUsuarios.Add(user);
             _context.SaveChanges();
 
             return user;
@@ -184,12 +184,12 @@ namespace SICOBIM_B.Services
 
         public AuthenticateResponse RefreshToken(string token, string ipAddress)
         {
-            var user = _context.users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+            var user = _context.CtrlUsuarios.SingleOrDefault(u => u.RefreshToken.Any(t => t.Token == token));
 
             // return null if no user found with token
             if (user == null) return null;
 
-            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+            var refreshToken = user.RefreshToken.Single(x => x.Token == token);
 
             // return null if token is no longer active
             if (!refreshToken.IsActive) return null;
@@ -199,7 +199,7 @@ namespace SICOBIM_B.Services
             refreshToken.Revoked = DateTime.UtcNow;
             refreshToken.RevokedByIp = ipAddress;
             refreshToken.ReplacedByToken = newRefreshToken.Token;
-            user.RefreshTokens.Add(newRefreshToken);
+            user.RefreshToken.Add(newRefreshToken);
             _context.Update(user);
             _context.SaveChanges();
 
@@ -211,12 +211,12 @@ namespace SICOBIM_B.Services
 
         public bool RevokeToken(string token, string ipAddress)
         { 
-            var user = _context.users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+            var user = _context.CtrlUsuarios.SingleOrDefault(u => u.RefreshToken.Any(t => t.Token == token));
 
             // return false if no user found with token
             if (user == null) return false;
 
-            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+            var refreshToken = user.RefreshToken.Single(x => x.Token == token);
 
             // return false if token is not active
             if (!refreshToken.IsActive) return false;
@@ -230,9 +230,9 @@ namespace SICOBIM_B.Services
             return true;
         }
 
-        public IEnumerable<User> getAll()
+        public IEnumerable<CtrlUsuarios> getAll()
         {
-            return _context.users;
+            return _context.CtrlUsuarios;
         }
     }
 }

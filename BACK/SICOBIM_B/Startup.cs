@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 using SICOBIM_B.Services;
@@ -49,7 +49,7 @@ namespace SICOBIM_B
             services.AddCors();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<sicobimContext>();
 
 
             // configure strongly typed settings objects

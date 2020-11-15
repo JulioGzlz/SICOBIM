@@ -1,5 +1,5 @@
 ﻿using SICOBIM_B.Common;
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Entities;
 using SICOBIM_B.Services;
 using System;
@@ -12,7 +12,7 @@ namespace SICOBIM_B.Business
     public class BusinessInventarioEquipoMedico
     {
         #region  Metodos de consultas de listas
-        //private ApplicationDbContext _objApplicationDbContext;
+        //private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceEquipoMedico;
 
         //BusinessInventarioEquipoMedico _objBEnventarioEquipoMedico;
@@ -20,7 +20,7 @@ namespace SICOBIM_B.Business
         public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico)
         {
             _inventarioServiceEquipoMedico = objEquipoMedico;
-            //_objApplicationDbContext = applicationDbContext;
+            //_objsicobimContext = sicobimContext;
             //_objBEnventarioEquipoMedico = businessInventarioEquipoMedico;
 
         }
@@ -59,7 +59,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.TblFederalizacionId).ToList();
+                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacionid).ToList();
                 return new RespuestaApi<TblBienesEquMedico>
                 {
                     correcto = true,
@@ -86,7 +86,7 @@ namespace SICOBIM_B.Business
         //    List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
         //    try
         //    {              
-        //        tblFacturastipoinventario = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico).ToList();
+        //        tblFacturastipoinventario = _objsicobimContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico).ToList();
 
         //        if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
         //            throw new System.Exception("No existen registros con el Bien Equipo Médico insertado, favor de verificar");
@@ -109,7 +109,7 @@ namespace SICOBIM_B.Business
         //    try
         //    {
 
-        //        tblFacturas = _objApplicationDbContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
+        //        tblFacturas = _objsicobimContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
         //        //if (  )
 
 
@@ -130,7 +130,7 @@ namespace SICOBIM_B.Business
         //    {
         //        var result = _objBEnventarioEquipoMedico.getFacturasTipoInventario(idBienEquipoMedico);
 
-        //        tblFacturasPorCosto = _objApplicationDbContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico && x.costoTotal == costo).ToList();
+        //        tblFacturasPorCosto = _objsicobimContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico && x.costoTotal == costo).ToList();
 
         //        return new RespuestaApi<TblFacturas>()
         //        {
@@ -196,7 +196,7 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblProveedor(tblProveedor);
 
         }
-        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        public TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms)
         {
 
             return _inventarioServiceEquipoMedico.GuardarTblClaveCabms(tblClaveCabms);

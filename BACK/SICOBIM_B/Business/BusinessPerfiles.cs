@@ -1,5 +1,5 @@
 ﻿using SICOBIM_B.Common;
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Entities;
 using SICOBIM_B.Services;
 using System;
@@ -12,15 +12,15 @@ namespace SICOBIM_B.Business
     public class BusinessPerfiles
     {
         IInventarioService _tblPerfilesService;
-        private ApplicationDbContext _objApplicationDbContext;
+        private sicobimContext _objsicobimContext;
 
         ICatalogoPerfilesService _catalogoPerfilesService;
 
 
-        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, ApplicationDbContext applicationDbContext, IInventarioService objperfil)
+        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, sicobimContext sicobimContext, IInventarioService objperfil)
         {
             _catalogoPerfilesService = objIcatalogos;
-            _objApplicationDbContext = applicationDbContext;
+            _objsicobimContext = sicobimContext;
             _tblPerfilesService = objperfil;
 
         }
@@ -29,7 +29,7 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<CatEstatus> lstEstatus = _catalogoPerfilesService.GetCatEstatus().OrderBy(x => x.descripcion).ToList();
+                List<CatEstatus> lstEstatus = _catalogoPerfilesService.GetCatEstatus().OrderBy(x => x.Descripcion).ToList();
                 return new RespuestaApi<CatEstatus>
                 {
                     correcto = true,
@@ -237,7 +237,7 @@ namespace SICOBIM_B.Business
             try
             {
                
-                var resul =_objApplicationDbContext.tblConfPerfil.Where(x => x.IdPermiso.id == IdPerfil).ToList();
+                var resul =_objsicobimContext.TblConfPerfil.Where(x => x.IdPermisoid == IdPerfil).ToList();
                 lstperfil = resul;
 
                 if (lstperfil == null || lstperfil.Count <= 0)
@@ -463,7 +463,7 @@ namespace SICOBIM_B.Business
             try
             {
 
-                List<CatEstadoDelBien> lstBienesActivos = _objApplicationDbContext.catEstadoDelBien.OrderBy(x => x.activo == true).ToList();
+                List<CatEstadoDelBien> lstBienesActivos = _objsicobimContext.CatEstadoDelBien.OrderBy(x => x.Activo == true).ToList();
 
                 return new RespuestaApi<CatEstadoDelBien>()
                 {

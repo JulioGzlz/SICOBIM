@@ -19,12 +19,12 @@ namespace SICOBIM_B.Business
 
         }
 
-        public RespuestaApi<TblBienes> GetTblBienes()
+        public RespuestaApi<TblBienesMuebles> GetTblBienes()
         {
             try
             {
-                IEnumerable<TblBienes> lstBienes = _InventarioServiceMobiliario.GetTblBienes();
-                return new RespuestaApi<TblBienes>
+                IEnumerable<TblBienesMuebles> lstBienes = _InventarioServiceMobiliario.GetTblBienes();
+                return new RespuestaApi<TblBienesMuebles>
                 {
                     correcto = true,
                     ObjetoRespuesta = lstBienes
@@ -35,7 +35,7 @@ namespace SICOBIM_B.Business
             catch (Exception ex)
             {
 
-                return new RespuestaApi<TblBienes>()
+                return new RespuestaApi<TblBienesMuebles>()
                 {
                     Mensaje = ex.Message
                 };
