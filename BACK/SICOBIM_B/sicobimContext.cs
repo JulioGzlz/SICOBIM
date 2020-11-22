@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace SICOBIM_B
 {
     public partial class sicobimContext : DbContext
     {
-        public sicobimContext()
+        protected readonly IConfiguration Configuration;
+        public sicobimContext(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        public sicobimContext(DbContextOptions<sicobimContext> options)
-            : base(options)
-        {
-        }
+        //public sicobimContext(DbContextOptions<sicobimContext> options)
+        //    : base(options)
+        //{
+        //}
 
         public virtual DbSet<CatArea> CatArea { get; set; }
         public virtual DbSet<CatEstadoDelBien> CatEstadoDelBien { get; set; }
@@ -52,11 +56,13 @@ namespace SICOBIM_B
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=sicobim;Username=postgres;Password=SOPORTEK7");
-            }
+
+            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=sicobim;Username=postgres;Password=SOPORTEK7");
+            //}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

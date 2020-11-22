@@ -10,6 +10,18 @@ using SICOBIM_B.Services;
 
 namespace SICOBIM_B.Controllers
 {
+
+    /// <summary>
+    /// Inventario de equipo medico
+    /// Existen 3 tipos de entrada
+    // 1 - Adquisición
+    // 2 - Traspaso
+    // 3 - Donacion
+    //  Definir cada uno de los tipos de entrada, existen cada POST por cada tipo de entrada definiendo CADA OBJETO y/o Clase a utilizar
+    // esas clases u objetos son definidos por tipo de negocio en cada entrada
+    // Cada post se debe SETear el tipo entrada como 1,2,3 y en cada controller el tipo de inventario como 1,2,3,4
+
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class InventarioEquipoMedicoController : ControllerBase
@@ -41,8 +53,12 @@ namespace SICOBIM_B.Controllers
         }
 
 
-
-        [HttpPost("RegistroInventario")]
+        /// <summary>
+        /// Función POST que define la entrada  por Adquisición, anexa todos los objetos que trabajan con esta entrada
+        /// </summary>
+        /// <param name="modeloInventario"></param>
+        /// <returns></returns>
+        [HttpPost("EntradaporAdquisicion")]
         public IActionResult RegistroInventario([FromBody] ModeloInventario modeloInventario)
         {
             if (modeloInventario != null)
@@ -158,6 +174,10 @@ namespace SICOBIM_B.Controllers
 
             return Ok();
         }
+
+
+
+
 
     }
 }
