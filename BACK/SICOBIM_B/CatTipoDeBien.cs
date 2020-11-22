@@ -10,7 +10,7 @@ namespace SICOBIM_B
             TblBienesEquMedico = new HashSet<TblBienesEquMedico>();
             TblBienesMuebles = new HashSet<TblBienesMuebles>();
             TblBienesSistemas = new HashSet<TblBienesSistemas>();
-            TblClaveCambs = new HashSet<TblClaveCambs>();
+            TblClaveCambs = new HashSet<TblClaveCabms>();
             TblClaveSaica = new HashSet<TblClaveSaica>();
             TblContratoBien = new HashSet<TblContratoBien>();
             TblFacturas = new HashSet<TblFacturas>();
@@ -33,7 +33,7 @@ namespace SICOBIM_B
         public virtual ICollection<TblBienesEquMedico> TblBienesEquMedico { get; set; }
         public virtual ICollection<TblBienesMuebles> TblBienesMuebles { get; set; }
         public virtual ICollection<TblBienesSistemas> TblBienesSistemas { get; set; }
-        public virtual ICollection<TblClaveCambs> TblClaveCambs { get; set; }
+        public virtual ICollection<TblClaveCabms> TblClaveCambs { get; set; }
         public virtual ICollection<TblClaveSaica> TblClaveSaica { get; set; }
         public virtual ICollection<TblContratoBien> TblContratoBien { get; set; }
         public virtual ICollection<TblFacturas> TblFacturas { get; set; }

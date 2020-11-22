@@ -64,6 +64,7 @@ namespace SICOBIM_B.Business
                 List<TblBienesSistemas> ltsFederalizacionSistemas = null;
 
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFederalizacionid).ToList();
+               ltsFederalizacionSistemas = resul;
 
                 if (ltsFederalizacionSistemas == null || ltsFederalizacionSistemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
@@ -85,11 +86,6 @@ namespace SICOBIM_B.Business
             }
         }
 
-        internal object GetFacturasTipoInventario()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Consulta de bienes por clave cabms 
         /// </summary>
@@ -101,6 +97,7 @@ namespace SICOBIM_B.Business
                 List<TblBienesSistemas> ltsCabmsSitemas = null;
 
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdClaveCabmsid).ToList();
+                ltsCabmsSitemas = resul;
                 if (ltsCabmsSitemas == null || ltsCabmsSitemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
@@ -132,6 +129,7 @@ namespace SICOBIM_B.Business
                 List<TblBienesSistemas> ltsInventarioSitemas = null;
 
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdInventariosid).ToList();
+                ltsInventarioSitemas = resul;
                 if (ltsInventarioSitemas == null || ltsInventarioSitemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
@@ -174,10 +172,12 @@ namespace SICOBIM_B.Business
                 };
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    Mensaje = ex.Message
+                };
             }
         }
 
@@ -244,19 +244,17 @@ namespace SICOBIM_B.Business
 
 
 
-
-
         /// <summary>
         /// Te retorna las facturas por tipo de bien sistemas 
         /// </summary>
         /// <param name="idBienSistema"></param>
         /// <returns></returns>
-        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBienSistema)
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBien)
         {
        
             try
             {
-                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBienSistema).ToList();
+                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBien).ToList();
                 lstFacturasporInventario = resul;
                 if (lstFacturasporInventario == null  || lstFacturasporInventario.Count <= 0)
                     throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");
@@ -276,9 +274,181 @@ namespace SICOBIM_B.Business
             }
 
         }
+        /// <summary>
+        /// Consulta de bienes sistemas por contrato
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaContrato()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstBienesContrato = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdContratoBienid).ToList();
+                lstBienesContrato = resul;
 
 
+                if (lstBienesContrato == null || lstBienesContrato.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
 
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesContrato
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+
+        /// <summary>
+        /// Consulta de bienes sistemas por resguardatario
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultarResguardatario()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstBienesPorResguardatario = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdResguardatariosid).ToList();
+                lstBienesPorResguardatario = resul;
+
+
+                if (lstBienesPorResguardatario == null || lstBienesPorResguardatario.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesPorResguardatario
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por estado fisico del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaEstadoFisicoBien()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstestadofisico = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatEstadoDelBienid).ToList();
+                lstestadofisico = resul;
+
+
+                if (lstestadofisico == null || lstestadofisico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstestadofisico
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por garantia del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaporGarantia()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbiengarantia = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatGarantiaid).ToList();
+                lstbiengarantia = resul;
+
+
+                if (lstbiengarantia == null || lstbiengarantia.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbiengarantia
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por piso del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaPorPiso()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienporpiso = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatPisosid).ToList();
+                lstbienporpiso = resul;
+
+
+                if (lstbienporpiso == null || lstbienporpiso.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpiso
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por tipo de entrada del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaporTipodeEntrada()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienpoentrada = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatTipoEntradaid).ToList();
+                lstbienpoentrada = resul;
+
+
+                if (lstbienpoentrada == null || lstbienpoentrada.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienpoentrada
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
 
 
     }

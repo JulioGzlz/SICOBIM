@@ -12,6 +12,7 @@ namespace SICOBIM_B.Business
     public class BusinessInventarioEquipoMedico
     {
         #region  Metodos de consultas de listas
+
         //private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceEquipoMedico;
 
@@ -25,10 +26,10 @@ namespace SICOBIM_B.Business
 
         }
         /// <summary>
-        /// 
+        /// consulta por medio de una lista los equipos médicos 
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblBienesEquMedico> GetEquipoMedico() //esto se tienes que llamar en el controlador que le pertenece
+        public RespuestaApi<TblBienesEquMedico> GetEquipoMedico() 
         {
             try
             {
@@ -52,14 +53,20 @@ namespace SICOBIM_B.Business
             }
         }
         /// <summary>
-        /// 
+        /// consulta de equipo medico por federalizacion 
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblBienesEquMedico> GetConsultaFederalizacion() //esto se tienes que llamar en el controlador que le pertenece
+        public RespuestaApi<TblBienesEquMedico> GetConsultaFederalizacion() 
         {
             try
             {
-                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacionid).ToList();
+                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = null; 
+                var resul =_inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacionid).ToList();
+                lstEquipoMedicoFederalizacion = resul;
+                if (lstEquipoMedicoFederalizacion == null || lstEquipoMedicoFederalizacion.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+        
                 return new RespuestaApi<TblBienesEquMedico>
                 {
                     correcto = true,
@@ -196,7 +203,7 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblProveedor(tblProveedor);
 
         }
-        public TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms)
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
         {
 
             return _inventarioServiceEquipoMedico.GuardarTblClaveCabms(tblClaveCabms);

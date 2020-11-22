@@ -25,6 +25,13 @@ namespace SICOBIM_B.Controllers
             var result = _businessInstrumeental.GetInstrumental();
             return Ok(result);
         }
+        [HttpGet]
+        [Route("obtenerfactura/{idBien}")]
+        public IActionResult GetFacturasTipoInventario(int idBien)
+        {
+            var result = _businessInstrumeental.GetFacturasTipoInventario(idBien);
+            return Ok(result);
+        }
 
     }
 }

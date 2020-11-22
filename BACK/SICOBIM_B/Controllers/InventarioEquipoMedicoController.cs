@@ -55,7 +55,7 @@ namespace SICOBIM_B.Controllers
                 TblFederalizacion tblFederalizacion = new TblFederalizacion();
                 TblInventarios tblInventarios = new TblInventarios();
                 TblProveedor tblProveedor = new TblProveedor();
-                TblClaveCambs tblClaveCabms = new TblClaveCambs();
+                TblClaveCabms tblClaveCabms = new TblClaveCabms();
                 ///
                 ///Por  el momento como ejemplo
                 ///

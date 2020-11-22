@@ -37,7 +37,7 @@ namespace SICOBIM_B
         public virtual DbSet<TblBienesEquMedico> TblBienesEquMedico { get; set; }
         public virtual DbSet<TblBienesMuebles> TblBienesMuebles { get; set; }
         public virtual DbSet<TblBienesSistemas> TblBienesSistemas { get; set; }
-        public virtual DbSet<TblClaveCambs> TblClaveCambs { get; set; }
+        public virtual DbSet<TblClaveCabms> TblClaveCambs { get; set; }
         public virtual DbSet<TblClaveSaica> TblClaveSaica { get; set; }
         public virtual DbSet<TblConfPerfil> TblConfPerfil { get; set; }
         public virtual DbSet<TblContratoBien> TblContratoBien { get; set; }
@@ -55,7 +55,7 @@ namespace SICOBIM_B
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=sicobim;Username=postgres;Password=lagoz2020");
+                optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=sicobim;Username=postgres;Password=SOPORTEK7");
             }
         }
 
@@ -861,7 +861,7 @@ namespace SICOBIM_B
                     .HasForeignKey(d => d.IdResguardatariosid);
             });
 
-            modelBuilder.Entity<TblClaveCambs>(entity =>
+            modelBuilder.Entity<TblClaveCabms>(entity =>
             {
                 entity.HasIndex(e => e.CatTipoDeBienId);
 

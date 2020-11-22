@@ -15,7 +15,7 @@ namespace SICOBIM_B.Services
         IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
         IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
         IEnumerable<TblAreaServicio> GetTblAreaServicio();
-        IEnumerable<TblClaveCambs> GetTblClaveCambs();
+        IEnumerable<TblClaveCabms> GetTblClaveCambs();
         IEnumerable<TblClaveSaica> GetTblClaveSaica();
         IEnumerable<TblConfPerfil> GetTblConfPerfil();
         IEnumerable<TblContratoBien> GetTblContratoBien();
@@ -39,7 +39,7 @@ namespace SICOBIM_B.Services
 
         TblProveedor GuardarTblProveedor(TblProveedor tblProveedor);
 
-        TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms);
+        TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms);
 
 
 
@@ -80,7 +80,7 @@ namespace SICOBIM_B.Services
             return _sicobimContext.TblBienesSistemas;
         }
 
-        public IEnumerable<TblClaveCambs> GetTblClaveCambs()
+        public IEnumerable<TblClaveCabms> GetTblClaveCambs()
         {
             return _sicobimContext.TblClaveCambs;
         }
@@ -192,7 +192,7 @@ namespace SICOBIM_B.Services
 
             return tblProveedor;
         }
-        public TblClaveCambs GuardarTblClaveCabms(TblClaveCambs tblClaveCabms)
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
         {
             _sicobimContext.TblClaveCambs.Add(tblClaveCabms);
             _sicobimContext.SaveChanges();

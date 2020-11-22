@@ -44,7 +44,7 @@ namespace SICOBIM_B
         public virtual CatTipoEntrada CatTipoEntrada { get; set; }
         public virtual CatTipoPartida CatTipoPartida { get; set; }
         public virtual TblAreaServicio IdAreaServicio { get; set; }
-        public virtual TblClaveCambs IdClaveCambs { get; set; }
+        public virtual TblClaveCabms IdClaveCambs { get; set; }
         public virtual TblClaveSaica IdClaveSaica { get; set; }
         public virtual TblContratoBien IdContratoBien { get; set; }
         public virtual TblFacturas IdFacturasIdFacturaNavigation { get; set; }

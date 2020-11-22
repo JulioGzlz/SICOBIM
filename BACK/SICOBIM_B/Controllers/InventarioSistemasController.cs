@@ -61,13 +61,19 @@ namespace SICOBIM_B.Controllers
             var result = _businessSistemas.GetConsultaClaveSaica();
             return Ok(result);
         }
+        /// <summary>
+        /// preguntar a edgar
+        /// </summary>
+        /// <param name="idBien"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("obtenerfactura/{idBienSistema}")]
-        public IActionResult GetFacturasTipoInventario(int idBienSistema)
+        [Route("obtenerfactura/{idBien}")]
+        public IActionResult GetFacturasTipoInventario(int idBien)
         {
-            var result = _businessSistemas.GetFacturasTipoInventario(idBienSistema);
+            var result = _businessSistemas.GetFacturasTipoInventario(idBien);
             return Ok(result);
         }
+
 
       
 

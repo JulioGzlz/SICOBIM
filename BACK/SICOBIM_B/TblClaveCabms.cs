@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SICOBIM_B
 {
-    public partial class TblClaveCambs
+    public partial class TblClaveCabms
     {
-        public TblClaveCambs()
+        public TblClaveCabms()
         {
             TblBienesEquMedico = new HashSet<TblBienesEquMedico>();
             TblBienesMuebles = new HashSet<TblBienesMuebles>();
