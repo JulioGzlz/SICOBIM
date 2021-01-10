@@ -16,6 +16,9 @@ namespace SICOBIM_B.Business
             _inventarioServiceResguardatarios = objResguardatario;
             _objsicobimContext = sicobimContext;
         }
+
+
+        #region CONSULTAS
         /// <summary>
         /// consulta por medio de una lista los Resguardatario
         /// </summary>
@@ -200,36 +203,6 @@ namespace SICOBIM_B.Business
                 {
                     Mensaje = ex.Message
                 };
-            }
-        }
-        /// <summary>
-        /// Consulta de resguardatario por servicio
-        /// </summary>
-        /// <returns></returns>
-        public RespuestaApi<TblResguardatarios> GetConsultaporservicio()
-        {
-            try
-            {
-                List<TblResguardatarios> lstresguardatarioporservicio = null;
-                var resul = _inventarioServiceResguardatarios.GetTblResguardatarios().OrderBy(x => x.Catservicioid
-                ).ToList();
-                lstresguardatarioporservicio = resul;
-
-
-                if (lstresguardatarioporservicio == null || lstresguardatarioporservicio.Count <= 0)
-                    throw new System.Exception("No se encontraron resultados");
-
-                return new RespuestaApi<TblResguardatarios>()
-                {
-                    correcto = true,
-                    ObjetoRespuesta = lstresguardatarioporservicio
-                };
-            }
-            catch (Exception ex)
-            {
-
-                return new RespuestaApi<TblResguardatarios>
-                { Mensaje = ex.Message };
             }
         }
         /// <summary>
@@ -512,6 +485,22 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+        #endregion
 
+
+        #region Metodos para guardar
+
+        public TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
+        {
+
+            return _inventarioServiceResguardatarios.GuardarTblResguardatarios(tblResguardatarios);
+
+        }
+
+        #endregion
     }
+
+
+
 }
+

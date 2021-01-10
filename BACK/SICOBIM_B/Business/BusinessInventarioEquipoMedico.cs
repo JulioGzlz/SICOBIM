@@ -82,6 +82,7 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+
         /// <summary>
         /// Consulta de bienes por clave cabms 
         /// </summary>
@@ -113,6 +114,7 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+
             /// <summary>
             /// Colsulta de bienes sistemas por inventario
             /// </summary>
@@ -145,6 +147,7 @@ namespace SICOBIM_B.Business
                 }
 
             }
+
         /// <summary>
         /// Consulta de bienes equipo médico por proveedor
         /// </summary>
@@ -175,6 +178,7 @@ namespace SICOBIM_B.Business
                 };
             }
         }
+
         /// <summary>
         /// Consulta de bienes equipo médico por factura
         /// </summary>
@@ -205,6 +209,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes equipo médico por clave saica
         /// </summary>
@@ -234,6 +239,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Te retorna las facturas por tipo de bien equipo mèdico 
         /// </summary>
@@ -323,6 +329,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes equipo médico por estado fisico del bien
         /// </summary>
@@ -352,6 +359,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes equipo médico por garantia del bien
         /// </summary>
@@ -381,6 +389,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes sistemas por piso del bien
         /// </summary>
@@ -410,6 +419,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes sistemas por tipo de entrada del bien
         /// </summary>
@@ -439,6 +449,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes sistemas por tipo de partida presupuestas del bien
         /// </summary>
@@ -468,6 +479,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes Equipo medico por servicio
         /// </summary>
@@ -529,6 +541,7 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+
         /// <summary>
         /// Consulta de bienes Equipo Medico por costo unitario ""individual"
         /// </summary>

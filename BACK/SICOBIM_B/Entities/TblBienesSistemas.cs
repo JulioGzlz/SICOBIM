@@ -10,6 +10,12 @@ namespace SICOBIM_B.Entities
     [Table("TblBienesSistemas")]
     public class TblBienesSistemas
     {
+        public TblBienesSistemas()
+        {
+
+            TblSalidasBien = new HashSet<TblSalidasBien>();
+
+        }
         [Key]
         public int TblBienesSistemasId { get; set; }
 
@@ -58,7 +64,7 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public virtual ICollection<TblSalidaBienSistemas> TblSalidaBienSistemas
+        public virtual ICollection<TblSalidasBien> TblSalidasBien
         {
             get;
             set;

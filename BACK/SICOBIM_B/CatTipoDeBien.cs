@@ -18,7 +18,7 @@ namespace SICOBIM_B
             TblInstrumentalMedico = new HashSet<TblInstrumentalMedico>();
             TblInventarios = new HashSet<TblInventarios>();
             TblProveedor = new HashSet<TblProveedor>();
-            TblSalidas = new HashSet<TblSalidas>();
+            TblSalidasBien = new HashSet<TblSalidasBien>();
         }
 
         public string TipodeBien { get; set; }
@@ -41,6 +41,6 @@ namespace SICOBIM_B
         public virtual ICollection<TblInstrumentalMedico> TblInstrumentalMedico { get; set; }
         public virtual ICollection<TblInventarios> TblInventarios { get; set; }
         public virtual ICollection<TblProveedor> TblProveedor { get; set; }
-        public virtual ICollection<TblSalidas> TblSalidas { get; set; }
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
     }
 }

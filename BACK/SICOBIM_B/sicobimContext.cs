@@ -14,10 +14,6 @@ namespace SICOBIM_B
             Configuration = configuration;
         }
 
-        //public sicobimContext(DbContextOptions<sicobimContext> options)
-        //    : base(options)
-        //{
-        //}
 
         public virtual DbSet<CatArea> CatArea { get; set; }
         public virtual DbSet<CatEstadoDelBien> CatEstadoDelBien { get; set; }
@@ -50,8 +46,7 @@ namespace SICOBIM_B
         public virtual DbSet<TblInventarios> TblInventarios { get; set; }
         public virtual DbSet<TblProveedor> TblProveedor { get; set; }
         public virtual DbSet<TblResguardatarios> TblResguardatarios { get; set; }
-        public virtual DbSet<TblSalidas> TblSalidas { get; set; }
-        //public virtual DbSet<TblSalidaBienEquMedico> TblSalidaBienEquMedicos { get; set; }
+        public virtual DbSet<TblSalidasBien> TblSalidasBien { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1290,7 +1285,7 @@ namespace SICOBIM_B
 
             });
 
-            modelBuilder.Entity<TblSalidas>(entity =>
+            modelBuilder.Entity<TblSalidasBien>(entity =>
             {
                 entity.HasIndex(e => e.CatTipoDeBienId);
 
@@ -1298,15 +1293,31 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatUnidadDestinoid);
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.HasIndex(e => e.IdBienesEquipoMedicoid);
 
-                entity.Property(e => e.IdBien).HasColumnName("IdBien");
+                entity.HasIndex(e => e.IdBienesMueblesid);
+
+                entity.HasIndex(e => e.IdBienesSistemasid);
+
+                entity.HasIndex(e => e.IdInstrumentalMedicoid);
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.CatTipoSalidaid).HasColumnName("catTipoSalidaid");
 
-                entity.Property(e => e.CatUnidadDestinoid).HasColumnName("catUnidadDestinoid");
+                entity.Property(e => e.IdBienesEquipoMedicoid).HasColumnName("IdBienesEquipoMedicoid");
+
+                entity.Property(e => e.IdBienesMueblesid).HasColumnName("IdBienesMueblesid");
+
+                entity.Property(e => e.IdBienesSistemasid).HasColumnName("IdBienesSistemasid");
+
+                entity.Property(e => e.IdInstrumentalMedicoid).HasColumnName("IdInstrumentalMedicoid");
+
+                entity.Property(e => e.CatTipoDeBienId).HasColumnName("CatTipoDeBienId");
+
+                entity.Property(e => e.CatUnidadDestinoid).HasColumnName("CatUnidadDestinoid");
 
                 entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
@@ -1317,16 +1328,32 @@ namespace SICOBIM_B
                 entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
 
                 entity.HasOne(d => d.CatTipoDeBien)
-                    .WithMany(p => p.TblSalidas)
+                    .WithMany(p => p.TblSalidasBien)
                     .HasForeignKey(d => d.CatTipoDeBienId);
 
                 entity.HasOne(d => d.CatTipoSalida)
-                    .WithMany(p => p.TblSalidas)
+                    .WithMany(p => p.TblSalidasBien)
                     .HasForeignKey(d => d.CatTipoSalidaid);
 
                 entity.HasOne(d => d.CatUnidadDestino)
-                    .WithMany(p => p.TblSalidas)
+                    .WithMany(p => p.TblSalidasBien)
                     .HasForeignKey(d => d.CatUnidadDestinoid);
+
+                entity.HasOne(d => d.IdBienesEquipoMedico)
+                    .WithMany(p => p.TblSalidasBien)
+                    .HasForeignKey(d => d.IdBienesEquipoMedicoid);
+
+                entity.HasOne(d => d.IdBienesMuebles)
+                    .WithMany(p => p.TblSalidasBien)
+                    .HasForeignKey(d => d.IdBienesMueblesid);
+
+                entity.HasOne(d => d.IdBienesSistemas)
+                    .WithMany(p => p.TblSalidasBien)
+                    .HasForeignKey(d => d.IdBienesSistemasid);
+
+                entity.HasOne(d => d.IdInstrumentalMedico)
+                     .WithMany(p => p.TblSalidasBien)
+                     .HasForeignKey(d => d.IdInstrumentalMedicoid);
 
 
 

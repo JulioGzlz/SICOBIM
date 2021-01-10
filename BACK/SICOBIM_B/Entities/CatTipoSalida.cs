@@ -10,6 +10,12 @@ namespace SICOBIM_B.Entities
     [Table("CatTipoSalida")]
     public class CatTipoSalida
     {
+        public CatTipoSalida()
+        {
+
+            TblSalidasBien = new HashSet<TblSalidasBien>();
+
+        }
         [Key]
         public int CatTipoSalidaId { get; set; }
 
@@ -21,25 +27,11 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public virtual ICollection<TblSalidaBienEquMedico> tblSalidaBienEquMedico
+        public virtual ICollection<TblSalidasBien> TblSalidasBien
         {
             get;
             set;
         }
-        public virtual ICollection<TblSalidaBienInstrumentalMedico> TblSalidaBienInstrumentalMedico
-        {
-            get;
-            set;
-        }
-        public virtual ICollection<TblSalidaBienMobiliario> TblSalidaBienMobiliario
-        {
-            get;
-            set;
-        }
-        public virtual ICollection<TblSalidaBienSistemas> TblSalidaBienSistema
-        {
-            get;
-            set;
-        }
+
     }
 }

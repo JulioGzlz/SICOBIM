@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20210110040250_tb8")]
+    partial class tb8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1784,9 +1786,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("nombre")
                         .HasColumnType("text");
 
-                    b.Property<int>("Numeroempleado")
+                    b.Property<string>("Numeroempleado")
                         .HasColumnName("numeroempleado")
-                        .HasColumnType("integer");
+                        .HasColumnType("text");
 
                     b.Property<string>("Plaza")
                         .HasColumnName("plaza")

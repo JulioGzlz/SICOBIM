@@ -7,7 +7,7 @@ namespace SICOBIM_B
     {
         public CatUnidadDestino()
         {
-            TblSalidas = new HashSet<TblSalidas>();
+            TblSalidasBien = new HashSet<TblSalidasBien>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace SICOBIM_B
         public DateTime FechaMod { get; set; }
         public bool Activo { get; set; }
 
-        public virtual ICollection<TblSalidas> TblSalidas { get; set; }
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
     }
 }

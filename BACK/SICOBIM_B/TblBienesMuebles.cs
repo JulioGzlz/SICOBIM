@@ -8,7 +8,7 @@ namespace SICOBIM_B
         public TblBienesMuebles()
         {
 
-            TblSalidas = new HashSet<TblSalidas>();
+            TblSalidasBien = new HashSet<TblSalidasBien>();
 
         }
 
@@ -60,6 +60,6 @@ namespace SICOBIM_B
         public virtual TblResguardatarios IdResguardatarios { get; set; }
         public virtual TblProveedor IdProveedor { get; set; }
 
-        public virtual ICollection<TblSalidas> TblSalidas { get; set; }
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
     }
 }

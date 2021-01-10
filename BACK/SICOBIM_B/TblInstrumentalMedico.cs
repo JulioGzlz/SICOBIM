@@ -7,7 +7,7 @@ namespace SICOBIM_B
     {
         public TblInstrumentalMedico()
         {
-            TblSalidas = new HashSet<TblSalidas>();
+            TblSalidasBien = new HashSet<TblSalidasBien>();
         }
 
         public int TblInstrumentalMedicoId { get; set; }
@@ -58,6 +58,6 @@ namespace SICOBIM_B
         public virtual TblInventarios IdInventario { get; set; }
         public virtual TblProveedor IdProveedor { get; set; }
         public virtual TblResguardatarios IdResguardatarios { get; set; }
-        public virtual ICollection<TblSalidas> TblSalidas { get; set; }
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
     }
 }

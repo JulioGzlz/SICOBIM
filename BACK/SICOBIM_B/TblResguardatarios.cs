@@ -18,7 +18,6 @@ namespace SICOBIM_B
         public string ApellidoUno { get; set; }
         public string ApellidoDos { get; set; }
         public int? Catareaid { get; set; }
-        public int? Catservicioid { get; set; }
         public int? CatServicioid { get; set; }
         public int? CatTurnoid { get; set; }
         public int? CatEstatusid { get; set; }

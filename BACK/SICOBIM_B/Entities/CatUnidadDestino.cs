@@ -10,7 +10,13 @@ namespace SICOBIM_B.Entities
     [Table("CatUnidadDestino")]
     public class CatUnidadDestino
     {
-     [Key]
+        public CatUnidadDestino()
+        {
+
+            TblSalidasBien = new HashSet<TblSalidasBien>();
+
+        }
+        [Key]
         public int CatUnidadDestinoId { get; set; }
         public string destino { get; set; }
         public String descripcion { get; set; }
@@ -21,25 +27,11 @@ namespace SICOBIM_B.Entities
         public bool activo { get; set; }
 
 
-        public virtual ICollection<TblSalidaBienEquMedico> tblsalidaBienEquMedico
+        public virtual ICollection<TblSalidasBien> TblSalidasBien
         {
             get;
             set;
         }
-        public virtual ICollection<TblSalidaBienInstrumentalMedico> TblSalidaBienInstrumentalMedico
-        {
-            get;
-            set;
-        }
-        public virtual ICollection<TblSalidaBienMobiliario> TblSalidaBienMobiliario
-        {
-            get;
-            set;
-        }
-        public virtual ICollection<TblSalidaBienSistemas> TblSalidaBienSistema
-        {
-            get;
-            set;
-        }
+   
     }
 }

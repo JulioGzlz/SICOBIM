@@ -11,6 +11,12 @@ namespace SICOBIM_B.Entities
     [Table("TblInstrumentalMedico")]
     public class TblInstrumentalMedico
     {
+        public TblInstrumentalMedico()
+        {
+
+            TblSalidasBien = new HashSet<TblSalidasBien>();
+
+        }
         [Key]
         public int TblInstrumentalMedicoId { get; set; }
 
@@ -58,7 +64,7 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public virtual ICollection<TblSalidaBienInstrumentalMedico> TblSalidaBienInstrumentalMedico
+        public virtual ICollection<TblSalidasBien> TblSalidasBien
         {
             get;
             set;

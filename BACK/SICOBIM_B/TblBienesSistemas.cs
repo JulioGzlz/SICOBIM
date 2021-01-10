@@ -7,7 +7,7 @@ namespace SICOBIM_B
     {
         public TblBienesSistemas()
         {
-            TblSalidas = new HashSet<TblSalidas>();
+            TblSalidasBien = new HashSet<TblSalidasBien>();
         }
 
         public int TblBienesSistemasId { get; set; }
@@ -57,6 +57,6 @@ namespace SICOBIM_B
         public virtual TblInventarios IdInventario { get; set; }
         public virtual TblProveedor IdProveedor { get; set; }
         public virtual TblResguardatarios IdResguardatarios { get; set; }
-        public virtual ICollection<TblSalidas> TblSalidas { get; set; }
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
     }
 }

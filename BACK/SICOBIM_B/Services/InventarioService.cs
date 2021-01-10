@@ -23,10 +23,11 @@ namespace SICOBIM_B.Services
         IEnumerable<TblInventarios> GetTblInventarios();
         IEnumerable<TblProveedor> GetTblProveedor();
         IEnumerable<TblResguardatarios> GetTblResguardatarios();
+        IEnumerable<TblSalidasBien> GetTblSalidasBien();
 
         #endregion
 
-        #region Guardado de los objetos de las entidades equipo medico
+        #region Guardado de los objetos de las entidades
         TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico);
         TblBienesMuebles GuardarTblBienesMuebles(TblBienesMuebles tblBienesMuebles);
         TblBienesSistemas GuardarTblBienesSistemas(TblBienesSistemas tblBienesSistemas);
@@ -35,13 +36,10 @@ namespace SICOBIM_B.Services
         TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica);
         TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien);
         TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion);
-
         TblInventarios GuardarTblInventarios(TblInventarios tblInventarios);
-
         TblProveedor GuardarTblProveedor(TblProveedor tblProveedor);
-
         TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms);
-
+        TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios);
 
 
 
@@ -127,8 +125,13 @@ namespace SICOBIM_B.Services
         {
             return _sicobimContext.TblResguardatarios;
         }
+        public IEnumerable<TblSalidasBien> GetTblSalidasBien()
+        {
+            return _sicobimContext.TblSalidasBien;
 
-      
+        }
+
+
         #endregion
 
 
@@ -217,6 +220,14 @@ namespace SICOBIM_B.Services
 
 
             return tblClaveCabms;
+        }
+
+        public TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
+        {
+            _sicobimContext.TblResguardatarios.Add(tblResguardatarios);
+            _sicobimContext.SaveChanges();
+
+            return tblResguardatarios;
         }
 
 
