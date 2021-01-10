@@ -37,7 +37,6 @@ namespace SICOBIM_B
         public virtual DbSet<CatUnidadDestino> CatUnidadDestino { get; set; }
         public virtual DbSet<CtrlUsuarios> CtrlUsuarios { get; set; }
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
-        public virtual DbSet<TblAreaServicio> TblAreaServicio { get; set; }
         public virtual DbSet<TblBienesEquMedico> TblBienesEquMedico { get; set; }
         public virtual DbSet<TblBienesMuebles> TblBienesMuebles { get; set; }
         public virtual DbSet<TblBienesSistemas> TblBienesSistemas { get; set; }
@@ -379,7 +378,9 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatTurnoid);
 
-                entity.HasIndex(e => e.IdAreaServicioid);
+                entity.HasIndex(e => e.Catareaid);
+
+                entity.HasIndex(e => e.Catservicioid);
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -396,6 +397,10 @@ namespace SICOBIM_B
                 entity.Property(e => e.CatTipoContratoid).HasColumnName("catTipoContratoid");
 
                 entity.Property(e => e.CatTurnoid).HasColumnName("catTurnoid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("catAreaid");
+
+                entity.Property(e => e.Catservicioid).HasColumnName("catServicioid");
 
                 entity.Property(e => e.FechaAlta)
                     .HasColumnName("fechaAlta")
@@ -437,9 +442,15 @@ namespace SICOBIM_B
                     .WithMany(p => p.CtrlUsuarios)
                     .HasForeignKey(d => d.CatTurnoid);
 
-                entity.HasOne(d => d.IdAreaServicio)
+                entity.HasOne(d => d.IdArea)
                     .WithMany(p => p.CtrlUsuarios)
-                    .HasForeignKey(d => d.IdAreaServicioid);
+                    .HasForeignKey(d => d.Catareaid);
+
+                entity.HasOne(d => d.IdServicio)
+                    .WithMany(p => p.CtrlUsuarios)
+                    .HasForeignKey(d => d.Catservicioid);
+
+
             });
 
             
@@ -452,36 +463,6 @@ namespace SICOBIM_B
             //        .HasForeignKey(d => d.Userid);
             //});
 
-            modelBuilder.Entity<TblAreaServicio>(entity =>
-            {
-                entity.HasIndex(e => e.Catareaid);
-
-                entity.HasIndex(e => e.Catservicioid);
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Catareaid).HasColumnName("catareaid");
-
-                entity.Property(e => e.Catservicioid).HasColumnName("catservicioid");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
-
-                entity.HasOne(d => d.Catarea)
-                    .WithMany(p => p.TblAreaServicio)
-                    .HasForeignKey(d => d.Catareaid);
-
-                entity.HasOne(d => d.Catservicio)
-                    .WithMany(p => p.TblAreaServicio)
-                    .HasForeignKey(d => d.Catservicioid);
-            });
 
             modelBuilder.Entity<TblBienesEquMedico>(entity =>
             {
@@ -491,19 +472,21 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatPisosid);
 
-                entity.HasIndex(e => e.CatTipoDeBienesCatTipoDeBienId);
+                entity.HasIndex(e => e.CatTipoDeBienid);
 
                 entity.HasIndex(e => e.CatTipoEntradaid);
 
                 entity.HasIndex(e => e.CatTipoPartidaid);
 
-                entity.HasIndex(e => e.IdAreaServicioid);
+                entity.HasIndex(e => e.Catareaid);
+
+                entity.HasIndex(e => e.Catservicioid);
 
                 entity.HasIndex(e => e.IdClaveCabmsid);
 
                 entity.HasIndex(e => e.IdClaveSaicaid);
 
-                entity.HasIndex(e => e.IdFacturasIdFactura);
+                entity.HasIndex(e => e.IdFacturasid);
 
                 entity.HasIndex(e => e.IdContratoBienid);
 
@@ -518,6 +501,8 @@ namespace SICOBIM_B
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            
+                entity.Property(e => e.Costounitario).HasColumnName("costounitario");
 
                 entity.Property(e => e.CatEstadoDelBienid).HasColumnName("catEstadoDelBienid");
 
@@ -525,17 +510,23 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.CatPisosid).HasColumnName("catPisosid");
 
-                entity.Property(e => e.CatTipoDeBienesCatTipoDeBienId).HasColumnName("catTipoDeBienesCatTipoDeBienId");
+                entity.Property(e => e.CatTipoDeBienid).HasColumnName("catTipoDeBienid");
 
                 entity.Property(e => e.CatTipoEntradaid).HasColumnName("catTipoEntradaid");
 
                 entity.Property(e => e.CatTipoPartidaid).HasColumnName("catTipoPartidaid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("catAreaid");
+
+                entity.Property(e => e.Catservicioid).HasColumnName("catServicioid");
 
                 entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
                 entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
 
                 entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Marca).HasColumnName("marca");
 
@@ -559,9 +550,9 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesEquMedico)
                     .HasForeignKey(d => d.CatPisosid);
 
-                entity.HasOne(d => d.CatTipoDeBienesCatTipoDeBien)
+                entity.HasOne(d => d.CatTipoDeBien)
                     .WithMany(p => p.TblBienesEquMedico)
-                    .HasForeignKey(d => d.CatTipoDeBienesCatTipoDeBienId)
+                    .HasForeignKey(d => d.CatTipoDeBienid)
                     .HasConstraintName("FK_TblBienesEquMedico_CatTipoDeBien_catTipoDeBienesCatTipoDeBi~");
 
                 entity.HasOne(d => d.CatTipoEntrada)
@@ -572,9 +563,13 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesEquMedico)
                     .HasForeignKey(d => d.CatTipoPartidaid);
 
-                entity.HasOne(d => d.IdAreaServicio)
+                entity.HasOne(d => d.IdArea)
                     .WithMany(p => p.TblBienesEquMedico)
-                    .HasForeignKey(d => d.IdAreaServicioid);
+                    .HasForeignKey(d => d.Catareaid);
+
+                entity.HasOne(d => d.IdServicio)
+                    .WithMany(p => p.TblBienesEquMedico)
+                    .HasForeignKey(d => d.Catservicioid);
 
                 entity.HasOne(d => d.IdClaveCabms)
                     .WithMany(p => p.TblBienesEquMedico)
@@ -584,9 +579,9 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesEquMedico)
                     .HasForeignKey(d => d.IdClaveSaicaid);
 
-                entity.HasOne(d => d.IdFacturasIdFacturaNavigation)
+                entity.HasOne(d => d.IdFactura)
                 .WithMany(p => p.TblBienesEquMedico)
-                .HasForeignKey(d => d.IdFacturasIdFactura);
+                .HasForeignKey(d => d.IdFacturasid);
 
                 entity.HasOne(d => d.IdContratoBien)
                     .WithMany(p => p.TblBienesEquMedico)
@@ -617,13 +612,15 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatPisosid);
 
-                entity.HasIndex(e => e.CatTipoDeBienesCatTipoDeBienId);
+                entity.HasIndex(e => e.CatTipoDeBienid);
 
                 entity.HasIndex(e => e.CatTipoEntradaid);
 
                 entity.HasIndex(e => e.CatTipoPartidaid);
 
-                entity.HasIndex(e => e.IdAreaServicioid);
+                entity.HasIndex(e => e.Catareaid);
+
+                entity.HasIndex(e => e.Catservicioid);
 
                 entity.HasIndex(e => e.IdClaveCabmsid);
 
@@ -631,21 +628,21 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.IdContratoBienid);
 
-                entity.HasIndex(e => e.IdFacturasIdFactura);
+                entity.HasIndex(e => e.IdFacturasid);
 
                 entity.HasIndex(e => e.IdFederalizacionid);
 
-                entity.HasIndex(e => e.IdInventariosid);
+                entity.HasIndex(e => e.IdInventarioid);
 
                 entity.HasIndex(e => e.IdResguardatariosid);
 
-                entity.HasIndex(e => e.Iproveedorid);
-
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.HasIndex(e => e.IdProveedorid);
 
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+
+                entity.Property(e => e.Costounitario).HasColumnName("costounitario");
 
                 entity.Property(e => e.CatEstadoDelBienid).HasColumnName("catEstadoDelBienid");
 
@@ -653,11 +650,15 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.CatPisosid).HasColumnName("catPisosid");
 
-                entity.Property(e => e.CatTipoDeBienesCatTipoDeBienId).HasColumnName("catTipoDeBienesCatTipoDeBienId");
+                entity.Property(e => e.CatTipoDeBienid).HasColumnName("catTipoDeBienid");
 
                 entity.Property(e => e.CatTipoEntradaid).HasColumnName("catTipoEntradaid");
 
                 entity.Property(e => e.CatTipoPartidaid).HasColumnName("catTipoPartidaid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("catAreaid");
+
+                entity.Property(e => e.Catservicioid).HasColumnName("catServicioid");
 
                 entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
@@ -665,7 +666,9 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
-                entity.Property(e => e.Iproveedorid).HasColumnName("IProveedorid");
+                entity.Property(e => e.IdProveedorid).HasColumnName("IdProveedorid");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Marca).HasColumnName("marca");
 
@@ -689,9 +692,9 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesMuebles)
                     .HasForeignKey(d => d.CatPisosid);
 
-                entity.HasOne(d => d.CatTipoDeBienesCatTipoDeBien)
+                entity.HasOne(d => d.CatTipoDeBien)
                     .WithMany(p => p.TblBienesMuebles)
-                    .HasForeignKey(d => d.CatTipoDeBienesCatTipoDeBienId)
+                    .HasForeignKey(d => d.CatTipoDeBienid)
                     .HasConstraintName("FK_TblBienesMuebles_CatTipoDeBien_catTipoDeBienesCatTipoDeBien~");
 
                 entity.HasOne(d => d.CatTipoEntrada)
@@ -702,9 +705,13 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesMuebles)
                     .HasForeignKey(d => d.CatTipoPartidaid);
 
-                entity.HasOne(d => d.IdAreaServicio)
+                entity.HasOne(d => d.IdArea)
                     .WithMany(p => p.TblBienesMuebles)
-                    .HasForeignKey(d => d.IdAreaServicioid);
+                    .HasForeignKey(d => d.Catareaid);
+
+                entity.HasOne(d => d.IdServicio)
+                    .WithMany(p => p.TblBienesMuebles)
+                    .HasForeignKey(d => d.Catservicioid);
 
                 entity.HasOne(d => d.IdClaveCabms)
                     .WithMany(p => p.TblBienesMuebles)
@@ -718,25 +725,25 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesMuebles)
                     .HasForeignKey(d => d.IdContratoBienid);
 
-                entity.HasOne(d => d.IdFacturasIdFacturaNavigation)
+                entity.HasOne(d => d.IdFactura)
                     .WithMany(p => p.TblBienesMuebles)
-                    .HasForeignKey(d => d.IdFacturasIdFactura);
+                    .HasForeignKey(d => d.IdFacturasid);
 
                 entity.HasOne(d => d.IdFederalizacion)
                     .WithMany(p => p.TblBienesMuebles)
                     .HasForeignKey(d => d.IdFederalizacionid);
 
-                entity.HasOne(d => d.IdInventarios)
+                entity.HasOne(d => d.IdInventario)
                     .WithMany(p => p.TblBienesMuebles)
-                    .HasForeignKey(d => d.IdInventariosid);
+                    .HasForeignKey(d => d.IdInventarioid);
 
                 entity.HasOne(d => d.IdResguardatarios)
                     .WithMany(p => p.TblBienesMuebles)
                     .HasForeignKey(d => d.IdResguardatariosid);
 
-                entity.HasOne(d => d.Iproveedor)
+                entity.HasOne(d => d.IdProveedor)
                     .WithMany(p => p.TblBienesMuebles)
-                    .HasForeignKey(d => d.Iproveedorid);
+                    .HasForeignKey(d => d.IdProveedorid);
             });
 
             modelBuilder.Entity<TblBienesSistemas>(entity =>
@@ -747,13 +754,15 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatPisosid);
 
-                entity.HasIndex(e => e.CatTipoDeBienesCatTipoDeBienId);
+                entity.HasIndex(e => e.CatTipoDeBienid);
 
                 entity.HasIndex(e => e.CatTipoEntradaid);
 
                 entity.HasIndex(e => e.CatTipoPartidaid);
 
-                entity.HasIndex(e => e.IdAreaServicioid);
+                entity.HasIndex(e => e.Catareaid);
+
+                entity.HasIndex(e => e.Catservicioid);
 
                 entity.HasIndex(e => e.IdClaveCabmsid);
 
@@ -761,21 +770,21 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.IdContratoBienid);
 
-                entity.HasIndex(e => e.IdFacturasIdFactura);
+                entity.HasIndex(e => e.IdFacturasid);
 
                 entity.HasIndex(e => e.IdFederalizacionid);
 
-                entity.HasIndex(e => e.IdInventariosid);
+                entity.HasIndex(e => e.IdInventarioid);
 
                 entity.HasIndex(e => e.IdProveedorid);
 
                 entity.HasIndex(e => e.IdResguardatariosid);
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+
+                entity.Property(e => e.Costounitario).HasColumnName("costounitario");
 
                 entity.Property(e => e.CatEstadoDelBienid).HasColumnName("catEstadoDelBienid");
 
@@ -783,17 +792,23 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.CatPisosid).HasColumnName("catPisosid");
 
-                entity.Property(e => e.CatTipoDeBienesCatTipoDeBienId).HasColumnName("catTipoDeBienesCatTipoDeBienId");
+                entity.Property(e => e.CatTipoDeBienid).HasColumnName("catTipoDeBienid");
 
                 entity.Property(e => e.CatTipoEntradaid).HasColumnName("catTipoEntradaid");
 
                 entity.Property(e => e.CatTipoPartidaid).HasColumnName("catTipoPartidaid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("catAreaid");
+
+                entity.Property(e => e.Catservicioid).HasColumnName("catServicioid");
 
                 entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
                 entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
 
                 entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Marca).HasColumnName("marca");
 
@@ -817,9 +832,9 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesSistemas)
                     .HasForeignKey(d => d.CatPisosid);
 
-                entity.HasOne(d => d.CatTipoDeBienesCatTipoDeBien)
+                entity.HasOne(d => d.CatTipoDeBien)
                     .WithMany(p => p.TblBienesSistemas)
-                    .HasForeignKey(d => d.CatTipoDeBienesCatTipoDeBienId)
+                    .HasForeignKey(d => d.CatTipoDeBienid)
                     .HasConstraintName("FK_TblBienesSistemas_CatTipoDeBien_catTipoDeBienesCatTipoDeBie~");
 
                 entity.HasOne(d => d.CatTipoEntrada)
@@ -830,9 +845,13 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesSistemas)
                     .HasForeignKey(d => d.CatTipoPartidaid);
 
-                entity.HasOne(d => d.IdAreaServicio)
+                entity.HasOne(d => d.IdArea)
                     .WithMany(p => p.TblBienesSistemas)
-                    .HasForeignKey(d => d.IdAreaServicioid);
+                    .HasForeignKey(d => d.Catareaid);
+
+                entity.HasOne(d => d.IdServicio)
+                    .WithMany(p => p.TblBienesSistemas)
+                    .HasForeignKey(d => d.Catservicioid);
 
                 entity.HasOne(d => d.IdClaveCabms)
                     .WithMany(p => p.TblBienesSistemas)
@@ -846,17 +865,17 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblBienesSistemas)
                     .HasForeignKey(d => d.IdContratoBienid);
 
-                entity.HasOne(d => d.IdFacturasIdFacturaNavigation)
+                entity.HasOne(d => d.IdFactura)
                     .WithMany(p => p.TblBienesSistemas)
-                    .HasForeignKey(d => d.IdFacturasIdFactura);
+                    .HasForeignKey(d => d.IdFacturasid);
 
                 entity.HasOne(d => d.IdFederalizacion)
                     .WithMany(p => p.TblBienesSistemas)
                     .HasForeignKey(d => d.IdFederalizacionid);
 
-                entity.HasOne(d => d.IdInventarios)
+                entity.HasOne(d => d.IdInventario)
                     .WithMany(p => p.TblBienesSistemas)
-                    .HasForeignKey(d => d.IdInventariosid);
+                    .HasForeignKey(d => d.IdInventarioid);
 
                 entity.HasOne(d => d.IdProveedor)
                     .WithMany(p => p.TblBienesSistemas)
@@ -1027,35 +1046,37 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatPisosid);
 
-                entity.HasIndex(e => e.CatTipoDeBienesCatTipoDeBienId);
+                entity.HasIndex(e => e.CatTipoDeBienid);
 
                 entity.HasIndex(e => e.CatTipoEntradaid);
 
                 entity.HasIndex(e => e.CatTipoPartidaid);
 
-                entity.HasIndex(e => e.IdAreaServicioid);
+                entity.HasIndex(e => e.Catareaid);
 
-                entity.HasIndex(e => e.IdClaveCambsid);
+                entity.HasIndex(e => e.Catservicioid);
+
+                entity.HasIndex(e => e.IdClaveCabmsid);
 
                 entity.HasIndex(e => e.IdClaveSaicaid);
 
                 entity.HasIndex(e => e.IdContratoBienid);
 
-                entity.HasIndex(e => e.IdFacturasIdFactura);
+                entity.HasIndex(e => e.IdFacturasid);
 
                 entity.HasIndex(e => e.IdFederalizacionid);
 
-                entity.HasIndex(e => e.IdInventariosid);
+                entity.HasIndex(e => e.IdInventarioid);
 
                 entity.HasIndex(e => e.IdProveedorid);
 
                 entity.HasIndex(e => e.IdResguardatariosid);
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+
+                entity.Property(e => e.Costounitario).HasColumnName("costounitario");
 
                 entity.Property(e => e.CatEstadoDelBienid).HasColumnName("catEstadoDelBienid");
 
@@ -1063,17 +1084,23 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.CatPisosid).HasColumnName("catPisosid");
 
-                entity.Property(e => e.CatTipoDeBienesCatTipoDeBienId).HasColumnName("catTipoDeBienesCatTipoDeBienId");
+                entity.Property(e => e.CatTipoDeBienid).HasColumnName("catTipoDeBienid");
 
                 entity.Property(e => e.CatTipoEntradaid).HasColumnName("catTipoEntradaid");
 
                 entity.Property(e => e.CatTipoPartidaid).HasColumnName("catTipoPartidaid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("catAreaid");
+
+                entity.Property(e => e.Catservicioid).HasColumnName("catServicioid");
 
                 entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
                 entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
 
                 entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Marca).HasColumnName("marca");
 
@@ -1097,9 +1124,9 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblInstrumentalMedico)
                     .HasForeignKey(d => d.CatPisosid);
 
-                entity.HasOne(d => d.CatTipoDeBienesCatTipoDeBien)
+                entity.HasOne(d => d.CatTipoDeBien)
                     .WithMany(p => p.TblInstrumentalMedico)
-                    .HasForeignKey(d => d.CatTipoDeBienesCatTipoDeBienId)
+                    .HasForeignKey(d => d.CatTipoDeBienid)
                     .HasConstraintName("FK_TblInstrumentalMedico_CatTipoDeBien_catTipoDeBienesCatTipoD~");
 
                 entity.HasOne(d => d.CatTipoEntrada)
@@ -1110,13 +1137,17 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblInstrumentalMedico)
                     .HasForeignKey(d => d.CatTipoPartidaid);
 
-                entity.HasOne(d => d.IdAreaServicio)
+                entity.HasOne(d => d.IdArea)
                     .WithMany(p => p.TblInstrumentalMedico)
-                    .HasForeignKey(d => d.IdAreaServicioid);
+                    .HasForeignKey(d => d.Catareaid);
+
+                entity.HasOne(d => d.IdServicio)
+                    .WithMany(p => p.TblInstrumentalMedico)
+                    .HasForeignKey(d => d.Catservicioid);
 
                 entity.HasOne(d => d.IdClaveCambs)
                     .WithMany(p => p.TblInstrumentalMedico)
-                    .HasForeignKey(d => d.IdClaveCambsid);
+                    .HasForeignKey(d => d.IdClaveCabmsid);
 
                 entity.HasOne(d => d.IdClaveSaica)
                     .WithMany(p => p.TblInstrumentalMedico)
@@ -1126,17 +1157,17 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblInstrumentalMedico)
                     .HasForeignKey(d => d.IdContratoBienid);
 
-                entity.HasOne(d => d.IdFacturasIdFacturaNavigation)
+                entity.HasOne(d => d.IdFactura)
                     .WithMany(p => p.TblInstrumentalMedico)
-                    .HasForeignKey(d => d.IdFacturasIdFactura);
+                    .HasForeignKey(d => d.IdFacturasid);
 
                 entity.HasOne(d => d.IdFederalizacion)
                     .WithMany(p => p.TblInstrumentalMedico)
                     .HasForeignKey(d => d.IdFederalizacionid);
 
-                entity.HasOne(d => d.IdInventarios)
+                entity.HasOne(d => d.IdInventario)
                     .WithMany(p => p.TblInstrumentalMedico)
-                    .HasForeignKey(d => d.IdInventariosid);
+                    .HasForeignKey(d => d.IdInventarioid);
 
                 entity.HasOne(d => d.IdProveedor)
                     .WithMany(p => p.TblInstrumentalMedico)
@@ -1203,8 +1234,6 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatTurnoid);
 
-                entity.HasIndex(e => e.TblAreaServicioid);
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Activo).HasColumnName("activo");
@@ -1259,9 +1288,6 @@ namespace SICOBIM_B
                     .WithMany(p => p.TblResguardatarios)
                     .HasForeignKey(d => d.CatTurnoid);
 
-                entity.HasOne(d => d.TblAreaServicio)
-                    .WithMany(p => p.TblResguardatarios)
-                    .HasForeignKey(d => d.TblAreaServicioid);
             });
 
             modelBuilder.Entity<TblSalidas>(entity =>

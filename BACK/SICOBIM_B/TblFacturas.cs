@@ -23,7 +23,6 @@ namespace SICOBIM_B
         public double Subtotal { get; set; }
         public int CatTipoDeBienId { get; set; }
         public string Factura { get; set; }
-        //public int TblBienesEquMedicoId { get; set; }
         public int IdFactura { get; set; }
 
         public virtual CatTipoDeBien CatTipoDeBien { get; set; }

@@ -7,7 +7,11 @@ namespace SICOBIM_B
     {
         public CatServicio()
         {
-            TblAreaServicio = new HashSet<TblAreaServicio>();
+            CtrlUsuarios = new HashSet<CtrlUsuarios>();
+            TblBienesEquMedico = new HashSet<TblBienesEquMedico>();
+            TblBienesMuebles = new HashSet<TblBienesMuebles>();
+            TblBienesSistemas = new HashSet<TblBienesSistemas>();
+            TblInstrumentalMedico = new HashSet<TblInstrumentalMedico>();
             TblResguardatarios = new HashSet<TblResguardatarios>();
         }
 
@@ -19,8 +23,11 @@ namespace SICOBIM_B
         public bool Activo { get; set; }
         public string Descripcion { get; set; }
         public int IdusuarioMod { get; set; }
-
-        public virtual ICollection<TblAreaServicio> TblAreaServicio { get; set; }
+        public virtual ICollection<CtrlUsuarios> CtrlUsuarios { get; set; }
+        public virtual ICollection<TblBienesEquMedico> TblBienesEquMedico { get; set; }
+        public virtual ICollection<TblBienesMuebles> TblBienesMuebles { get; set; }
+        public virtual ICollection<TblBienesSistemas> TblBienesSistemas { get; set; }
+        public virtual ICollection<TblInstrumentalMedico> TblInstrumentalMedico { get; set; }
         public virtual ICollection<TblResguardatarios> TblResguardatarios { get; set; }
     }
 }

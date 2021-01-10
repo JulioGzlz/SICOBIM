@@ -33,7 +33,6 @@ namespace SICOBIM_B.Business
             {
                 List<TblInstrumentalMedico> lstInstrumental = null;
                 var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().ToList();
-                //lstInstrumental = resul;
                 if (lstInstrumental == null || lstInstrumental.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
                 return new RespuestaApi<TblInstrumentalMedico>()
@@ -81,7 +80,7 @@ namespace SICOBIM_B.Business
             }
         }
         /// <summary>
-        /// Consulta de bienes por clave cabms 
+        /// Consulta de Instrumental medico por clave cabms 
         /// </summary>
         /// <returns></returns>
         public RespuestaApi<TblInstrumentalMedico> GetConcultaCabms()
@@ -90,7 +89,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblInstrumentalMedico> ltsCabmsInstrumental = null;
 
-                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdClaveCambsid).ToList();
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdClaveCabmsid).ToList();
                 ltsCabmsInstrumental = resul;
                 if (ltsCabmsInstrumental == null || ltsCabmsInstrumental.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
@@ -122,7 +121,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblInstrumentalMedico> ltsInventarioInstrumental = null;
 
-                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdInventariosid).ToList();
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdInventarioid).ToList();
                 ltsInventarioInstrumental = resul;
                 if (ltsInventarioInstrumental == null || ltsInventarioInstrumental.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
@@ -179,12 +178,12 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="factura"></param>
         /// <returns></returns>
-        public RespuestaApi<TblInstrumentalMedico> GetTblBienesPorFactura()
+        public RespuestaApi<TblInstrumentalMedico> GetConcultaPorFactura()
         {
             try
             {
                 List<TblInstrumentalMedico> lstBienesFactura = null;
-                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdFacturasIdFactura).ToList();
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.IdFacturasid).ToList();
                 lstBienesFactura = resul;
 
 
@@ -233,12 +232,12 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
-        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBien)
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBieninstrumental)
         {
 
             try
             {
-                List<TblFacturas> lstFacturasporInventario = null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBien).ToList();
+                List<TblFacturas> lstFacturasporInventario = null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBieninstrumental).ToList();
                 lstFacturasporInventario = resul;
                 if (lstFacturasporInventario == null || lstFacturasporInventario.Count <= 0)
                     throw new System.Exception("No existen registros con el Bien insertado, favor de verificar");
@@ -317,6 +316,295 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
+        /// <summary>
+        /// Consulta de bienes Instrumental médico por estado fisico del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaEstadoFisicoBien()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstestadofisico = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.CatEstadoDelBienid).ToList();
+                lstestadofisico = resul;
+
+
+                if (lstestadofisico == null || lstestadofisico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstestadofisico
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes instrumental médico por garantia del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaporGarantia()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbiengarantia = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.CatGarantiaid).ToList();
+                lstbiengarantia = resul;
+
+
+                if (lstbiengarantia == null || lstbiengarantia.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbiengarantia
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Instrumental médico por piso del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaPorPiso()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporpiso = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.CatPisosid).ToList();
+                lstbienporpiso = resul;
+
+
+                if (lstbienporpiso == null || lstbienporpiso.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpiso
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Instrumental médico por tipo de entrada del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaporTipodeEntrada()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporentrada = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.CatTipoEntradaid).ToList();
+                lstbienporentrada = resul;
+
+
+                if (lstbienporentrada == null || lstbienporentrada.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporentrada
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Instrumental médico por tipo de partida presupuestas del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaporTipodePartida()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporpartida = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.CatTipoPartidaid).ToList();
+                lstbienporpartida = resul;
+
+
+                if (lstbienporpartida == null || lstbienporpartida.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpartida
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Instrumental médico por servicio del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaporservicio()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporservicio = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.Catservicioid
+                ).ToList();
+                lstbienporservicio = resul;
+
+
+                if (lstbienporservicio == null || lstbienporservicio.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporservicio
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de Instrumental medico por arae 
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaporArea()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporarea = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.Catareaid
+                ).ToList();
+                lstbienporarea = resul;
+
+
+                if (lstbienporarea == null || lstbienporarea.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporarea
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Instrumental Medico por costo unitario ""individual"
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblInstrumentalMedico> GetConsultaPorPrecioUnitario()
+        {
+            try
+            {
+                List<TblInstrumentalMedico> lstbienporcosto = null;
+                var resul = _inventarioServiceInstrumentalMedico.GetTblInstrumentalMedico().OrderBy(x => x.Costounitario
+                ).ToList();
+                lstbienporcosto = resul;
+
+
+                if (lstbienporcosto == null || lstbienporcosto.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblInstrumentalMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporcosto
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        #endregion
+        #region Metodos para guardar
+
+        public TblFacturas GuardarFacturaInventarioEquipoMedico(TblFacturas tblFacturas)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblFacturas(tblFacturas);
+
+        }
+        public TblInstrumentalMedico GuardarTblInstrumentalMedico(TblInstrumentalMedico tblInstrumentalMedico)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+
+        }
+        public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblClaveSaica(tblClaveSaica);
+
+        }
+        public TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblContratoBien(tblContratoBien);
+
+        }
+        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblFederalizacion(tblFederalizacion);
+
+        }
+        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblInventarios(tblInventarios);
+
+        }
+        public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblProveedor(tblProveedor);
+
+        }
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        {
+
+            return _inventarioServiceInstrumentalMedico.GuardarTblClaveCabms(tblClaveCabms);
+
+        }
+
+
+
 
         #endregion
     }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20201212210456_tb4")]
+    partial class tb4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -709,14 +711,6 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catTurnoid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Catareaid")
-                        .HasColumnName("catAreaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnName("catServicioid")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("FechaAlta")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("fechaAlta")
@@ -731,6 +725,9 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
+
+                    b.Property<int?>("IdAreaServicioid")
+                        .HasColumnType("integer");
 
                     b.Property<int>("IdTok")
                         .HasColumnName("idTok")
@@ -780,11 +777,54 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatTurnoid");
 
+                    b.HasIndex("IdAreaServicioid");
+
+                    b.ToTable("CtrlUsuarios");
+                });
+
+            modelBuilder.Entity("SICOBIM_B.TblAreaServicio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnName("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("Catareaid")
+                        .HasColumnName("catareaid")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Catservicioid")
+                        .HasColumnName("catservicioid")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("Catareaid");
 
                     b.HasIndex("Catservicioid");
 
-                    b.ToTable("CtrlUsuarios");
+                    b.ToTable("TblAreaServicio");
                 });
 
             modelBuilder.Entity("SICOBIM_B.TblBienesEquMedico", b =>
@@ -814,8 +854,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catPisosid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CatTipoDeBienid")
-                        .HasColumnName("catTipoDeBienid")
+                    b.Property<int?>("CatTipoDeBienesCatTipoDeBienId")
+                        .HasColumnName("catTipoDeBienesCatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatTipoEntradaid")
@@ -824,14 +864,6 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<int?>("CatTipoPartidaid")
                         .HasColumnName("catTipoPartidaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catareaid")
-                        .HasColumnName("catAreaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnName("catServicioid")
                         .HasColumnType("integer");
 
                     b.Property<double>("Costounitario")
@@ -850,6 +882,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int?>("IdAreaServicioid")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("IdClaveCabmsid")
                         .HasColumnType("integer");
 
@@ -859,7 +894,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("IdContratoBienid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int?>("IdFacturasIdFactura")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdFederalizacionid")
@@ -906,15 +941,13 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatPisosid");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienesCatTipoDeBienId");
 
                     b.HasIndex("CatTipoEntradaid");
 
                     b.HasIndex("CatTipoPartidaid");
 
-                    b.HasIndex("Catareaid");
-
-                    b.HasIndex("Catservicioid");
+                    b.HasIndex("IdAreaServicioid");
 
                     b.HasIndex("IdClaveCabmsid");
 
@@ -922,7 +955,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("IdContratoBienid");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("IdFacturasIdFactura");
 
                     b.HasIndex("IdFederalizacionid");
 
@@ -962,8 +995,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catPisosid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CatTipoDeBienid")
-                        .HasColumnName("catTipoDeBienid")
+                    b.Property<int?>("CatTipoDeBienesCatTipoDeBienId")
+                        .HasColumnName("catTipoDeBienesCatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatTipoEntradaid")
@@ -972,14 +1005,6 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<int?>("CatTipoPartidaid")
                         .HasColumnName("catTipoPartidaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catareaid")
-                        .HasColumnName("catAreaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnName("catServicioid")
                         .HasColumnType("integer");
 
                     b.Property<double>("Costounitario")
@@ -998,6 +1023,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int?>("IdAreaServicioid")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("IdClaveCabmsid")
                         .HasColumnType("integer");
 
@@ -1007,7 +1035,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("IdContratoBienid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int?>("IdFacturasIdFactura")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdFederalizacionid")
@@ -1055,15 +1083,13 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatPisosid");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienesCatTipoDeBienId");
 
                     b.HasIndex("CatTipoEntradaid");
 
                     b.HasIndex("CatTipoPartidaid");
 
-                    b.HasIndex("Catareaid");
-
-                    b.HasIndex("Catservicioid");
+                    b.HasIndex("IdAreaServicioid");
 
                     b.HasIndex("IdClaveCabmsid");
 
@@ -1071,7 +1097,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("IdContratoBienid");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("IdFacturasIdFactura");
 
                     b.HasIndex("IdFederalizacionid");
 
@@ -1111,8 +1137,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catPisosid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CatTipoDeBienid")
-                        .HasColumnName("catTipoDeBienid")
+                    b.Property<int?>("CatTipoDeBienesCatTipoDeBienId")
+                        .HasColumnName("catTipoDeBienesCatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatTipoEntradaid")
@@ -1121,14 +1147,6 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<int?>("CatTipoPartidaid")
                         .HasColumnName("catTipoPartidaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catareaid")
-                        .HasColumnName("catAreaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnName("catServicioid")
                         .HasColumnType("integer");
 
                     b.Property<double>("Costounitario")
@@ -1147,6 +1165,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int?>("IdAreaServicioid")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("IdClaveCabmsid")
                         .HasColumnType("integer");
 
@@ -1156,7 +1177,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("IdContratoBienid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int?>("IdFacturasIdFactura")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdFederalizacionid")
@@ -1203,15 +1224,13 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatPisosid");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienesCatTipoDeBienId");
 
                     b.HasIndex("CatTipoEntradaid");
 
                     b.HasIndex("CatTipoPartidaid");
 
-                    b.HasIndex("Catareaid");
-
-                    b.HasIndex("Catservicioid");
+                    b.HasIndex("IdAreaServicioid");
 
                     b.HasIndex("IdClaveCabmsid");
 
@@ -1219,7 +1238,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("IdContratoBienid");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("IdFacturasIdFactura");
 
                     b.HasIndex("IdFederalizacionid");
 
@@ -1515,8 +1534,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catPisosid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CatTipoDeBienid")
-                        .HasColumnName("catTipoDeBienid")
+                    b.Property<int?>("CatTipoDeBienesCatTipoDeBienId")
+                        .HasColumnName("catTipoDeBienesCatTipoDeBienId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatTipoEntradaid")
@@ -1525,14 +1544,6 @@ namespace SICOBIM_B.Migrations
 
                     b.Property<int?>("CatTipoPartidaid")
                         .HasColumnName("catTipoPartidaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catareaid")
-                        .HasColumnName("catAreaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnName("catServicioid")
                         .HasColumnType("integer");
 
                     b.Property<double>("Costounitario")
@@ -1551,7 +1562,10 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("IdClaveCabmsid")
+                    b.Property<int?>("IdAreaServicioid")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("IdClaveCambsid")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdClaveSaicaid")
@@ -1560,7 +1574,7 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("IdContratoBienid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IdFacturasid")
+                    b.Property<int?>("IdFacturasIdFactura")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdFederalizacionid")
@@ -1607,23 +1621,21 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatPisosid");
 
-                    b.HasIndex("CatTipoDeBienid");
+                    b.HasIndex("CatTipoDeBienesCatTipoDeBienId");
 
                     b.HasIndex("CatTipoEntradaid");
 
                     b.HasIndex("CatTipoPartidaid");
 
-                    b.HasIndex("Catareaid");
+                    b.HasIndex("IdAreaServicioid");
 
-                    b.HasIndex("Catservicioid");
-
-                    b.HasIndex("IdClaveCabmsid");
+                    b.HasIndex("IdClaveCambsid");
 
                     b.HasIndex("IdClaveSaicaid");
 
                     b.HasIndex("IdContratoBienid");
 
-                    b.HasIndex("IdFacturasid");
+                    b.HasIndex("IdFacturasIdFactura");
 
                     b.HasIndex("IdFederalizacionid");
 
@@ -1762,12 +1774,6 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("catTurnoid")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Catareaid")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("Catservicioid")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("FechaAlta")
                         .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
@@ -1775,9 +1781,6 @@ namespace SICOBIM_B.Migrations
                     b.Property<DateTime>("FechaMod")
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<int?>("IdServicioId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("IdUsuarioAlta")
                         .HasColumnName("idUsuarioAlta")
@@ -1799,6 +1802,9 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("RFC")
                         .HasColumnType("text");
 
+                    b.Property<int?>("TblAreaServicioid")
+                        .HasColumnType("integer");
+
                     b.Property<int>("UsuarioMod")
                         .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
@@ -1815,9 +1821,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("CatTurnoid");
 
-                    b.HasIndex("Catareaid");
-
-                    b.HasIndex("IdServicioId");
+                    b.HasIndex("TblAreaServicioid");
 
                     b.ToTable("TblResguardatarios");
                 });
@@ -1864,9 +1868,6 @@ namespace SICOBIM_B.Migrations
                     b.Property<int?>("TblBienesEquMedicoId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TblBienesMueblesId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("TblBienesSistemasId")
                         .HasColumnType("integer");
 
@@ -1886,8 +1887,6 @@ namespace SICOBIM_B.Migrations
                     b.HasIndex("CatUnidadDestinoid");
 
                     b.HasIndex("TblBienesEquMedicoId");
-
-                    b.HasIndex("TblBienesMueblesId");
 
                     b.HasIndex("TblBienesSistemasId");
 
@@ -1918,13 +1917,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("CtrlUsuarios")
                         .HasForeignKey("CatTurnoid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "IdAreaServicio")
                         .WithMany("CtrlUsuarios")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany("CtrlUsuarios")
-                        .HasForeignKey("Catservicioid");
+                        .HasForeignKey("IdAreaServicioid");
 
                     b.OwnsMany("SICOBIM_B.RefreshToken", "RefreshToken", b1 =>
                         {
@@ -1968,6 +1963,17 @@ namespace SICOBIM_B.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SICOBIM_B.TblAreaServicio", b =>
+                {
+                    b.HasOne("SICOBIM_B.CatArea", "Catarea")
+                        .WithMany("TblAreaServicio")
+                        .HasForeignKey("Catareaid");
+
+                    b.HasOne("SICOBIM_B.CatServicio", "Catservicio")
+                        .WithMany("TblAreaServicio")
+                        .HasForeignKey("Catservicioid");
+                });
+
             modelBuilder.Entity("SICOBIM_B.TblBienesEquMedico", b =>
                 {
                     b.HasOne("SICOBIM_B.CatEstadoDelBien", "CatEstadoDelBien")
@@ -1982,9 +1988,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesEquMedico")
                         .HasForeignKey("CatPisosid");
 
-                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBien")
+                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBienesCatTipoDeBien")
                         .WithMany("TblBienesEquMedico")
-                        .HasForeignKey("CatTipoDeBienid")
+                        .HasForeignKey("CatTipoDeBienesCatTipoDeBienId")
                         .HasConstraintName("FK_TblBienesEquMedico_CatTipoDeBien_catTipoDeBienesCatTipoDeBi~");
 
                     b.HasOne("SICOBIM_B.CatTipoEntrada", "CatTipoEntrada")
@@ -1995,13 +2001,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesEquMedico")
                         .HasForeignKey("CatTipoPartidaid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "IdAreaServicio")
                         .WithMany("TblBienesEquMedico")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany("TblBienesEquMedico")
-                        .HasForeignKey("Catservicioid");
+                        .HasForeignKey("IdAreaServicioid");
 
                     b.HasOne("SICOBIM_B.TblClaveCabms", "IdClaveCabms")
                         .WithMany("TblBienesEquMedico")
@@ -2015,9 +2017,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesEquMedico")
                         .HasForeignKey("IdContratoBienid");
 
-                    b.HasOne("SICOBIM_B.TblFacturas", "IdFactura")
+                    b.HasOne("SICOBIM_B.TblFacturas", "IdFacturasIdFacturaNavigation")
                         .WithMany("TblBienesEquMedico")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("IdFacturasIdFactura");
 
                     b.HasOne("SICOBIM_B.TblFederalizacion", "IdFederalizacion")
                         .WithMany("TblBienesEquMedico")
@@ -2050,9 +2052,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesMuebles")
                         .HasForeignKey("CatPisosid");
 
-                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBien")
+                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBienesCatTipoDeBien")
                         .WithMany("TblBienesMuebles")
-                        .HasForeignKey("CatTipoDeBienid")
+                        .HasForeignKey("CatTipoDeBienesCatTipoDeBienId")
                         .HasConstraintName("FK_TblBienesMuebles_CatTipoDeBien_catTipoDeBienesCatTipoDeBien~");
 
                     b.HasOne("SICOBIM_B.CatTipoEntrada", "CatTipoEntrada")
@@ -2063,13 +2065,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesMuebles")
                         .HasForeignKey("CatTipoPartidaid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "IdAreaServicio")
                         .WithMany("TblBienesMuebles")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany("TblBienesMuebles")
-                        .HasForeignKey("Catservicioid");
+                        .HasForeignKey("IdAreaServicioid");
 
                     b.HasOne("SICOBIM_B.TblClaveCabms", "IdClaveCabms")
                         .WithMany("TblBienesMuebles")
@@ -2083,9 +2081,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesMuebles")
                         .HasForeignKey("IdContratoBienid");
 
-                    b.HasOne("SICOBIM_B.TblFacturas", "IdFactura")
+                    b.HasOne("SICOBIM_B.TblFacturas", "IdFacturasIdFacturaNavigation")
                         .WithMany("TblBienesMuebles")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("IdFacturasIdFactura");
 
                     b.HasOne("SICOBIM_B.TblFederalizacion", "IdFederalizacion")
                         .WithMany("TblBienesMuebles")
@@ -2118,9 +2116,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesSistemas")
                         .HasForeignKey("CatPisosid");
 
-                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBien")
+                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBienesCatTipoDeBien")
                         .WithMany("TblBienesSistemas")
-                        .HasForeignKey("CatTipoDeBienid")
+                        .HasForeignKey("CatTipoDeBienesCatTipoDeBienId")
                         .HasConstraintName("FK_TblBienesSistemas_CatTipoDeBien_catTipoDeBienesCatTipoDeBie~");
 
                     b.HasOne("SICOBIM_B.CatTipoEntrada", "CatTipoEntrada")
@@ -2131,13 +2129,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesSistemas")
                         .HasForeignKey("CatTipoPartidaid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "IdAreaServicio")
                         .WithMany("TblBienesSistemas")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany("TblBienesSistemas")
-                        .HasForeignKey("Catservicioid");
+                        .HasForeignKey("IdAreaServicioid");
 
                     b.HasOne("SICOBIM_B.TblClaveCabms", "IdClaveCabms")
                         .WithMany("TblBienesSistemas")
@@ -2151,9 +2145,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblBienesSistemas")
                         .HasForeignKey("IdContratoBienid");
 
-                    b.HasOne("SICOBIM_B.TblFacturas", "IdFactura")
+                    b.HasOne("SICOBIM_B.TblFacturas", "IdFacturasIdFacturaNavigation")
                         .WithMany("TblBienesSistemas")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("IdFacturasIdFactura");
 
                     b.HasOne("SICOBIM_B.TblFederalizacion", "IdFederalizacion")
                         .WithMany("TblBienesSistemas")
@@ -2234,9 +2228,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblInstrumentalMedico")
                         .HasForeignKey("CatPisosid");
 
-                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBien")
+                    b.HasOne("SICOBIM_B.CatTipoDeBien", "CatTipoDeBienesCatTipoDeBien")
                         .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("CatTipoDeBienid")
+                        .HasForeignKey("CatTipoDeBienesCatTipoDeBienId")
                         .HasConstraintName("FK_TblInstrumentalMedico_CatTipoDeBien_catTipoDeBienesCatTipoD~");
 
                     b.HasOne("SICOBIM_B.CatTipoEntrada", "CatTipoEntrada")
@@ -2247,17 +2241,13 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblInstrumentalMedico")
                         .HasForeignKey("CatTipoPartidaid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "IdAreaServicio")
                         .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("Catservicioid");
+                        .HasForeignKey("IdAreaServicioid");
 
                     b.HasOne("SICOBIM_B.TblClaveCabms", "IdClaveCambs")
                         .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("IdClaveCabmsid");
+                        .HasForeignKey("IdClaveCambsid");
 
                     b.HasOne("SICOBIM_B.TblClaveSaica", "IdClaveSaica")
                         .WithMany("TblInstrumentalMedico")
@@ -2267,9 +2257,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblInstrumentalMedico")
                         .HasForeignKey("IdContratoBienid");
 
-                    b.HasOne("SICOBIM_B.TblFacturas", "IdFactura")
+                    b.HasOne("SICOBIM_B.TblFacturas", "IdFacturasIdFacturaNavigation")
                         .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("IdFacturasid");
+                        .HasForeignKey("IdFacturasIdFactura");
 
                     b.HasOne("SICOBIM_B.TblFederalizacion", "IdFederalizacion")
                         .WithMany("TblInstrumentalMedico")
@@ -2324,13 +2314,9 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatTurnoid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
+                    b.HasOne("SICOBIM_B.TblAreaServicio", "TblAreaServicio")
                         .WithMany("TblResguardatarios")
-                        .HasForeignKey("Catareaid");
-
-                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
-                        .WithMany()
-                        .HasForeignKey("IdServicioId");
+                        .HasForeignKey("TblAreaServicioid");
                 });
 
             modelBuilder.Entity("SICOBIM_B.TblSalidas", b =>
@@ -2350,10 +2336,6 @@ namespace SICOBIM_B.Migrations
                     b.HasOne("SICOBIM_B.TblBienesEquMedico", null)
                         .WithMany("TblSalidas")
                         .HasForeignKey("TblBienesEquMedicoId");
-
-                    b.HasOne("SICOBIM_B.TblBienesMuebles", null)
-                        .WithMany("TblSalidas")
-                        .HasForeignKey("TblBienesMueblesId");
 
                     b.HasOne("SICOBIM_B.TblBienesSistemas", null)
                         .WithMany("TblSalidas")

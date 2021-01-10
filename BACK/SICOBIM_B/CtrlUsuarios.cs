@@ -27,7 +27,9 @@ namespace SICOBIM_B
         public string Numeroempleado { get; set; }
         public string Plaza { get; set; }
         public int IdTok { get; set; }
-        public int? IdAreaServicioid { get; set; }
+        //public int? IdAreaServicioid { get; set; }
+        public int? Catareaid { get; set; }
+        public int? Catservicioid { get; set; }
         public int? CatRolid { get; set; }
 
         public virtual CatEstatus CatEstatus { get; set; }
@@ -35,7 +37,9 @@ namespace SICOBIM_B
         public virtual CatSexo CatSexo { get; set; }
         public virtual CatTipoContrato CatTipoContrato { get; set; }
         public virtual CatTurno CatTurno { get; set; }
-        public virtual TblAreaServicio IdAreaServicio { get; set; }
+        //public virtual TblAreaServicio IdAreaServicio { get; set; }
+        public virtual CatArea IdArea { get; set; }
+        public virtual CatServicio IdServicio { get; set; }
         [JsonIgnore]
         public virtual List<RefreshToken> RefreshToken { get; set; }
     }

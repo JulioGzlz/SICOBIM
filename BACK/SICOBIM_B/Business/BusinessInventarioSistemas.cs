@@ -11,6 +11,7 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioSistemas
     {
+  
         private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceSistemas;
 
@@ -21,7 +22,7 @@ namespace SICOBIM_B.Business
             _objsicobimContext = sicobimContext;
 
         }
-
+        #region  Metodos de consultas de listas
         /// <summary>
         /// Te retorna la lista de Bienes de tipo sistema 
         /// </summary>
@@ -94,17 +95,17 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesSistemas> ltsCabmsSitemas = null;
+                List<TblBienesSistemas> ltsCabmsSistemas = null;
 
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdClaveCabmsid).ToList();
-                ltsCabmsSitemas = resul;
-                if (ltsCabmsSitemas == null || ltsCabmsSitemas.Count <= 0)
+                ltsCabmsSistemas = resul;
+                if (ltsCabmsSistemas == null || ltsCabmsSistemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
                 return new RespuestaApi<TblBienesSistemas>
                 {
                     correcto = true,
-                    ObjetoRespuesta = ltsCabmsSitemas
+                    ObjetoRespuesta = ltsCabmsSistemas
 
                 };
 
@@ -128,7 +129,7 @@ namespace SICOBIM_B.Business
             {
                 List<TblBienesSistemas> ltsInventarioSitemas = null;
 
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdInventariosid).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdInventarioid).ToList();
                 ltsInventarioSitemas = resul;
                 if (ltsInventarioSitemas == null || ltsInventarioSitemas.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
@@ -191,7 +192,7 @@ namespace SICOBIM_B.Business
             try
             {
                 List<TblBienesSistemas> lstBienesFactura = null;
-                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFacturasIdFactura).ToList();
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.IdFacturasid).ToList();
                 lstBienesFactura = resul;
 
 
@@ -249,15 +250,15 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="idBienSistema"></param>
         /// <returns></returns>
-        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBien)
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBienSistema)
         {
        
             try
             {
-                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBien).ToList();
+                List<TblFacturas>  lstFacturasporInventario= null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBienSistema).ToList();
                 lstFacturasporInventario = resul;
                 if (lstFacturasporInventario == null  || lstFacturasporInventario.Count <= 0)
-                    throw new System.Exception("No existen registros con el Bien Sistema insertado, favor de verificar");
+                    throw new System.Exception("No existen registros con el Bien sistema insertado, favor de verificar");
                 return new RespuestaApi<TblFacturas>()
                 {
                     correcto = true,
@@ -428,18 +429,77 @@ namespace SICOBIM_B.Business
         {
             try
             {
-                List<TblBienesSistemas> lstbienpoentrada = null;
+                List<TblBienesSistemas> lstbienporentrada = null;
                 var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatTipoEntradaid).ToList();
-                lstbienpoentrada = resul;
+                lstbienporentrada = resul;
 
 
-                if (lstbienpoentrada == null || lstbienpoentrada.Count <= 0)
+                if (lstbienporentrada == null || lstbienporentrada.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
                 return new RespuestaApi<TblBienesSistemas>()
                 {
                     correcto = true,
-                    ObjetoRespuesta = lstbienpoentrada
+                    ObjetoRespuesta = lstbienporentrada
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por tipo de partida presupuestas del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaporTipodePartida()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienporpartida = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.CatTipoPartidaid).ToList();
+                lstbienporpartida = resul;
+
+
+                if (lstbienporpartida == null || lstbienporpartida.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpartida
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por area y su servicio del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaporservicio()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienporservicio = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.Catservicioid
+                ).ToList();
+                lstbienporservicio = resul;
+
+
+                if (lstbienporservicio == null || lstbienporservicio.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporservicio
                 };
             }
             catch (Exception ex)
@@ -450,6 +510,122 @@ namespace SICOBIM_B.Business
             }
         }
 
+        /// <summary>
+        /// Consulta del bien sistemas medico por area 
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaporArea()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienporarea = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.Catareaid
+                ).ToList();
+                lstbienporarea = resul;
 
+
+                if (lstbienporarea == null || lstbienporarea.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporarea
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Equipo Medico por costo unitario ""individual"
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesSistemas> GetConsultaPorPrecioUnitario()
+        {
+            try
+            {
+                List<TblBienesSistemas> lstbienporcosto = null;
+                var resul = _inventarioServiceSistemas.GetTblBienesSistemas().OrderBy(x => x.Costounitario
+                ).ToList();
+                lstbienporcosto = resul;
+
+
+                if (lstbienporcosto == null || lstbienporcosto.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesSistemas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporcosto
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesSistemas>
+                { Mensaje = ex.Message };
+            }
+        }
+        #endregion
+
+        #region Metodos para guardar
+
+        public TblFacturas GuardarFacturaInventariSistemas(TblFacturas tblFacturas)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblFacturas(tblFacturas);
+
+        }
+        public TblBienesSistemas GuardarTblSistemas(TblBienesSistemas tblBienesSistemas)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblBienesSistemas(tblBienesSistemas);
+
+        }
+        public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblClaveSaica(tblClaveSaica);
+
+        }
+        public TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblContratoBien(tblContratoBien);
+
+        }
+        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblFederalizacion(tblFederalizacion);
+
+        }
+        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblInventarios(tblInventarios);
+
+        }
+        public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblProveedor(tblProveedor);
+
+        }
+        public TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms)
+        {
+
+            return _inventarioServiceSistemas.GuardarTblClaveCabms(tblClaveCabms);
+
+        }
+
+
+
+
+        #endregion
     }
 }

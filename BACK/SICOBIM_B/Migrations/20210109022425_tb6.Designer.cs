@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20210109022425_tb6")]
+    partial class tb6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1551,7 +1553,7 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("IdClaveCabmsid")
+                    b.Property<int?>("IdClaveCambsid")
                         .HasColumnType("integer");
 
                     b.Property<int?>("IdClaveSaicaid")
@@ -1617,7 +1619,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasIndex("Catservicioid");
 
-                    b.HasIndex("IdClaveCabmsid");
+                    b.HasIndex("IdClaveCambsid");
 
                     b.HasIndex("IdClaveSaicaid");
 
@@ -2257,7 +2259,7 @@ namespace SICOBIM_B.Migrations
 
                     b.HasOne("SICOBIM_B.TblClaveCabms", "IdClaveCambs")
                         .WithMany("TblInstrumentalMedico")
-                        .HasForeignKey("IdClaveCabmsid");
+                        .HasForeignKey("IdClaveCambsid");
 
                     b.HasOne("SICOBIM_B.TblClaveSaica", "IdClaveSaica")
                         .WithMany("TblInstrumentalMedico")

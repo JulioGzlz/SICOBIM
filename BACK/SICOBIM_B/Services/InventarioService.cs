@@ -14,7 +14,6 @@ namespace SICOBIM_B.Services
         IEnumerable<TblBienesEquMedico> GetTblBienesEquMedicos();
         IEnumerable<TblBienesSistemas> GetTblBienesSistemas();
         IEnumerable<TblInstrumentalMedico> GetTblInstrumentalMedico();
-        IEnumerable<TblAreaServicio> GetTblAreaServicio();
         IEnumerable<TblClaveCabms> GetTblClaveCambs();
         IEnumerable<TblClaveSaica> GetTblClaveSaica();
         IEnumerable<TblConfPerfil> GetTblConfPerfil();
@@ -27,12 +26,14 @@ namespace SICOBIM_B.Services
 
         #endregion
 
-        #region Guardado de los objetos de las entidades
+        #region Guardado de los objetos de las entidades equipo medico
         TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico);
+        TblBienesMuebles GuardarTblBienesMuebles(TblBienesMuebles tblBienesMuebles);
+        TblBienesSistemas GuardarTblBienesSistemas(TblBienesSistemas tblBienesSistemas);
+        TblInstrumentalMedico GuardarTblInstrumentalMedico(TblInstrumentalMedico tblInstrumentalMedico);
         TblFacturas GuardarTblFacturas(TblFacturas tblFacturas);
         TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica);
         TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien);
-
         TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion);
 
         TblInventarios GuardarTblInventarios(TblInventarios tblInventarios);
@@ -60,10 +61,7 @@ namespace SICOBIM_B.Services
             _sicobimContext = dbContext;
         }
         #region Retorno de consultas de las tablas
-        public IEnumerable<TblAreaServicio> GetTblAreaServicio()
-        {
-            return _sicobimContext.TblAreaServicio;
-        }
+
 
         public IEnumerable<TblBienesMuebles> GetTblBienes()
         {
@@ -142,7 +140,27 @@ namespace SICOBIM_B.Services
 
             return tblBienesEquMedico;
         }
+        public TblBienesMuebles GuardarTblBienesMuebles(TblBienesMuebles tblBienes)
+        {
+            _sicobimContext.TblBienesMuebles.Add(tblBienes);
+            _sicobimContext.SaveChanges();
 
+            return tblBienes;
+        }
+        public TblBienesSistemas GuardarTblBienesSistemas(TblBienesSistemas tblBienesSistemas)
+        {
+            _sicobimContext.TblBienesSistemas.Add(tblBienesSistemas);
+            _sicobimContext.SaveChanges();
+
+            return tblBienesSistemas;
+        }
+        public TblInstrumentalMedico GuardarTblInstrumentalMedico(TblInstrumentalMedico tblInstrumentalMedico)
+        {
+            _sicobimContext.TblInstrumentalMedico.Add(tblInstrumentalMedico);
+            _sicobimContext.SaveChanges();
+
+            return tblInstrumentalMedico;
+        }
 
         public TblFacturas GuardarTblFacturas(TblFacturas tblFacturas)
         {

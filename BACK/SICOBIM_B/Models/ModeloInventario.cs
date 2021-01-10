@@ -8,13 +8,17 @@ namespace SICOBIM_B.Models
     public class ModeloInventario
     {
         /// <summary>
+        /// Descripcion del bien mueble 
+        /// </summary>
+        public string Descripcion { get; set; }
+        /// <summary>
         /// IdFederalizacion tabla TblFederalizacion
         /// </summary>
         public string Federalizacion { get; set; }
         /// <summary>
         /// IdInventario tabla TblInventarios
         /// </summary>
-        public string Inventarios { get; set; }
+        public string Inventario { get; set; }
         /// <summary>
         /// marca, modelo y serie parte de la Tbls por tipo de inventario
         /// </summary>
@@ -25,6 +29,8 @@ namespace SICOBIM_B.Models
         /// es la cantidad fisica de bienes   1 bien = n pzs
         /// </summary>
         public int cantidad { get; set; }
+
+        public double costounitario{ get; set; }
         /// <summary>
         /// IdContratoBien tabla TblContratoBien
         /// </summary>
@@ -65,13 +71,17 @@ namespace SICOBIM_B.Models
         public int IdTipoEntrada { get; set; }
 
         /// <summary>
-        /// Es el resultado de la busqueda en cascada del area
-        /// </summary>
-        public int IdAreaServicio { get; set; }
-        /// <summary>
         /// IdPisos Catalogo CatPisos
         /// </summary>
         public int IdPisos { get; set; }
+        /// <summary>
+        /// IdPisos Catalogo CatPisos
+        /// </summary>
+        public int IdArea { get; set; }
+        /// <summary>
+        /// IdPisos Catalogo CatPisos
+        /// </summary>
+        public int IdServicio { get; set; }
         /// <summary>
         /// campo no obligatorio Tbl resguardatorios
         /// </summary>
@@ -84,6 +94,7 @@ namespace SICOBIM_B.Models
         /// IdEstadodelBien Catalogo campo no obligatorio
         /// </summary>
         public int IdEstadodelBien { get; set; }
+
         /// <summary>
         /// observaciones campo no obligatorio
         /// </summary>

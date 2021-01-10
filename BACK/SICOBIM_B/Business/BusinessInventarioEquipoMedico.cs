@@ -13,22 +13,21 @@ namespace SICOBIM_B.Business
     {
         #region  Metodos de consultas de listas
 
-        //private sicobimContext _objsicobimContext;
+
+        private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceEquipoMedico;
 
-        //BusinessInventarioEquipoMedico _objBEnventarioEquipoMedico;
 
-        public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico)
+        public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico, sicobimContext sicobimContext)
         {
             _inventarioServiceEquipoMedico = objEquipoMedico;
-            //_objsicobimContext = sicobimContext;
-            //_objBEnventarioEquipoMedico = businessInventarioEquipoMedico;
+            _objsicobimContext = sicobimContext;
 
         }
         /// <summary>
         /// consulta por medio de una lista los equipos médicos 
         /// </summary>
-        /// <returns></returns>
+        /// <returns></returns> 
         public RespuestaApi<TblBienesEquMedico> GetEquipoMedico() 
         {
             try
@@ -84,78 +83,486 @@ namespace SICOBIM_B.Business
             }
         }
         /// <summary>
-        /// 
+        /// Consulta de bienes por clave cabms 
         /// </summary>
-        /// <param name="idBienEquipoMedico"></param>
         /// <returns></returns>
-        //public List<TblFacturas> getFacturasTipoInventario(int idBienEquipoMedico)
-        //{
-        //    List<TblFacturas> tblFacturastipoinventario = new List<TblFacturas>();
-        //    try
-        //    {              
-        //        tblFacturastipoinventario = _objsicobimContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico).ToList();
+        public RespuestaApi<TblBienesEquMedico> GetConcultaCabms()
+        {
+            try
+            {
+                List<TblBienesEquMedico> ltsCabmsequipmedico = null;
 
-        //        if (tblFacturastipoinventario.Count <= 0 || tblFacturastipoinventario == null)
-        //            throw new System.Exception("No existen registros con el Bien Equipo Médico insertado, favor de verificar");
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdClaveCabmsid).ToList();
+                ltsCabmsequipmedico = resul;
+                if (ltsCabmsequipmedico == null || ltsCabmsequipmedico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //      string m =  ex.Message;
-        //    }
-        //    return tblFacturastipoinventario;
-        //}
+                return new RespuestaApi<TblBienesEquMedico>
+                {
+                    correcto = true,
+                    ObjetoRespuesta = ltsCabmsequipmedico
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+        }
+            /// <summary>
+            /// Colsulta de bienes sistemas por inventario
+            /// </summary>
+            /// <returns></returns>
+            public RespuestaApi<TblBienesEquMedico> GetConsultaInventario()
+            {
+                try
+                {
+                    List<TblBienesEquMedico> ltsInventarioequipmedico = null;
+
+                    var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdInventarioid).ToList();
+                ltsInventarioequipmedico = resul;
+                    if (ltsInventarioequipmedico == null || ltsInventarioequipmedico.Count <= 0)
+                        throw new System.Exception("No se encontraron resultados");
+
+                    return new RespuestaApi<TblBienesEquMedico>
+                    {
+                        correcto = true,
+                        ObjetoRespuesta = ltsInventarioequipmedico
+
+                    };
+
+                }
+                catch (Exception ex)
+                {
+                    return new RespuestaApi<TblBienesEquMedico>()
+                    {
+                        Mensaje = ex.Message
+                    };
+                }
+
+            }
         /// <summary>
-        /// Retorna un objeto de tipo TblFacturas
+        /// Consulta de bienes equipo médico por proveedor
         /// </summary>
-        /// <param name="factura">Parametro para la busqueda de una factura en especifico</param>
         /// <returns></returns>
-        //public TblFacturas getFactura (string factura)
-        //{
-        //    TblFacturas tblFacturas = new TblFacturas();
-        //    try
-        //    {
+        public RespuestaApi<TblBienesEquMedico> GetConsulataProveedor()
+        {
+            try
+            {
+                List<TblBienesEquMedico> ltsProveedorequipomedico = null;
 
-        //        tblFacturas = _objsicobimContext.tblFacturas.Where(x => x.factura == factura).SingleOrDefault();
-        //        //if (  )
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdProveedorid).ToList();
+                if (ltsProveedorequipomedico == null || ltsProveedorequipomedico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>
+                {
+                    correcto = true,
+                    ObjetoRespuesta = ltsProveedorequipomedico
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes equipo médico por factura
+        /// </summary>
+        /// <param name="factura"></param>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConcultaPorFactura()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstBienesFactura = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFacturasid).ToList();
+                lstBienesFactura = resul;
 
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+                if (lstBienesFactura == null || lstBienesFactura.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesFactura
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes equipo médico por clave saica
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaClaveSaica()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstBienesClaveSaica = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdClaveSaicaid).ToList();
+                lstBienesClaveSaica = resul;
 
 
-        //    }
-        //    return tblFacturas;
-        //}
+                if (lstBienesClaveSaica == null || lstBienesClaveSaica.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
 
-        //public RespuestaApi<TblFacturas> getFacturasPorCosto (int idBienEquipoMedico, double costo )
-        //{
-        //    List<TblFacturas> tblFacturasPorCosto = new List<TblFacturas>();
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesClaveSaica
+                };
+            }
+            catch (Exception ex)
+            {
 
-        //    try
-        //    {
-        //        var result = _objBEnventarioEquipoMedico.getFacturasTipoInventario(idBienEquipoMedico);
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Te retorna las facturas por tipo de bien equipo mèdico 
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBienEquipMedico)
+        {
 
-        //        tblFacturasPorCosto = _objsicobimContext.tblFacturas.Where(x => x.IdBienesEquMedico.id == idBienEquipoMedico && x.costoTotal == costo).ToList();
+            try
+            {
+                List<TblFacturas> lstFacturasporInventario = null;
+                var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBienEquipMedico).ToList();
+                lstFacturasporInventario = resul;
+                if (lstFacturasporInventario == null || lstFacturasporInventario.Count <= 0)
+                    throw new System.Exception("No existen registros con el bien equipo mèdico insertado, favor de verificar");
+                return new RespuestaApi<TblFacturas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstFacturasporInventario
 
-        //        return new RespuestaApi<TblFacturas>()
-        //        {
-        //            correcto = true,
-        //            ObjetoRespuesta = tblFacturasPorCosto
-        //        };
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblFacturas>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
+        }
+        /// <summary>
+        /// Consulta de bienes equipo médico por contrato
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaContrato()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstBienesContrato = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdContratoBienid).ToList();
+                lstBienesContrato = resul;
 
-        //        return new RespuestaApi<TblFacturas>()
-        //        {
-        //            Mensaje = ex.Message
-        //        };
-        //    }
 
-        //}
+                if (lstBienesContrato == null || lstBienesContrato.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesContrato
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+
+        /// <summary>
+        /// Consulta de bienes equipo médico por resguardatario
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultarResguardatario()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstBienesPorResguardatario = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdResguardatariosid).ToList();
+                lstBienesPorResguardatario = resul;
+
+
+                if (lstBienesPorResguardatario == null || lstBienesPorResguardatario.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesPorResguardatario
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes equipo médico por estado fisico del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaEstadoFisicoBien()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstestadofisico = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.CatEstadoDelBienid).ToList();
+                lstestadofisico = resul;
+
+
+                if (lstestadofisico == null || lstestadofisico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstestadofisico
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes equipo médico por garantia del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaporGarantia()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbiengarantia = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.CatGarantiaid).ToList();
+                lstbiengarantia = resul;
+
+
+                if (lstbiengarantia == null || lstbiengarantia.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbiengarantia
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por piso del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaPorPiso()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporpiso = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.CatPisosid).ToList();
+                lstbienporpiso = resul;
+
+
+                if (lstbienporpiso == null || lstbienporpiso.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpiso
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por tipo de entrada del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaporTipodeEntrada()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporentrada = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.CatTipoEntradaid).ToList();
+                lstbienporentrada = resul;
+
+
+                if (lstbienporentrada == null || lstbienporentrada.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporentrada
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes sistemas por tipo de partida presupuestas del bien
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaporTipodePartida()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporpartida = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.CatTipoPartidaid).ToList();
+                lstbienporpartida = resul;
+
+
+                if (lstbienporpartida == null || lstbienporpartida.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporpartida
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Equipo medico por servicio
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaporservicio()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporservicio = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.Catservicioid
+                ).ToList();
+                lstbienporservicio = resul;
+
+
+                if (lstbienporservicio == null || lstbienporservicio.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporservicio
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+
+        /// <summary>
+        /// Consulta del bien equipo medico por area 
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaporArea()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporarea = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.Catareaid
+                ).ToList();
+                lstbienporarea = resul;
+
+
+                if (lstbienporarea == null || lstbienporarea.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporarea
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+        /// <summary>
+        /// Consulta de bienes Equipo Medico por costo unitario ""individual"
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaPorPrecioUnitario()
+        {
+            try
+            {
+                List<TblBienesEquMedico> lstbienporcosto = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.Costounitario
+                ).ToList();
+                lstbienporcosto = resul;
+
+
+                if (lstbienporcosto == null || lstbienporcosto.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstbienporcosto
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblBienesEquMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+
+
+
+
         #endregion
 
 
@@ -213,17 +620,10 @@ namespace SICOBIM_B.Business
 
 
 
-        #endregion
-    }
-
-
-
-
-
-
-
-
+    #endregion
+}
 
 
 
 }
+

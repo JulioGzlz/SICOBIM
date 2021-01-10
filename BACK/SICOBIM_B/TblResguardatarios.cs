@@ -17,6 +17,8 @@ namespace SICOBIM_B
         public string Nombre { get; set; }
         public string ApellidoUno { get; set; }
         public string ApellidoDos { get; set; }
+        public int? Catareaid { get; set; }
+        public int? Catservicioid { get; set; }
         public int? CatServicioid { get; set; }
         public int? CatTurnoid { get; set; }
         public int? CatEstatusid { get; set; }
@@ -27,7 +29,6 @@ namespace SICOBIM_B
         public DateTime FechaMod { get; set; }
         public bool Activo { get; set; }
         public string Rfc { get; set; }
-        public int? TblAreaServicioid { get; set; }
         public string Cargo { get; set; }
         public int? CatSexoid { get; set; }
         public string Numeroempleado { get; set; }
@@ -38,7 +39,8 @@ namespace SICOBIM_B
         public virtual CatSexo CatSexo { get; set; }
         public virtual CatTipoContrato CatTipoContrato { get; set; }
         public virtual CatTurno CatTurno { get; set; }
-        public virtual TblAreaServicio TblAreaServicio { get; set; }
+        public virtual CatArea IdArea { get; set; }
+        public virtual CatServicio IdServicio { get; set; }
         public virtual ICollection<TblBienesEquMedico> TblBienesEquMedico { get; set; }
         public virtual ICollection<TblBienesMuebles> TblBienesMuebles { get; set; }
         public virtual ICollection<TblBienesSistemas> TblBienesSistemas { get; set; }
