@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20210110053413_tb10_fieldCatServicio")]
+    partial class tb10_fieldCatServicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1748,7 +1750,6 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatServicioid")
-                        .HasColumnName("CatServicioid")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CatSexoid")
@@ -1764,7 +1765,6 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int?>("Catareaid")
-                        .HasColumnName("Catareaid")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("FechaAlta")
@@ -1774,6 +1774,9 @@ namespace SICOBIM_B.Migrations
                     b.Property<DateTime>("FechaMod")
                         .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("IdServicioId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("IdUsuarioAlta")
                         .HasColumnName("idUsuarioAlta")
@@ -1812,6 +1815,8 @@ namespace SICOBIM_B.Migrations
                     b.HasIndex("CatTurnoid");
 
                     b.HasIndex("Catareaid");
+
+                    b.HasIndex("IdServicioId");
 
                     b.ToTable("TblResguardatarios");
                 });
@@ -2319,9 +2324,13 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatTurnoid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "CatArea")
+                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("Catareaid");
+
+                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
+                        .WithMany()
+                        .HasForeignKey("IdServicioId");
                 });
 
             modelBuilder.Entity("SICOBIM_B.TblSalidasBien", b =>

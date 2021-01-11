@@ -106,6 +106,7 @@ namespace SICOBIM_B
             services.AddScoped<BusinessInventarioMobiliario>();
             services.AddScoped<BusinessInventarioSistemas>();
             services.AddScoped<BusinessResguardatario>();
+            services.AddScoped<BusinessGenericoInventarios>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

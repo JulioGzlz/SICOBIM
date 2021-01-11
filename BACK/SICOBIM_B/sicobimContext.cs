@@ -1223,6 +1223,8 @@ namespace SICOBIM_B
 
                 entity.HasIndex(e => e.CatServicioid);
 
+                entity.HasIndex(e => e.Catareaid);
+
                 entity.HasIndex(e => e.CatSexoid);
 
                 entity.HasIndex(e => e.CatTipoContratoid);
@@ -1242,6 +1244,10 @@ namespace SICOBIM_B
                 entity.Property(e => e.CatEstatusid).HasColumnName("catEstatusid");
 
                 entity.Property(e => e.CatSexoid).HasColumnName("catSexoid");
+
+                entity.Property(e => e.Catareaid).HasColumnName("Catareaid"); 
+
+                entity.Property(e => e.CatServicioid).HasColumnName("CatServicioid");
 
                 entity.Property(e => e.CatTipoContratoid).HasColumnName("catTipoContratoid");
 
@@ -1282,6 +1288,11 @@ namespace SICOBIM_B
                 entity.HasOne(d => d.CatTurno)
                     .WithMany(p => p.TblResguardatarios)
                     .HasForeignKey(d => d.CatTurnoid);
+
+                entity.HasOne(d => d.CatArea)
+                    .WithMany(p => p.TblResguardatarios)
+                    .HasForeignKey(d => d.Catareaid);
+
 
             });
 

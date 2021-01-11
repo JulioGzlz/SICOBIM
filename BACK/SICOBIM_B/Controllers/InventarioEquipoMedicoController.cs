@@ -159,8 +159,7 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporAdquisicion")]
         public IActionResult RegistroInventarioporadquisicion([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
-            {
+            
 
                 TblBienesEquMedico tblBienesEquMedico = new TblBienesEquMedico();
                 TblFacturas tblFacturas = new TblFacturas();
@@ -263,12 +262,12 @@ namespace SICOBIM_B.Controllers
                 tblBienesEquMedico.Activo = true;
                 tblBienesEquMedico.IdClaveCabmsid = tblClaveCabms.Id;
                 tblBienesEquMedico.IdClaveSaicaid = tblClavesaica.Id;
-                _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico);
+               var result = _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico);
 
-            }
+            
 
 
-            return Ok();
+            return Ok(result);
         }
 
         #endregion

@@ -120,8 +120,7 @@ namespace SICOBIM_B.Controllers
         [HttpPost("RegistroDeResguardatarios")]
         public IActionResult RegistroDeResguardatarios([FromBody] ModeloResguardatario modeloResguardatario)
         {
-            if (modeloResguardatario != null)
-            {
+                
                 TblResguardatarios tblResguardatarios = new TblResguardatarios();
 
                 tblResguardatarios.Nombre = modeloResguardatario.Nombre;
@@ -141,13 +140,16 @@ namespace SICOBIM_B.Controllers
                 tblResguardatarios.Numeroempleado = modeloResguardatario.Numeroempleado;
                 tblResguardatarios.Plaza = modeloResguardatario.Plaza;
 
-                tblResguardatarios = _businessResguardatario.GuardarTblResguardatarios(tblResguardatarios);
+                var result =_businessResguardatario.GuardarTblResguardatarios(tblResguardatarios);
 
 
 
-            }
-            return Ok();
+            
+            return Ok(result);
         }
+
+
+
 
 
 

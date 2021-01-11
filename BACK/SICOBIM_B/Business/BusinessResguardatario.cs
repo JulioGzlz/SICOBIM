@@ -490,12 +490,18 @@ namespace SICOBIM_B.Business
 
         #region Metodos para guardar
 
-        public TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tblResguardatarios"></param>
+        /// <returns></returns>
+        public RespuestaApi<TblResguardatarios> GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
         {
 
             return _inventarioServiceResguardatarios.GuardarTblResguardatarios(tblResguardatarios);
 
         }
+    
 
         #endregion
     }

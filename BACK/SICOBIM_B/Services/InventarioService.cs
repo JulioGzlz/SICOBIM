@@ -1,5 +1,7 @@
 ﻿
+using SICOBIM_B.Common;
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace SICOBIM_B.Services
         #endregion
 
         #region Guardado de los objetos de las entidades
-        TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico);
+        RespuestaApi<TblBienesEquMedico> GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico);
         TblBienesMuebles GuardarTblBienesMuebles(TblBienesMuebles tblBienesMuebles);
         TblBienesSistemas GuardarTblBienesSistemas(TblBienesSistemas tblBienesSistemas);
         TblInstrumentalMedico GuardarTblInstrumentalMedico(TblInstrumentalMedico tblInstrumentalMedico);
@@ -36,10 +38,10 @@ namespace SICOBIM_B.Services
         TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica);
         TblContratoBien GuardarTblContratoBien(TblContratoBien tblContratoBien);
         TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion);
-        TblInventarios GuardarTblInventarios(TblInventarios tblInventarios);
+       TblInventarios GuardarTblInventarios(TblInventarios tblInventarios);
         TblProveedor GuardarTblProveedor(TblProveedor tblProveedor);
         TblClaveCabms GuardarTblClaveCabms(TblClaveCabms tblClaveCabms);
-        TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios);
+        RespuestaApi<TblResguardatarios> GuardarTblResguardatarios(TblResguardatarios tblResguardatarios);
 
 
 
@@ -53,6 +55,7 @@ namespace SICOBIM_B.Services
         
 
         private sicobimContext _sicobimContext;
+
 
         public InventarioService(sicobimContext dbContext)
         {
@@ -131,18 +134,81 @@ namespace SICOBIM_B.Services
 
         }
 
-
+        
         #endregion
 
 
         #region Guardado de mis objetos
-        public TblBienesEquMedico GuardarTblBienesEquMedico(TblBienesEquMedico tblBienesEquMedico)
+        public RespuestaApi<TblBienesEquMedico>GuardarTblBienesEquMedico (TblBienesEquMedico tblBienesEquMedico)
         {
-            _sicobimContext.TblBienesEquMedico.Add(tblBienesEquMedico);
-            _sicobimContext.SaveChanges();
+            try
+            {
+                if (tblBienesEquMedico.IdInventarioid == null)
+                { 
+                    if (_sicobimContext.TblBienesEquMedico.Any(x => x.IdInventarioid ==         tblBienesEquMedico.IdInventarioid))
+                        throw new AppException("Este numero de Inventario \"" +     tblBienesEquMedico.IdInventarioid +
+                            "\"ya se encuentra registrado");
+                    else
+                    {
 
-            return tblBienesEquMedico;
+                        _sicobimContext.TblBienesEquMedico.Add(tblBienesEquMedico);
+                        _sicobimContext.SaveChanges();
+             
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    Mensaje = ex.Message
+                };
+
+            }
+            return new RespuestaApi<TblBienesEquMedico>()
+            {
+                correcto = true,
+                Mensaje = "Registro guardado con éxito"
+
+            };
+
         }
+    
+        public RespuestaApi<TblResguardatarios> GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
+        {
+            try
+            {
+                if (_sicobimContext.TblResguardatarios.Any(x => x.Numeroempleado == tblResguardatarios.Numeroempleado))
+                    throw new AppException("Este numero de resguardatario \"" + tblResguardatarios.Numeroempleado +
+                        "\"ya se encuentra registrado");
+
+                _sicobimContext.TblResguardatarios.Add(tblResguardatarios);
+                _sicobimContext.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblResguardatarios>()
+                {
+                    Mensaje = ex.Message
+                };
+
+            }
+
+            return new RespuestaApi<TblResguardatarios>()
+            {
+                correcto = true,
+                Mensaje = "Registro guardado con éxito"
+
+            };
+
+        }
+
+
+
+
         public TblBienesMuebles GuardarTblBienesMuebles(TblBienesMuebles tblBienes)
         {
             _sicobimContext.TblBienesMuebles.Add(tblBienes);
@@ -197,14 +263,23 @@ namespace SICOBIM_B.Services
 
             return tblFederalizacion;
         }
+
+
+
         public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
         {
-            _sicobimContext.TblInventarios.Add(tblInventarios);
-            _sicobimContext.SaveChanges();
+                if (_sicobimContext.TblInventarios.Any(x => x.NumeroInventario == tblInventarios.NumeroInventario))
+                    throw new AppException("Este numero de Inventario \"" + tblInventarios.NumeroInventario +
+                        "\"ya se encuentra registrado");
 
+                _sicobimContext.TblInventarios.Add(tblInventarios);
+                _sicobimContext.SaveChanges();
 
+           
             return tblInventarios;
+
         }
+
         public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
         {
             _sicobimContext.TblProveedor.Add(tblProveedor);
@@ -222,13 +297,7 @@ namespace SICOBIM_B.Services
             return tblClaveCabms;
         }
 
-        public TblResguardatarios GuardarTblResguardatarios(TblResguardatarios tblResguardatarios)
-        {
-            _sicobimContext.TblResguardatarios.Add(tblResguardatarios);
-            _sicobimContext.SaveChanges();
-
-            return tblResguardatarios;
-        }
+        
 
 
 

@@ -587,12 +587,24 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblFacturas(tblFacturas);
 
         }
-        public TblBienesEquMedico GuardarTblEquiMedico(TblBienesEquMedico tblBienesEquMedico)
+
+
+
+
+
+
+        public RespuestaApi<TblBienesEquMedico> GuardarTblEquiMedico(TblBienesEquMedico tblBienesEquMedico)
         {
 
             return _inventarioServiceEquipoMedico.GuardarTblBienesEquMedico(tblBienesEquMedico);
 
         }
+
+
+
+
+
+
         public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
         {
 

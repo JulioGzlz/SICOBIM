@@ -38,8 +38,7 @@ namespace SICOBIM_B
         public virtual CatSexo CatSexo { get; set; }
         public virtual CatTipoContrato CatTipoContrato { get; set; }
         public virtual CatTurno CatTurno { get; set; }
-        public virtual CatArea IdArea { get; set; }
-        public virtual CatServicio IdServicio { get; set; }
+        public virtual CatArea CatArea { get; set; }
         public virtual ICollection<TblBienesEquMedico> TblBienesEquMedico { get; set; }
         public virtual ICollection<TblBienesMuebles> TblBienesMuebles { get; set; }
         public virtual ICollection<TblBienesSistemas> TblBienesSistemas { get; set; }

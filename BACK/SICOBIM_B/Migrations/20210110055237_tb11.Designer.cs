@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20210110055237_tb11")]
+    partial class tb11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2303,7 +2305,7 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatEstatusid");
 
-                    b.HasOne("SICOBIM_B.CatServicio", "CatServicio")
+                    b.HasOne("SICOBIM_B.CatServicio", "IdServicio")
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatServicioid");
 
@@ -2319,7 +2321,7 @@ namespace SICOBIM_B.Migrations
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatTurnoid");
 
-                    b.HasOne("SICOBIM_B.CatArea", "CatArea")
+                    b.HasOne("SICOBIM_B.CatArea", "IdArea")
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("Catareaid");
                 });

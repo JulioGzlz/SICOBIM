@@ -438,8 +438,7 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporSustitucion")]
         public IActionResult RegistroInventarioporReposicion([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
-            {
+            
 
                 TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
                 TblFacturas tblFacturas = new TblFacturas();
@@ -530,14 +529,14 @@ namespace SICOBIM_B.Controllers
                 tblInstrumentalMedico.Activo = true;
                 tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
                 tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                var result =_businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
 
 
 
-            }
+            
 
 
-            return Ok();
+            return Ok(result);
         }
         #endregion
 
