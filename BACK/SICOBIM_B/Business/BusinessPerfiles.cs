@@ -1,6 +1,8 @@
 ﻿using SICOBIM_B.Common;
 
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
+using SICOBIM_B.Models;
 using SICOBIM_B.Services;
 using System;
 using System.Collections.Generic;
@@ -15,13 +17,15 @@ namespace SICOBIM_B.Business
         private sicobimContext _objsicobimContext;
 
         ICatalogoPerfilesService _catalogoPerfilesService;
+        IUserService _userService;
 
 
-        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, sicobimContext sicobimContext, IInventarioService objperfil)
+        public BusinessPerfiles(ICatalogoPerfilesService objIcatalogos, sicobimContext sicobimContext, IInventarioService objperfil, IUserService userService)
         {
             _catalogoPerfilesService = objIcatalogos;
             _objsicobimContext = sicobimContext;
             _tblPerfilesService = objperfil;
+            _userService = userService;
 
         }
 
@@ -479,10 +483,61 @@ namespace SICOBIM_B.Business
                 };
             }
         }
-       
-        
 
+        /// <summary>
+        /// Guardado de registro de usuarios en el sistema
+        /// </summary>
+        /// <param name="modeloRegistro">Cuerpo JSON</param>
+        /// <returns>No debe retorna un objeto debido al guardado del pass</returns>
+        public RespuestaApi<CtrlUsuarios> registroUsuarios(ModeloRegistro modeloRegistro)
+        {
+            CtrlUsuarios objCtrlUsuarios = new CtrlUsuarios();
+            objCtrlUsuarios.FirstName = modeloRegistro.FirstName;
+            objCtrlUsuarios.LastName = modeloRegistro.LastName;
+            objCtrlUsuarios.Username = modeloRegistro.Username;
+            objCtrlUsuarios.Activo = true;
+            objCtrlUsuarios.IdUsuarioAlta = 1;
+            objCtrlUsuarios.UsuarioMod = 1;
+            objCtrlUsuarios.CatSexoid = modeloRegistro.idSexo;
+            objCtrlUsuarios.Rfc = modeloRegistro.RFC;
+            objCtrlUsuarios.Cargo = modeloRegistro.cargo;
+            objCtrlUsuarios.CatEstatusid = 1; //Que estatus son?, no esta en el Model favor de ponerlo
+            objCtrlUsuarios.CatTipoContratoid = modeloRegistro.idtipocontrato;
+            objCtrlUsuarios.CatTurnoid = modeloRegistro.idturno;
+            objCtrlUsuarios.Numeroempleado = modeloRegistro.numeroempleado;
+            objCtrlUsuarios.Plaza = modeloRegistro.plaza;
+            objCtrlUsuarios.Catareaid = 1; // Este no esta en modelo favor de ponerlo
+            objCtrlUsuarios.Catservicioid = modeloRegistro.idServicio;
+            objCtrlUsuarios.CatRolid = 1;  // Este no esta en modelo favor de ponerlo
+            objCtrlUsuarios.FechaAlta = DateTime.Now;
+            objCtrlUsuarios.FechaMod = DateTime.Now;
 
+            try
+            {
+
+                if(_objsicobimContext.CtrlUsuarios.Any( x => x.Username == modeloRegistro.Username))
+                    throw new AppException("El usuario  \"" + modeloRegistro.Username + "\" ya existe");
+
+                //Mando a llamar el service
+                objCtrlUsuarios = _userService.Create(objCtrlUsuarios, modeloRegistro.Password);
+
+                return new RespuestaApi<CtrlUsuarios>(){
+                    correcto = true,
+                    Mensaje = "El registro fue guardado éxitosamente",
+                   // objGenerics = objCtrlUsuarios //OJO!  ESTE OBJ NO se debe retornar ya que retorna un obj éxitoso desde el service INCLUYENDO EL PASSWORD
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<CtrlUsuarios>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+          
+        }
 
     }
 }

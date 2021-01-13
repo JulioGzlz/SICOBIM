@@ -10,7 +10,8 @@ namespace SICOBIM_B.Common
         public bool correcto { get; set; }
         public string Mensaje { get; set; }
         public IEnumerable<T> ObjetoRespuesta { get; set; }
-        public List<T> objList { get; set; }
+        public T objGenerics { get; set; }
+
 
 
 

@@ -1,6 +1,7 @@
 ﻿using SICOBIM_B.Common;
 
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Services;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,12 @@ namespace SICOBIM_B.Business
 {
     public class BusinessInventarioEquipoMedico
     {
-        #region  Metodos de consultas de listas
 
 
         private sicobimContext _objsicobimContext;
         IInventarioService _inventarioServiceEquipoMedico;
+
+        #region  Metodos de consultas de listas
 
 
         public BusinessInventarioEquipoMedico(IInventarioService objEquipoMedico, sicobimContext sicobimContext)
@@ -592,18 +594,36 @@ namespace SICOBIM_B.Business
 
 
 
-
+        /// <summary>
+        /// Guarda todos los bienes del Equipo Medico, tras una serie de validaciones en numeros de inventarios y federalización
+        /// </summary>
+        /// <param name="tblBienesEquMedico"></param>
+        /// <returns></returns>
         public RespuestaApi<TblBienesEquMedico> GuardarTblEquiMedico(TblBienesEquMedico tblBienesEquMedico)
         {
 
-            return _inventarioServiceEquipoMedico.GuardarTblBienesEquMedico(tblBienesEquMedico);
+            TblBienesEquMedico objTblBienesEquipoMedico = new TblBienesEquMedico();
+            try
+            {
+
+                objTblBienesEquipoMedico = _inventarioServiceEquipoMedico.GuardarTblBienesEquMedico(tblBienesEquMedico);
+
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    correcto = true,
+                    objGenerics = objTblBienesEquipoMedico
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    Mensaje = ex.Message                
+                };
+
+            }
 
         }
-
-
-
-
-
 
         public TblClaveSaica GuardarTblClaveSaica(TblClaveSaica tblClaveSaica)
         {
@@ -623,11 +643,38 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
 
         }
-        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+
+        /// <summary>
+        /// Guarda y valida que no se duplique el numero de inventario en la BD
+        /// </summary>
+        /// <param name="tblInventarios"></param>
+        /// <returns>Obj de tipo tblIventarios, para obtener el Id de su llave primaria</returns>
+        public RespuestaApi<TblInventarios> GuardarTblInventarios(TblInventarios tblInventarios)
         {
+            TblInventarios objtblInventarios = new TblInventarios();
+            try
+            {            
+                if (_objsicobimContext.TblInventarios.Any(x => x.NumeroInventario == tblInventarios.NumeroInventario))
+                    throw new AppException("Error, el numero de inventario ya existe");
 
-            return _inventarioServiceEquipoMedico.GuardarTblInventarios(tblInventarios);
+                objtblInventarios = _inventarioServiceEquipoMedico.GuardarTblInventarios(tblInventarios);
 
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objtblInventarios                 
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objtblInventarios
+                };
+            }
         }
         public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
         {

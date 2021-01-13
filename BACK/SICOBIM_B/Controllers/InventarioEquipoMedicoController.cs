@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SICOBIM_B.Business;
+using SICOBIM_B.Common;
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 using SICOBIM_B.Services;
 
@@ -28,8 +30,8 @@ namespace SICOBIM_B.Controllers
     {
 
         BusinessInventarioEquipoMedico _businessEquipoMedico;
-       
-       
+        RespuestaApi<TblInventarios> objRespuestatblInventarios = new RespuestaApi<TblInventarios>();
+
 
         public InventarioEquipoMedicoController(BusinessInventarioEquipoMedico objEquipoMedico)
         {
@@ -159,16 +161,17 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporAdquisicion")]
         public IActionResult RegistroInventarioporadquisicion([FromBody] ModeloInventario modeloInventario)
         {
-            
+            TblBienesEquMedico tblBienesEquMedico = new TblBienesEquMedico();
+            TblFacturas tblFacturas = new TblFacturas();
+            TblClaveSaica tblClavesaica = new TblClaveSaica();
+            TblContratoBien tblContratoBien = new TblContratoBien();
+            TblFederalizacion tblFederalizacion = new TblFederalizacion();
+            TblInventarios tblInventarios = new TblInventarios();
+            TblProveedor tblProveedor = new TblProveedor();
+            TblClaveCabms tblClaveCabms = new TblClaveCabms();
 
-                TblBienesEquMedico tblBienesEquMedico = new TblBienesEquMedico();
-                TblFacturas tblFacturas = new TblFacturas();
-                TblClaveSaica tblClavesaica = new TblClaveSaica();
-                TblContratoBien tblContratoBien = new TblContratoBien();
-                TblFederalizacion tblFederalizacion = new TblFederalizacion();
-                TblInventarios tblInventarios = new TblInventarios();
-                TblProveedor tblProveedor = new TblProveedor();
-                TblClaveCabms tblClaveCabms = new TblClaveCabms();
+            try
+            {
                
 
                 tblFacturas.Factura = modeloInventario.factura;
@@ -215,7 +218,8 @@ namespace SICOBIM_B.Controllers
                 tblInventarios.FechaAlta = DateTime.Now;
                 tblInventarios.Activo = true;
                 tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
+
+                 objRespuestatblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
 
                 tblProveedor.Proveedor = modeloInventario.Proveedor;
                 tblProveedor.CatTipoDeBienId = 2;
@@ -238,7 +242,7 @@ namespace SICOBIM_B.Controllers
 
                 tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
-                tblBienesEquMedico.IdInventarioid = tblInventarios.Id;
+                tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
                 tblBienesEquMedico.Modelo = modeloInventario.modelo;
                 tblBienesEquMedico.Serie = modeloInventario.serie;
@@ -262,12 +266,24 @@ namespace SICOBIM_B.Controllers
                 tblBienesEquMedico.Activo = true;
                 tblBienesEquMedico.IdClaveCabmsid = tblClaveCabms.Id;
                 tblBienesEquMedico.IdClaveSaicaid = tblClavesaica.Id;
-               var result = _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico);
-
-            
 
 
-            return Ok(result);
+                if (objRespuestatblInventarios.correcto == false)
+                {
+                    return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                }
+                else
+                {
+
+                    var result = _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico); //Esta función se debe validar 
+                    return Ok(result);
+                }              
+            }
+
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         #endregion
@@ -329,7 +345,7 @@ namespace SICOBIM_B.Controllers
                 tblInventarios.FechaAlta = DateTime.Now;
                 tblInventarios.Activo = true;
                 tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
+                objRespuestatblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
 
                 tblProveedor.Proveedor = modeloInventario.Proveedor;
                 tblProveedor.CatTipoDeBienId = 2;
@@ -348,7 +364,7 @@ namespace SICOBIM_B.Controllers
 
                 tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
-                tblBienesEquMedico.IdInventarioid = tblInventarios.Id;
+                tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
                 tblBienesEquMedico.Modelo = modeloInventario.modelo;
                 tblBienesEquMedico.Serie = modeloInventario.serie;
@@ -409,7 +425,7 @@ namespace SICOBIM_B.Controllers
                 tblInventarios.FechaAlta = DateTime.Now;
                 tblInventarios.Activo = true;
                 tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
+                objRespuestatblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
 
 
 
@@ -419,7 +435,7 @@ namespace SICOBIM_B.Controllers
                 ///<summary>
                 ///Este tipo de entrada lleva un numero de inventario interno
                 ///</summary>
-                tblBienesEquMedico.IdInventarioid = tblInventarios.Id;
+                tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
                 tblBienesEquMedico.Modelo = modeloInventario.modelo;
                 tblBienesEquMedico.Serie = modeloInventario.serie;
@@ -509,7 +525,7 @@ namespace SICOBIM_B.Controllers
                 tblInventarios.FechaAlta = DateTime.Now;
                 tblInventarios.Activo = true;
                 tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
+                objRespuestatblInventarios = _businessEquipoMedico.GuardarTblInventarios(tblInventarios);
 
                 tblProveedor.Proveedor = modeloInventario.Proveedor;
                 tblProveedor.CatTipoDeBienId = 2;
@@ -528,7 +544,7 @@ namespace SICOBIM_B.Controllers
 
                 tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
-                tblBienesEquMedico.IdInventarioid = tblInventarios.Id;
+                tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
                 tblBienesEquMedico.Modelo = modeloInventario.modelo;
                 tblBienesEquMedico.Serie = modeloInventario.serie;

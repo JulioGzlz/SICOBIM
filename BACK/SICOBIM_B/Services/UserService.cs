@@ -138,21 +138,9 @@ namespace SICOBIM_B.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.CtrlUsuarios.Any(x => x.Username == user.Username))
-                throw new AppException("Username \"" + user.Username + "\" is already taken");
-
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
             ByteArrayToString(passwordHash);
-
-
-            DateTime fechaActual = DateTime.Now;
-            user.IdUsuarioAlta = 1;
-            user.Activo = true;
-            user.FechaAlta = fechaActual;
-
-
-
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;

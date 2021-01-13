@@ -120,20 +120,17 @@ namespace SICOBIM_B.Controllers
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] ModeloRegistro model)
-        {
-            var user = _mapper.Map<CtrlUsuarios>(model);
+        {           
             try
             {
-                _userService.Create(user, model.Password);
-                return Ok();
+               var result =  _businessPerfiles.registroUsuarios(model);
+                return Ok(result);
             }
             catch (AppException ex)
             {
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
-
-
 
         }
 
