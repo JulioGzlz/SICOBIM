@@ -24,15 +24,21 @@ namespace SICOBIM_B.Models
         public string numeroempleado { get; set; }
         public string cargo { get; set; }
         public int idSexo { get; set; }
-      
+
+        public int idArea { get; set; }
+
+        public int idRol { get; set; }
+
         public int idturno { get; set; }
       
         public int idtipocontrato { get; set; }
 
         public int idServicio { get; set; }
-       
 
-     
-  
+        public int idEstatus { get; set; }
+
+
+
+
     }
 }

@@ -501,14 +501,14 @@ namespace SICOBIM_B.Business
             objCtrlUsuarios.CatSexoid = modeloRegistro.idSexo;
             objCtrlUsuarios.Rfc = modeloRegistro.RFC;
             objCtrlUsuarios.Cargo = modeloRegistro.cargo;
-            objCtrlUsuarios.CatEstatusid = 1; //Que estatus son?, no esta en el Model favor de ponerlo
+            objCtrlUsuarios.CatEstatusid = modeloRegistro.idEstatus; 
             objCtrlUsuarios.CatTipoContratoid = modeloRegistro.idtipocontrato;
             objCtrlUsuarios.CatTurnoid = modeloRegistro.idturno;
             objCtrlUsuarios.Numeroempleado = modeloRegistro.numeroempleado;
             objCtrlUsuarios.Plaza = modeloRegistro.plaza;
-            objCtrlUsuarios.Catareaid = 1; // Este no esta en modelo favor de ponerlo
+            objCtrlUsuarios.Catareaid = modeloRegistro.idArea; 
             objCtrlUsuarios.Catservicioid = modeloRegistro.idServicio;
-            objCtrlUsuarios.CatRolid = 1;  // Este no esta en modelo favor de ponerlo
+            objCtrlUsuarios.CatRolid = modeloRegistro.idRol;  
             objCtrlUsuarios.FechaAlta = DateTime.Now;
             objCtrlUsuarios.FechaMod = DateTime.Now;
 
