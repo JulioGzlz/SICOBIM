@@ -9,19 +9,10 @@ namespace SICOBIM_B.Entities
 {
     [Table("CatArea")]
 
-    public class CatArea
+    public class CatArea : CatalogEntityBase
     {
-        [Key]
-        public int CatAreaid { get; set; }
-        public string area { get; set; }
         public String descripcion { get; set; }
-        public int usuarioAlta { get; set; }
-        public DateTime fechaAlta { get; set; }
-        public int idusuarioMod { get; set; }
-        public DateTime fechaMod { get; set; }
-        public bool activo { get; set; }
-
-
+    
         public virtual ICollection<TblAreaServicio> tblAreaServicios
         {
             get;
