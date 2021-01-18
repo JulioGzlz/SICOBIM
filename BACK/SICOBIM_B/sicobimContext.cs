@@ -17,7 +17,6 @@ namespace SICOBIM_B
 
         public virtual DbSet<CatArea> CatArea { get; set; }
         public virtual DbSet<CatEstadoDelBien> CatEstadoDelBien { get; set; }
-        public virtual DbSet<CatEstatus> CatEstatus { get; set; }
         public virtual DbSet<CatGarantia> CatGarantia { get; set; }
         public virtual DbSet<CatPermiso> CatPermiso { get; set; }
         public virtual DbSet<CatPiso> CatPiso { get; set; }
@@ -63,307 +62,118 @@ namespace SICOBIM_B
         {
             modelBuilder.Entity<CatArea>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Area).HasColumnName("area");
 
                 entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
 
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdusuarioMod).HasColumnName("idusuarioMod");
-
-                entity.Property(e => e.UsuarioAlta).HasColumnName("usuarioAlta");
             });
 
             modelBuilder.Entity<CatEstadoDelBien>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Activo).HasColumnName("activo");
 
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
+                entity.Property(e => e.estado).HasColumnName("estado");
 
-                entity.Property(e => e.Estado).HasColumnName("estado");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
-            modelBuilder.Entity<CatEstatus>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.Estatus).HasColumnName("estatus");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
-            });
 
             modelBuilder.Entity<CatGarantia>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.AñosGarantia).HasColumnName("añosGarantia");
 
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatPermiso>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Permiso).HasColumnName("permiso");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
+
             });
 
             modelBuilder.Entity<CatPiso>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Piso).HasColumnName("piso");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
+
             });
 
             modelBuilder.Entity<CatRol>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.IdusuarioMod).HasColumnName("idusuarioMod");
-
                 entity.Property(e => e.Rol).HasColumnName("rol");
             });
 
             modelBuilder.Entity<CatServicio>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdusuarioMod).HasColumnName("idusuarioMod");
 
                 entity.Property(e => e.Servicio).HasColumnName("servicio");
 
-                entity.Property(e => e.UsuarioAlta).HasColumnName("usuarioAlta");
             });
 
             modelBuilder.Entity<CatSexo>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatTipoContrato>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Contrato).HasColumnName("contrato");
 
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatTipoDeBien>(entity =>
             {
-                entity.Property(e => e.Activo).HasColumnName("activo");
+                entity.Property(e => e.TipodeBien).HasColumnName("TipodeBien");
 
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatTipoEntrada>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Tipoentrada).HasColumnName("tipoentrada");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
+
             });
 
             modelBuilder.Entity<CatTipoPartida>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Partidapresupestual).HasColumnName("partidapresupestual");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatTipoSalida>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Tiposalida).HasColumnName("tiposalida");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
+
             });
 
             modelBuilder.Entity<CatTurno>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
 
                 entity.Property(e => e.Turno).HasColumnName("turno");
 
-                entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
             });
 
             modelBuilder.Entity<CatUnidadDestino>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Destino).HasColumnName("destino");
 
-                entity.Property(e => e.FechaAlta).HasColumnName("fechaAlta");
-
-                entity.Property(e => e.FechaMod).HasColumnName("fechaMod");
-
-                entity.Property(e => e.IdUsuarioAlta).HasColumnName("idUsuarioAlta");
-
-                entity.Property(e => e.IdusuarioMod).HasColumnName("idusuarioMod");
             });
 
             modelBuilder.Entity<CtrlUsuarios>(entity =>
             {
-                entity.HasIndex(e => e.CatEstatusid);
 
                 entity.HasIndex(e => e.CatRolid);
 
@@ -383,7 +193,7 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.Cargo).HasColumnName("cargo");
 
-                entity.Property(e => e.CatEstatusid).HasColumnName("catEstatusid");
+
 
                 entity.Property(e => e.CatRolid).HasColumnName("catRolid");
 
@@ -417,9 +227,7 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
 
-                entity.HasOne(d => d.CatEstatus)
-                    .WithMany(p => p.CtrlUsuarios)
-                    .HasForeignKey(d => d.CatEstatusid);
+
 
                 entity.HasOne(d => d.CatRol)
                     .WithMany(p => p.CtrlUsuarios)
@@ -1219,7 +1027,7 @@ namespace SICOBIM_B
 
             modelBuilder.Entity<TblResguardatarios>(entity =>
             {
-                entity.HasIndex(e => e.CatEstatusid);
+
 
                 entity.HasIndex(e => e.CatServicioid);
 
@@ -1240,8 +1048,6 @@ namespace SICOBIM_B
                 entity.Property(e => e.ApellidoUno).HasColumnName("apellidoUno");
 
                 entity.Property(e => e.Cargo).HasColumnName("cargo");
-
-                entity.Property(e => e.CatEstatusid).HasColumnName("catEstatusid");
 
                 entity.Property(e => e.CatSexoid).HasColumnName("catSexoid");
 
@@ -1269,9 +1075,6 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.UsuarioMod).HasColumnName("usuarioMod");
 
-                entity.HasOne(d => d.CatEstatus)
-                    .WithMany(p => p.TblResguardatarios)
-                    .HasForeignKey(d => d.CatEstatusid);
 
                 entity.HasOne(d => d.CatServicio)
                     .WithMany(p => p.TblResguardatarios)

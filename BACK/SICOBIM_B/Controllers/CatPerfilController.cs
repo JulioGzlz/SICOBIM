@@ -27,12 +27,6 @@ namespace SICOBIM_B.Controllers
             var result = _businessPerfiles.GetCatSexo();
             return Ok(result);
         }
-        [HttpGet("obtenerEstatus")]
-        public IActionResult GetCatEstatus()
-        {
-            var result = _businessPerfiles.GetEstatus();
-            return Ok(result);
-        }
         [HttpGet("obtenerAreas")]
         public IActionResult GetCatArea()
         {

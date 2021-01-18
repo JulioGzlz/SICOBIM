@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SICOBIM_B;
@@ -9,9 +10,10 @@ using SICOBIM_B;
 namespace SICOBIM_B.Migrations
 {
     [DbContext(typeof(sicobimContext))]
-    partial class sicobimContextModelSnapshot : ModelSnapshot
+    [Migration("20210117014519_t13")]
+    partial class t13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,29 +28,35 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<bool>("Activo")
+                    b.Property<string>("Descripcion")
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("InsertUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Descripcion")
+                    b.Property<bool>("IsBySystem")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnName("descripcion")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("FechaAlta")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("IdUsuarioAlta")
+                    b.Property<int?>("UpdateUserId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UsuarioMod")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("area")
-                        .HasColumnType("text");
+                    b.Property<bool>("Visible")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -59,46 +67,94 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Estado")
+                        .HasColumnName("estado")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
-
-                    b.Property<string>("estado")
-                        .HasColumnName("estado")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("CatEstadoDelBien");
                 });
 
-            modelBuilder.Entity("SICOBIM_B.CatGarantia", b =>
+            modelBuilder.Entity("SICOBIM_B.CatEstatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Estatus")
+                        .HasColumnName("estatus")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CatEstatus");
+                });
+
+            modelBuilder.Entity("SICOBIM_B.CatGarantia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("AñosGarantia")
@@ -106,20 +162,23 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -131,31 +190,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Permiso")
                         .HasColumnName("permiso")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -167,31 +231,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Piso")
                         .HasColumnName("piso")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -203,32 +272,37 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdusuarioMod")
+                        .HasColumnName("idusuarioMod")
                         .HasColumnType("integer");
 
                     b.Property<string>("Rol")
                         .HasColumnName("rol")
                         .HasColumnType("text");
-
-                    b.Property<int?>("UsuarioMod")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -239,31 +313,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("IdUsuarioAlta")
+                    b.Property<int>("IdusuarioMod")
+                        .HasColumnName("idusuarioMod")
                         .HasColumnType("integer");
 
                     b.Property<string>("Servicio")
                         .HasColumnName("servicio")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioAlta")
+                        .HasColumnName("usuarioAlta")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -275,31 +354,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Sexo")
                         .HasColumnName("sexo")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -311,10 +395,12 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Contrato")
@@ -322,20 +408,23 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -345,36 +434,39 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.CatTipoDeBien", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CatTipoDeBienId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("TipodeBien")
-                        .HasColumnName("TipodeBien")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("CatTipoDeBienId");
 
                     b.ToTable("CatTipoDeBien");
                 });
@@ -383,31 +475,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Tipoentrada")
                         .HasColumnName("tipoentrada")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -419,31 +516,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Partidapresupestual")
                         .HasColumnName("partidapresupestual")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -455,31 +557,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Tiposalida")
                         .HasColumnName("tiposalida")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -491,31 +598,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
                     b.Property<string>("Turno")
                         .HasColumnName("turno")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("UsuarioMod")
+                        .HasColumnName("usuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -527,31 +639,36 @@ namespace SICOBIM_B.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Activo")
+                        .HasColumnName("activo")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasColumnName("descripcion")
+                        .HasColumnType("text");
 
                     b.Property<string>("Destino")
                         .HasColumnName("destino")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FechaAlta")
+                        .HasColumnName("fechaAlta")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("FechaMod")
+                    b.Property<DateTime>("FechaMod")
+                        .HasColumnName("fechaMod")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("IdUsuarioAlta")
+                        .HasColumnName("idUsuarioAlta")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("UsuarioMod")
+                    b.Property<int>("IdusuarioMod")
+                        .HasColumnName("idusuarioMod")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -574,6 +691,10 @@ namespace SICOBIM_B.Migrations
                     b.Property<string>("Cargo")
                         .HasColumnName("cargo")
                         .HasColumnType("text");
+
+                    b.Property<int?>("CatEstatusid")
+                        .HasColumnName("catEstatusid")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("CatRolid")
                         .HasColumnName("catRolid")
@@ -651,6 +772,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatEstatusid");
 
                     b.HasIndex("CatRolid");
 
@@ -1623,6 +1746,10 @@ namespace SICOBIM_B.Migrations
                         .HasColumnName("cargo")
                         .HasColumnType("text");
 
+                    b.Property<int?>("CatEstatusid")
+                        .HasColumnName("catEstatusid")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("CatServicioid")
                         .HasColumnName("CatServicioid")
                         .HasColumnType("integer");
@@ -1676,6 +1803,8 @@ namespace SICOBIM_B.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatEstatusid");
 
                     b.HasIndex("CatServicioid");
 
@@ -1767,6 +1896,10 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.CtrlUsuarios", b =>
                 {
+                    b.HasOne("SICOBIM_B.CatEstatus", "CatEstatus")
+                        .WithMany("CtrlUsuarios")
+                        .HasForeignKey("CatEstatusid");
+
                     b.HasOne("SICOBIM_B.CatRol", "CatRol")
                         .WithMany("CtrlUsuarios")
                         .HasForeignKey("CatRolid");
@@ -2169,6 +2302,10 @@ namespace SICOBIM_B.Migrations
 
             modelBuilder.Entity("SICOBIM_B.TblResguardatarios", b =>
                 {
+                    b.HasOne("SICOBIM_B.CatEstatus", "CatEstatus")
+                        .WithMany("TblResguardatarios")
+                        .HasForeignKey("CatEstatusid");
+
                     b.HasOne("SICOBIM_B.CatServicio", "CatServicio")
                         .WithMany("TblResguardatarios")
                         .HasForeignKey("CatServicioid");

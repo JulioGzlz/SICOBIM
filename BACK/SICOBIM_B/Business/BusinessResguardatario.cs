@@ -240,33 +240,7 @@ namespace SICOBIM_B.Business
         /// consulta al resguardatario Por su Estatus
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblResguardatarios> GetConsultaPorEstatus()
-        {
-            try
-            {
-                List<TblResguardatarios> lstResguardatarioPorEstatus = null;
-                var resul = _inventarioServiceResguardatarios.GetTblResguardatarios().OrderBy(x => x.CatEstatusid).ToList();
-                lstResguardatarioPorEstatus = resul;
-                if (lstResguardatarioPorEstatus == null || lstResguardatarioPorEstatus.Count <= 0)
-                    throw new System.Exception("No se encontraron resultados");
-
-
-                return new RespuestaApi<TblResguardatarios>
-                {
-                    correcto = true,
-                    ObjetoRespuesta = lstResguardatarioPorEstatus
-
-                };
-            }
-
-            catch (Exception ex)
-            {
-                return new RespuestaApi<TblResguardatarios>()
-                {
-                    Mensaje = ex.Message
-                };
-            }
-        }
+        
         /// <summary>
         /// consulta al resguardatario Por su Contrato
         /// </summary>

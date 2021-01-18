@@ -29,27 +29,6 @@ namespace SICOBIM_B.Business
 
         }
 
-        public RespuestaApi<CatEstatus> GetEstatus()
-        {
-            try
-            {
-                List<CatEstatus> lstEstatus = _catalogoPerfilesService.GetCatEstatus().OrderBy(x => x.Descripcion).ToList();
-                return new RespuestaApi<CatEstatus>
-                {
-                    correcto = true,
-                    ObjetoRespuesta = lstEstatus
-
-                };
-            }
-
-            catch (Exception ex)
-            {
-                return new RespuestaApi<CatEstatus>()
-                {
-                    Mensaje = ex.Message
-                };
-            }
-        }
 
         /// <summary>
         /// obtener los sexos de la tabla CatSexo
@@ -501,7 +480,6 @@ namespace SICOBIM_B.Business
             objCtrlUsuarios.CatSexoid = modeloRegistro.idSexo;
             objCtrlUsuarios.Rfc = modeloRegistro.RFC;
             objCtrlUsuarios.Cargo = modeloRegistro.cargo;
-            objCtrlUsuarios.CatEstatusid = modeloRegistro.idEstatus; 
             objCtrlUsuarios.CatTipoContratoid = modeloRegistro.idtipocontrato;
             objCtrlUsuarios.CatTurnoid = modeloRegistro.idturno;
             objCtrlUsuarios.Numeroempleado = modeloRegistro.numeroempleado;

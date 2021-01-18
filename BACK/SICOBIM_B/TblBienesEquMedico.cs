@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SICOBIM_B
 {
-    public partial class TblBienesEquMedico
+    public partial class TblBienesEquMedico 
     {
         public TblBienesEquMedico()
         {

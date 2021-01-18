@@ -7,13 +7,12 @@ namespace SICOBIM_B.Services
 {
   public interface IEntityBase
     {
-        long Id { get; set; }
-        bool Visible { get; set; }
-        DateTime InsertDate { get; set; }
-        int InsertUserId { get; set; }
-        DateTime? UpdateDate { get; set; }
-        int? UpdateUserId { get; set; }
-        bool IsNew { get; }
+        int Id { get; set; }
+        bool Activo { get; set; }
+        DateTime FechaAlta { get; set; }
+        int IdUsuarioAlta { get; set; }
+        DateTime? FechaMod { get; set; }
+        int? UsuarioMod { get; set; }
 
     }
 }

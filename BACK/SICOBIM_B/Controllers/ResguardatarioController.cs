@@ -67,12 +67,6 @@ namespace SICOBIM_B.Controllers
             return Ok(result);
         }
 
-        [HttpGet("ObtenerPorEstatus")]
-        public IActionResult GetResguardatariosPorEstatus()
-        {
-            var result = _businessResguardatario.GetConsultaPorEstatus();
-            return Ok(result);
-        }
 
         [HttpGet("ObtenerPorTipoDeContrato")]
         public IActionResult GetResguardatarioPorContrato()
@@ -129,7 +123,6 @@ namespace SICOBIM_B.Controllers
                 tblResguardatarios.Catareaid = modeloResguardatario.Catareaid;
                 tblResguardatarios.CatServicioid = modeloResguardatario.CatServicioid;
                 tblResguardatarios.CatTurnoid = modeloResguardatario.CatTurnoid;
-                tblResguardatarios.CatEstatusid = modeloResguardatario.CatEstatusid;
                 tblResguardatarios.CatTipoContratoid = modeloResguardatario.CatTipoContratoid;
                 tblResguardatarios.IdUsuarioAlta = modeloResguardatario.IdUsuarioAlta;
                 tblResguardatarios.Activo = true;

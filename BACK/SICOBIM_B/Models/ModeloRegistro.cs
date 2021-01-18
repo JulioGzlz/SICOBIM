@@ -35,7 +35,6 @@ namespace SICOBIM_B.Models
 
         public int idServicio { get; set; }
 
-        public int idEstatus { get; set; }
 
 
 

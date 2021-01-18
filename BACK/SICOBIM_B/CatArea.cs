@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SICOBIM_B.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace SICOBIM_B
 {
-    public partial class CatArea
+    public partial class CatArea : CatalogEntityBase
     {
         public CatArea()
         {
@@ -15,14 +16,9 @@ namespace SICOBIM_B
             TblResguardatarios = new HashSet<TblResguardatarios>();
         }
 
-        public int Id { get; set; }
-        public string Area { get; set; }
-        public string Descripcion { get; set; }
-        public int UsuarioAlta { get; set; }
-        public DateTime FechaAlta { get; set; }
-        public int IdusuarioMod { get; set; }
-        public DateTime FechaMod { get; set; }
-        public bool Activo { get; set; }
+        public string area { get; set; }
+
+
 
         public virtual ICollection<CtrlUsuarios> CtrlUsuarios { get; set; }
         public virtual ICollection<TblBienesEquMedico> TblBienesEquMedico { get; set; }

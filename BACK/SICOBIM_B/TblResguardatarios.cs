@@ -20,7 +20,6 @@ namespace SICOBIM_B
         public int? Catareaid { get; set; }
         public int? CatServicioid { get; set; }
         public int? CatTurnoid { get; set; }
-        public int? CatEstatusid { get; set; }
         public int? CatTipoContratoid { get; set; }
         public int IdUsuarioAlta { get; set; }
         public DateTime FechaAlta { get; set; }
@@ -33,7 +32,7 @@ namespace SICOBIM_B
         public string Numeroempleado { get; set; }
         public string Plaza { get; set; }
 
-        public virtual CatEstatus CatEstatus { get; set; }
+
         public virtual CatServicio CatServicio { get; set; }
         public virtual CatSexo CatSexo { get; set; }
         public virtual CatTipoContrato CatTipoContrato { get; set; }

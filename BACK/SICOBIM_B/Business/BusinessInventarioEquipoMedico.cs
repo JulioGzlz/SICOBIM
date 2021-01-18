@@ -611,7 +611,8 @@ namespace SICOBIM_B.Business
                 return new RespuestaApi<TblBienesEquMedico>()
                 {
                     correcto = true,
-                    objGenerics = objTblBienesEquipoMedico
+                    Mensaje = "El registro se guardo con éxito"
+                    
                 };
             }
             catch (Exception ex)
@@ -649,7 +650,7 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="tblInventarios"></param>
         /// <returns>Obj de tipo tblIventarios, para obtener el Id de su llave primaria</returns>
-        public RespuestaApi<TblInventarios> GuardarTblInventarios(TblInventarios tblInventarios)
+        public  RespuestaApi<TblInventarios> GuardarTblInventarios(TblInventarios tblInventarios)
         {
             TblInventarios objtblInventarios = new TblInventarios();
             try
@@ -657,7 +658,7 @@ namespace SICOBIM_B.Business
                 if (_objsicobimContext.TblInventarios.Any(x => x.NumeroInventario == tblInventarios.NumeroInventario))
                     throw new AppException("Error, el numero de inventario ya existe");
 
-                objtblInventarios = _inventarioServiceEquipoMedico.GuardarTblInventarios(tblInventarios);
+                 objtblInventarios = _inventarioServiceEquipoMedico.GuardarTblInventarios(tblInventarios);
 
                 return new RespuestaApi<TblInventarios>()
                 {

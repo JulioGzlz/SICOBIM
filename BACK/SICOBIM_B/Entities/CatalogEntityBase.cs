@@ -10,17 +10,15 @@ namespace SICOBIM_B.Entities
     public class CatalogEntityBase: EntityBase
     {
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Descripción")]
         [MaxLength(100)]
         [Required]
-        public string Name { get; set; }
+        public string Descripcion { get; set; }
+
         [Display(Name = "Activo")]
         [Required]
-        public bool IsActive { get; set; }
+        public bool Activo { get; set; }
 
-        [Required]
-        [IgnoreDataMember]
-        public bool IsBySystem { get; set; }
 
     }
 }

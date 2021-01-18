@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SICOBIM_B.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace SICOBIM_B
 {
-    public partial class CatTipoContrato
+    public partial class CatTipoContrato : CatalogEntityBase
     {
         public CatTipoContrato()
         {
@@ -11,14 +12,9 @@ namespace SICOBIM_B
             TblResguardatarios = new HashSet<TblResguardatarios>();
         }
 
-        public int Id { get; set; }
+
         public string Contrato { get; set; }
-        public int IdUsuarioAlta { get; set; }
-        public DateTime FechaAlta { get; set; }
-        public int UsuarioMod { get; set; }
-        public DateTime FechaMod { get; set; }
-        public bool Activo { get; set; }
-        public string Descripcion { get; set; }
+
 
         public virtual ICollection<CtrlUsuarios> CtrlUsuarios { get; set; }
         public virtual ICollection<TblResguardatarios> TblResguardatarios { get; set; }

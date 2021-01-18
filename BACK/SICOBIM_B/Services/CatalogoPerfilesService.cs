@@ -12,9 +12,6 @@ namespace SICOBIM_B.Services
 
         IEnumerable<CatArea> GetCatArea();
         IEnumerable<CatEstadoDelBien> GetCatEstadoDelBien();
-        //IEnumerable<CatEstatus> GetCatEstatus();
-
-        IEnumerable<CatEstatus> GetCatEstatus();
         IEnumerable<CatPermiso> GetCatPermiso();
         IEnumerable<CatRol> GetCatRol();
         IEnumerable<CatServicio> GetCatServicio();
@@ -58,10 +55,7 @@ namespace SICOBIM_B.Services
             return _sicobimContext.CatEstadoDelBien;
         }
 
-        public IEnumerable<CatEstatus> GetCatEstatus()
-        {
-            return _sicobimContext.CatEstatus; 
-        }
+
 
 
 
