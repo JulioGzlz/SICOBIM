@@ -473,6 +473,7 @@ namespace SICOBIM_B.Business
             CtrlUsuarios objCtrlUsuarios = new CtrlUsuarios();
             objCtrlUsuarios.FirstName = modeloRegistro.FirstName;
             objCtrlUsuarios.LastName = modeloRegistro.LastName;
+            objCtrlUsuarios.SecondName = modeloRegistro.SecondName;
             objCtrlUsuarios.Username = modeloRegistro.Username;
             objCtrlUsuarios.Activo = true;
             objCtrlUsuarios.IdUsuarioAlta = 1;
@@ -482,7 +483,7 @@ namespace SICOBIM_B.Business
             objCtrlUsuarios.Cargo = modeloRegistro.cargo;
             objCtrlUsuarios.CatTipoContratoid = modeloRegistro.idtipocontrato;
             objCtrlUsuarios.CatTurnoid = modeloRegistro.idturno;
-            objCtrlUsuarios.Numeroempleado = modeloRegistro.numeroempleado;
+            objCtrlUsuarios.Numeroempleado = modeloRegistro.Numeroempleado;
             objCtrlUsuarios.Plaza = modeloRegistro.plaza;
             objCtrlUsuarios.Catareaid = modeloRegistro.idArea; 
             objCtrlUsuarios.Catservicioid = modeloRegistro.idServicio;
@@ -496,10 +497,18 @@ namespace SICOBIM_B.Business
                 if(_objsicobimContext.CtrlUsuarios.Any( x => x.Username == modeloRegistro.Username))
                     throw new AppException("El usuario  \"" + modeloRegistro.Username + "\" ya existe");
 
+                if (_objsicobimContext.CtrlUsuarios.Any(x => x.Numeroempleado == modeloRegistro.Numeroempleado))
+                    throw new AppException("Este numero de empleado\"" + modeloRegistro.Numeroempleado +
+                        "\"ya se encuentra registrado");
+
+                if (_objsicobimContext.CtrlUsuarios.Any(x => x.Rfc == modeloRegistro.RFC))
+                    throw new AppException("Este RFC del empleado\"" + modeloRegistro.RFC +
+                        "\"ya se encuentra registrado");
+
                 //Mando a llamar el service
                 objCtrlUsuarios = _userService.Create(objCtrlUsuarios, modeloRegistro.Password);
 
-                return new RespuestaApi<CtrlUsuarios>(){
+                return new RespuestaApi<CtrlUsuarios>() {
                     correcto = true,
                     Mensaje = "El registro fue guardado éxitosamente",
                    // objGenerics = objCtrlUsuarios //OJO!  ESTE OBJ NO se debe retornar ya que retorna un obj éxitoso desde el service INCLUYENDO EL PASSWORD

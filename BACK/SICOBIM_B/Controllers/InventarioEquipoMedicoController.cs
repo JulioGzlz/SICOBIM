@@ -84,7 +84,7 @@ namespace SICOBIM_B.Controllers
             return Ok(result);
         }
         [HttpGet]
-        [Route("obtenerfactura/{idBien}")]
+        [Route("obtenerfactura/2")]
         public IActionResult GetFacturasTipoInventario(int idBien)
         {
             var result = _businessEquipoMedico.GetFacturasTipoInventario(idBien);

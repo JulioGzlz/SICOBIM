@@ -153,7 +153,11 @@ namespace SICOBIM_B.Services
             try
             {
                 if (_sicobimContext.TblResguardatarios.Any(x => x.Numeroempleado == tblResguardatarios.Numeroempleado))
-                    throw new AppException("Este numero de resguardatario \"" + tblResguardatarios.Numeroempleado +
+                    throw new AppException("Este numero de empleado del resguardatario \"" + tblResguardatarios.Numeroempleado +
+                        "\"ya se encuentra registrado");
+
+                if (_sicobimContext.TblResguardatarios.Any(x => x.Rfc == tblResguardatarios.Rfc))
+                    throw new AppException("Este RFC\"" + tblResguardatarios.Rfc +
                         "\"ya se encuentra registrado");
 
                 _sicobimContext.TblResguardatarios.Add(tblResguardatarios);

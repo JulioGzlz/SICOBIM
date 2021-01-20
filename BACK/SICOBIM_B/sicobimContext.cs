@@ -193,8 +193,6 @@ namespace SICOBIM_B
 
                 entity.Property(e => e.Cargo).HasColumnName("cargo");
 
-
-
                 entity.Property(e => e.CatRolid).HasColumnName("catRolid");
 
                 entity.Property(e => e.CatSexoid).HasColumnName("catSexoid");
