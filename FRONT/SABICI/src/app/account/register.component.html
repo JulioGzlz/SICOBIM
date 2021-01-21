@@ -1,0 +1,60 @@
+﻿<h2>SABICI Sistema de Administración de Bienes y Control de Inventarios</h2>
+<div class="card">
+    <h4 class="card-header">Registro de usuarios</h4>
+    <div class="card-body">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault01">Nombre(s)</label>
+              <input type="text" class="form-control" id="validationDefault01" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">Requerido</div>
+                </div>
+            </div>
+             <div class="col-md-4 mb-3">
+              <label for="validationDefault02">Primer apellido</label>
+              <input type="text" class="form-control" id="validationDefault02"class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Requerido</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault02">Segundo apellido</label>
+              <input type="text" class="form-control" id="validationDefault02" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }">
+                 <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellidodos.errors.required">Apellido Dos Requerido</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationDefaultUsername">Nombre usuario</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                </div>
+                <input type="text" class="form-control" id="validationDefaultUsername" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidodos.errors }">
+                    <div *ngIf="submitted && f.apellidodos.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellidodos.errors.required">Requerido</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault03">RFC</label>
+              <input type="text" class="form-control" id="validationDefault03" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rfc.errors }">
+              <div *ngIf="submitted && f.rfc.errors" class="invalid-feedback">
+                    <div *ngIf="f.rfc.errors.required">Requerido</div>
+                </div>
+            </div>
+
+
+          </div>
+      
+          <button class="btn btn-primary" type="submit">Registrar</button>
+
+      </form>
+
+    </div>
+</div>

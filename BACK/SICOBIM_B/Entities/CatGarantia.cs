@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
+    [Table("CatGarantia")]
     public class CatGarantia
     {
-        public int id { get; set; }
+        [Key]
+        public int CatGarantiaId { get; set; }
 
         public String  añosGarantia { get; set; }
         public String descripcion { get; set; }
@@ -17,7 +21,22 @@ namespace SICOBIM_B.Entities
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
 
-        public ICollection<TblBienes> tblBienes
+        public virtual ICollection<TblBienes> tblBienes
+        {
+            get;
+            set;
+        }
+        public virtual ICollection<TblBienesEquMedico> tblBienesEquMedico
+        {
+            get;
+            set;
+        }
+        public virtual ICollection<TblBienesSistemas> tblBienesSistemas
+        {
+            get;
+            set;
+        }
+        public virtual ICollection<TblInstrumentalMedico> tblInstrumentalMedico
         {
             get;
             set;

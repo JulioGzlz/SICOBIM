@@ -15,16 +15,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using SICOBIM_B.Data;
+
 using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 using SICOBIM_B.Services;
 using LinqToDB;
+using Microsoft.Extensions.Options;
+using SICOBIM_B.Business;
 
 namespace SICOBIM_B
 {
     public class Startup
     {
+    
 
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _configuration;
@@ -41,18 +44,13 @@ namespace SICOBIM_B
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors();
+            
             services.AddControllers();
+            services.AddCors();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<sicobimContext>();
 
-            //services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
-            //    _configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
-
-            //services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             // configure strongly typed settings objects
             var appSettingsSection = _configuration.GetSection("AppSettings");
@@ -98,8 +96,17 @@ namespace SICOBIM_B
 
             });
 
-            // configure DI for application services
+            // configure DI for application services se agregan todos los servicios 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICatalogoPerfilesService, CatalogoPerfilesService>();
+            services.AddScoped<IInventarioService, InventarioService>();
+            services.AddScoped<BusinessPerfiles>();
+            services.AddScoped<BusinessInventarioEquipoMedico>();
+            services.AddScoped<BusinessInventarioInstrumentalMedico>();
+            services.AddScoped<BusinessInventarioMobiliario>();
+            services.AddScoped<BusinessInventarioSistemas>();
+            services.AddScoped<BusinessResguardatario>();
+            services.AddScoped<BusinessGenericoInventarios>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,14 +114,15 @@ namespace SICOBIM_B
         {
             app.UseRouting();
 
-            // global cors policy
             app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .SetIsOriginAllowed(origin => true) // allow any origin
+               .AllowCredentials()); // allow credentials
 
             app.UseAuthentication();
             app.UseAuthorization();
+         
 
             app.UseEndpoints(endpoints =>
             {

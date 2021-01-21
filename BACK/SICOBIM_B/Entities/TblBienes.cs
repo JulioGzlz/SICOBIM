@@ -1,78 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SICOBIM_B.Entities
 {
-    [Table("TblBienes")]
+    [Table("TblBienesMuebles")]
     public class TblBienes
     {
-        public int id { get; set; }
-        //FK
-        public int numerofederalizacion { get; set; }//normalizar 
-        public int numeroInventario { get; set; }
-        public TblInventarios tblInventarios
+        public TblBienes()
         {
-            get;
-            set;
-        }
-        public string descripcion { get; set; }
 
+            TblSalidasBien = new HashSet<TblSalidasBien>();
+
+        }
+        [Key]
+        public int TblBienesId { get; set; }
+
+        public int TblFederalizacionId { get; set; }
+
+        public int TblInventariosId { get; set; }
+        public string descripcion { get; set; }
         public string marca { get; set; }
         public string modelo { get; set; }
         public string serie { get; set; }
-        public  int cantidad { get; set; }
-        public string contrato { get; set; }//duda normalizar 
-        public string proveedor { get; set; }
-        //FK
-        public int idFactura { get; set; }//duda
-        public TblFacturas tblFacturas
-        {
-            get;
-            set;
-        }
-        public int idAñosGarantia { get; set; }
-        public CatGarantia catGarantia
-        {
-            get;
-            set;
-        }
-        public string claveCambs { get; set; }
-        public string claveSaica { get; set; }
-        public double IVA { get; set; }
-        public double subtotal { get; set; }
-        public double costoTotal { get; set; }
-        //FK
-        public int idServicio { get; set; }//duda      
-        public int idResguardatario { get; set; }
-        public TblResguardatarios tblResguardatarios
-        {
-            get;
-            set;
-        }
-        //FK
-        public int idTipoBien { get; set; }
-        public CatTipoDeBien catTipoDeBienes
-        {
-            get;
-            set;
-        }
-        //FK
-        public int idEstadoFisico { get; set; }
-        public CatEstadoDelBien catEstadoDelBien
-        {
-            get;
-            set;
-        }
+        public int cantidad { get; set; }
 
-        public String observaciones { get; set; }
+        public int TblContratoBienId { get; set; }
+        public int TblProveedorId { get; set; }
+
+        public int TblFacturasId { get; set; }
+
+        public int CatGarantiaId { get; set; }
+
+        public int CatTipoPartidaId { get; set; }
+        public int TblClaveCabmsId { get; set; }
+
+        public int TblClaveSaicaId { get; set; }
+
+
+        public int CatTipoEntradaId { get; set; }
+
+
+        public int TblAreaServicioId { get; set; }
+        public int CatPisosId { get; set; }
+
+        public int TblResguardatariosId { get; set; }
+        //FK
+        public int CatTipoDeBienId { get; set; }
+
+
+        public int CatEstadoDelBienId { get; set; }
+
+        public string observaciones { get; set; }
+
+        //falta por relasionar 
         public int idUsuarioAlta { get; set; }
         public DateTime fechaAlta { get; set; }
         public int usuarioMod { get; set; }
         public DateTime fechaMod { get; set; }
         public bool activo { get; set; }
+
+        public virtual ICollection<TblSalidasBien> TblSalidasBien { get; set; }
+
+
 
     }
 }
