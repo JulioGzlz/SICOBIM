@@ -502,7 +502,7 @@ namespace SICOBIM_B.Business
                         "\"ya se encuentra registrado");
 
                 if (_objsicobimContext.CtrlUsuarios.Any(x => x.Rfc == modeloRegistro.RFC))
-                    throw new AppException("Este RFC del empleado\"" + modeloRegistro.RFC +
+                    throw new AppException("Este RFC\"" + modeloRegistro.RFC +
                         "\"ya se encuentra registrado");
 
                 //Mando a llamar el service
