@@ -30,7 +30,7 @@ namespace SICOBIM_B.Business
         /// consulta por medio de una lista los equipos médicos 
         /// </summary>
         /// <returns></returns> 
-        public RespuestaApi<TblBienesEquMedico> GetEquipoMedico() 
+        public RespuestaApi<TblBienesEquMedico> GetEquipoMedico()
         {
             try
             {
@@ -38,9 +38,9 @@ namespace SICOBIM_B.Business
                 var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().ToList();
                 lstEquipoMedico = resul;
 
-                if (lstEquipoMedico == null || lstEquipoMedico.Count <=0 )
+                if (lstEquipoMedico == null || lstEquipoMedico.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
-              
+
                 return new RespuestaApi<TblBienesEquMedico>()
                 {
                     correcto = true,
@@ -57,17 +57,17 @@ namespace SICOBIM_B.Business
         /// consulta de equipo medico por federalizacion 
         /// </summary>
         /// <returns></returns>
-        public RespuestaApi<TblBienesEquMedico> GetConsultaFederalizacion() 
+        public RespuestaApi<TblBienesEquMedico> GetConsultaFederalizacion()
         {
             try
             {
-                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = null; 
-                var resul =_inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacionid).ToList();
+                List<TblBienesEquMedico> lstEquipoMedicoFederalizacion = null;
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdFederalizacionid).ToList();
                 lstEquipoMedicoFederalizacion = resul;
                 if (lstEquipoMedicoFederalizacion == null || lstEquipoMedicoFederalizacion.Count <= 0)
                     throw new System.Exception("No se encontraron resultados");
 
-        
+
                 return new RespuestaApi<TblBienesEquMedico>
                 {
                     correcto = true,
@@ -117,38 +117,38 @@ namespace SICOBIM_B.Business
             }
         }
 
-            /// <summary>
-            /// Colsulta de bienes sistemas por inventario
-            /// </summary>
-            /// <returns></returns>
-            public RespuestaApi<TblBienesEquMedico> GetConsultaInventario()
+        /// <summary>
+        /// Colsulta de bienes sistemas por inventario
+        /// </summary>
+        /// <returns></returns>
+        public RespuestaApi<TblBienesEquMedico> GetConsultaInventario()
+        {
+            try
             {
-                try
-                {
-                    List<TblBienesEquMedico> ltsInventarioequipmedico = null;
+                List<TblBienesEquMedico> ltsInventarioequipmedico = null;
 
-                    var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdInventarioid).ToList();
+                var resul = _inventarioServiceEquipoMedico.GetTblBienesEquMedicos().OrderBy(x => x.IdInventarioid).ToList();
                 ltsInventarioequipmedico = resul;
-                    if (ltsInventarioequipmedico == null || ltsInventarioequipmedico.Count <= 0)
-                        throw new System.Exception("No se encontraron resultados");
+                if (ltsInventarioequipmedico == null || ltsInventarioequipmedico.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
 
-                    return new RespuestaApi<TblBienesEquMedico>
-                    {
-                        correcto = true,
-                        ObjetoRespuesta = ltsInventarioequipmedico
-
-                    };
-
-                }
-                catch (Exception ex)
+                return new RespuestaApi<TblBienesEquMedico>
                 {
-                    return new RespuestaApi<TblBienesEquMedico>()
-                    {
-                        Mensaje = ex.Message
-                    };
-                }
+                    correcto = true,
+                    ObjetoRespuesta = ltsInventarioequipmedico
+
+                };
 
             }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblBienesEquMedico>()
+                {
+                    Mensaje = ex.Message
+                };
+            }
+
+        }
 
         /// <summary>
         /// Consulta de bienes equipo médico por proveedor
@@ -583,7 +583,7 @@ namespace SICOBIM_B.Business
 
         #region Metodos para guardar
 
-        public TblFacturas GuardarFacturaInventarioEquipoMedico( TblFacturas tblFacturas)
+        public TblFacturas GuardarFacturaInventarioEquipoMedico(TblFacturas tblFacturas)
         {
 
             return _inventarioServiceEquipoMedico.GuardarTblFacturas(tblFacturas);
@@ -612,14 +612,14 @@ namespace SICOBIM_B.Business
                 {
                     correcto = true,
                     Mensaje = "El registro se guardo con éxito"
-                    
+
                 };
             }
             catch (Exception ex)
             {
                 return new RespuestaApi<TblBienesEquMedico>()
                 {
-                    Mensaje = ex.Message                
+                    Mensaje = ex.Message
                 };
 
             }
@@ -638,12 +638,34 @@ namespace SICOBIM_B.Business
             return _inventarioServiceEquipoMedico.GuardarTblContratoBien(tblContratoBien);
 
         }
-        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        public RespuestaApi<TblFederalizacion> GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
         {
+            TblFederalizacion objfederalizacion = new TblFederalizacion();
+            try
+            {
+                if (_objsicobimContext.TblFederalizacion.Any(x => x.Federalizacion == tblFederalizacion.Federalizacion))
+                    throw new AppException("Error, el numero de federalización ya existe");
 
-            return _inventarioServiceEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
+                objfederalizacion = _inventarioServiceEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
 
-        }
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objfederalizacion
+                };
+            }
+
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objfederalizacion
+                };
+            }
+        } 
 
         /// <summary>
         /// Guarda y valida que no se duplique el numero de inventario en la BD

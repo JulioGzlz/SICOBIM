@@ -235,8 +235,6 @@ namespace SICOBIM_B.Services
         {
             _sicobimContext.TblFederalizacion.Add(tblFederalizacion);
             _sicobimContext.SaveChanges();
-
-
             return tblFederalizacion;
         }
 

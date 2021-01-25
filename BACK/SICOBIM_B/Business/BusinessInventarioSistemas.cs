@@ -1,6 +1,7 @@
 ﻿using SICOBIM_B.Common;
 
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Services;
 using System;
 using System.Collections.Generic;
@@ -598,17 +599,65 @@ namespace SICOBIM_B.Business
             return _inventarioServiceSistemas.GuardarTblContratoBien(tblContratoBien);
 
         }
-        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        public RespuestaApi<TblFederalizacion> GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
         {
+            TblFederalizacion objfederalizacion = new TblFederalizacion();
+            try
+            {
+                if (_objsicobimContext.TblFederalizacion.Any(x => x.Federalizacion == tblFederalizacion.Federalizacion))
+                    throw new AppException("Error, el numero de federalización ya existe");
 
-            return _inventarioServiceSistemas.GuardarTblFederalizacion(tblFederalizacion);
+                objfederalizacion = _inventarioServiceSistemas.GuardarTblFederalizacion(tblFederalizacion);
 
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objfederalizacion
+                };
+            }
+
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objfederalizacion
+                };
+            }
         }
-        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        /// <summary>
+        /// Guarda y valida que no se duplique el numero de inventario en la BD
+        /// </summary>
+        /// <param name="tblInventarios"></param>
+        /// <returns>Obj de tipo tblIventarios, para obtener el Id de su llave primaria</returns>
+        public RespuestaApi<TblInventarios> GuardarTblInventarios(TblInventarios tblInventarios)
         {
+            TblInventarios objtblInventarios = new TblInventarios();
+            try
+            {
+                if (_objsicobimContext.TblInventarios.Any(x => x.NumeroInventario == tblInventarios.NumeroInventario))
+                    throw new AppException("Error, el numero de inventario ya existe");
 
-            return _inventarioServiceSistemas.GuardarTblInventarios(tblInventarios);
+                objtblInventarios = _inventarioServiceSistemas.GuardarTblInventarios(tblInventarios);
 
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objtblInventarios
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objtblInventarios
+                };
+            }
         }
         public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
         {

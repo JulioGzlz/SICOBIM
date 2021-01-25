@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SICOBIM_B.Business;
+using SICOBIM_B.Common;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 
 namespace SICOBIM_B.Controllers
@@ -14,6 +16,9 @@ namespace SICOBIM_B.Controllers
     {
 
         BusinessInventarioInstrumentalMedico _businessInstrumeental;
+
+        RespuestaApi<TblInventarios> objRespuestatblInventarios = new RespuestaApi<TblInventarios>();
+        RespuestaApi<TblFederalizacion> objRespuestatblFederalizacion = new RespuestaApi<TblFederalizacion>();
         public InventarioInstrumentalMedicoController(BusinessInventarioInstrumentalMedico objInstrumental)
         {
             _businessInstrumeental = objInstrumental;
@@ -50,10 +55,16 @@ namespace SICOBIM_B.Controllers
             var result = _businessInstrumeental.GetConsulataProveedor();
             return Ok(result);
         }
-        [HttpGet("ObtenerEquipoMedicoPorFactura")]
-        public IActionResult GetComsultafactura()
+        [HttpGet("ObtenerFacturasEquipoMedico")]
+        public IActionResult GetConsultafactura()
         {
-            var result = _businessInstrumeental.GetConcultaPorFactura();
+            var result = _businessInstrumeental.GetFacturasEquipoMedico();
+            return Ok(result);
+        }
+        [HttpGet("ObtenerInstrumentalMédicoPorFactura/{numFactura}/{year}")]
+        public IActionResult GetConsultaporfactura(string numFactura, string year)
+        {
+            var result = _businessInstrumeental.GetConsultaPorFactura(numFactura, year);
             return Ok(result);
         }
         [HttpGet("ObtenerEquipoMedicoPorClaveSaica")]
@@ -139,7 +150,6 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporAdquisicion")]
         public IActionResult RegistroInventarioporadquisicion([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
             {
 
                 TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
@@ -150,116 +160,130 @@ namespace SICOBIM_B.Controllers
                 TblInventarios tblInventarios = new TblInventarios();
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
+                try
+                {
 
+                    tblFacturas.Factura = modeloInventario.factura;
+                    tblFacturas.Subtotal = modeloInventario.subtotal;
+                    tblFacturas.Iva = modeloInventario.iva;
+                    tblFacturas.CostoTotal = modeloInventario.total;
+                    tblFacturas.CatTipoDeBienId = 3;
+                    tblFacturas.FechaAlta = DateTime.Now;
+                    tblFacturas.Activo = true;
+                    tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-                tblFacturas.Factura = modeloInventario.factura;
-                tblFacturas.Subtotal = modeloInventario.subtotal;
-                tblFacturas.Iva = modeloInventario.iva;
-                tblFacturas.CostoTotal = modeloInventario.total;
-                tblFacturas.CatTipoDeBienId = 3;
-                tblFacturas.FechaAlta = DateTime.Now;
-                tblFacturas.Activo = true;
-                tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblFacturas = _businessInstrumeental.GuardarFacturaInventarioEquipoMedico(tblFacturas);
-
-
-
-                tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
-                tblClavesaica.CatTipoDeBienId = 3;
-                tblClavesaica.Activo = true;
-                tblClavesaica.FechaAlta = DateTime.Now;
-                tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblClavesaica = _businessInstrumeental.GuardarTblClaveSaica(tblClavesaica);
+                    tblFacturas = _businessInstrumeental.GuardarFacturaInventarioEquipoMedico(tblFacturas);
 
 
 
-                tblContratoBien.Contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBienId = 3;
-                tblContratoBien.FechaAlta = DateTime.Now;
-                tblContratoBien.Activo = true;
-                tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblContratoBien = _businessInstrumeental.GuardarTblContratoBien(tblContratoBien);
+                    tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
+                    tblClavesaica.CatTipoDeBienId = 3;
+                    tblClavesaica.Activo = true;
+                    tblClavesaica.FechaAlta = DateTime.Now;
+                    tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-
-                tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBienId = 3;
-                tblFederalizacion.FechaAlta = DateTime.Now;
-                tblFederalizacion.Activo = true;
-                tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
-
-
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 3;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
-
-                tblProveedor.Proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBienId = 3;
-                tblProveedor.FechaAlta = DateTime.Now;
-                tblProveedor.Activo = true;
-                tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblProveedor = _businessInstrumeental.GuardarTblProveedor(tblProveedor);
-
-
-                tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBienId = 3;
-                tblClaveCabms.FechaAlta = DateTime.Now;
-                tblClaveCabms.Activo = true;
-                tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblClaveCabms = _businessInstrumeental.GuardarTblClaveCabms(tblClaveCabms);
+                    tblClavesaica = _businessInstrumeental.GuardarTblClaveSaica(tblClavesaica);
 
 
 
+                    tblContratoBien.Contratobien = modeloInventario.ContratoBien;
+                    tblContratoBien.CatTipoDeBienId = 3;
+                    tblContratoBien.FechaAlta = DateTime.Now;
+                    tblContratoBien.Activo = true;
+                    tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblContratoBien = _businessInstrumeental.GuardarTblContratoBien(tblContratoBien);
 
 
-                tblInstrumentalMedico.IdFederalizacionid = tblFederalizacion.Id;
-                tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
-                tblInstrumentalMedico.IdInventarioid = tblInventarios.Id;
-                tblInstrumentalMedico.Marca = modeloInventario.marca;
-                tblInstrumentalMedico.Modelo = modeloInventario.modelo;
-                tblInstrumentalMedico.Serie = modeloInventario.serie;
-                tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
-                tblInstrumentalMedico.Costounitario = modeloInventario.costounitario;
-                tblInstrumentalMedico.CatTipoPartidaid = modeloInventario.IdTipoPartida;
-                tblInstrumentalMedico.CatTipoEntradaid = 1;
-                tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
-                tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
-                tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
-                tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
-                tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInstrumentalMedico.FechaAlta = DateTime.Now;
-                tblInstrumentalMedico.IdContratoBienid = tblContratoBien.Id;
-                tblInstrumentalMedico.IdProveedorid = tblProveedor.Id;
-                tblInstrumentalMedico.IdFacturasid = tblFacturas.IdFactura;
-                tblInstrumentalMedico.CatGarantiaid = modeloInventario.IdGarantia;
-                tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblInstrumentalMedico.CatTipoDeBienid = 3;
-                tblInstrumentalMedico.Activo = true;
-                tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
-                tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                    tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
+                    tblFederalizacion.CatTipoDeBienId = 3;
+                    tblFederalizacion.FechaAlta = DateTime.Now;
+                    tblFederalizacion.Activo = true;
+                    tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
 
+
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 3;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
+
+                    tblProveedor.Proveedor = modeloInventario.Proveedor;
+                    tblProveedor.CatTipoDeBienId = 3;
+                    tblProveedor.FechaAlta = DateTime.Now;
+                    tblProveedor.Activo = true;
+                    tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblProveedor = _businessInstrumeental.GuardarTblProveedor(tblProveedor);
+
+
+                    tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
+                    tblClaveCabms.CatTipoDeBienId = 3;
+                    tblClaveCabms.FechaAlta = DateTime.Now;
+                    tblClaveCabms.Activo = true;
+                    tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblClaveCabms = _businessInstrumeental.GuardarTblClaveCabms(tblClaveCabms);
+
+
+
+
+
+                    tblInstrumentalMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
+                    tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
+                    tblInstrumentalMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblInstrumentalMedico.Marca = modeloInventario.marca;
+                    tblInstrumentalMedico.Modelo = modeloInventario.modelo;
+                    tblInstrumentalMedico.Serie = modeloInventario.serie;
+                    tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
+                    tblInstrumentalMedico.Costounitario = modeloInventario.costounitario;
+                    tblInstrumentalMedico.CatTipoPartidaid = modeloInventario.IdTipoPartida;
+                    tblInstrumentalMedico.CatTipoEntradaid = 1;
+                    tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
+                    tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
+                    tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
+                    tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
+                    tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblInstrumentalMedico.FechaAlta = DateTime.Now;
+                    tblInstrumentalMedico.IdContratoBienid = tblContratoBien.Id;
+                    tblInstrumentalMedico.IdProveedorid = tblProveedor.Id;
+                    tblInstrumentalMedico.IdFacturasid = tblFacturas.IdFactura;
+                    tblInstrumentalMedico.CatGarantiaid = modeloInventario.IdGarantia;
+                    tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblInstrumentalMedico.CatTipoDeBienid = 3;
+                    tblInstrumentalMedico.Activo = true;
+                    tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
+                    tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
+
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
 
-
-            return Ok();
         }
-
         #endregion
 
         #region Entradas por Traspaso
         [HttpPost("EntradaporTraspaso")]
+
         public IActionResult RegistroInventarioportraspaso([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
-            {
 
+            {
                 TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
                 TblFacturas tblFacturas = new TblFacturas();
                 TblClaveSaica tblClavesaica = new TblClaveSaica();
@@ -269,100 +293,117 @@ namespace SICOBIM_B.Controllers
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
 
-                tblFacturas.Factura = modeloInventario.factura;
-                tblFacturas.CatTipoDeBienId = 3;
-                tblFacturas.FechaAlta = DateTime.Now;
-                tblFacturas.Activo = true;
-                tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblFacturas = _businessInstrumeental.GuardarFacturaInventarioEquipoMedico(tblFacturas);
+                try
+                {
 
 
+                    tblFacturas.Factura = modeloInventario.factura;
+                    tblFacturas.CatTipoDeBienId = 3;
+                    tblFacturas.FechaAlta = DateTime.Now;
+                    tblFacturas.Activo = true;
+                    tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-                tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
-                tblClavesaica.CatTipoDeBienId = 3;
-                tblClavesaica.Activo = true;
-                tblClavesaica.FechaAlta = DateTime.Now;
-                tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblClavesaica = _businessInstrumeental.GuardarTblClaveSaica(tblClavesaica);
+                    tblFacturas = _businessInstrumeental.GuardarFacturaInventarioEquipoMedico(tblFacturas);
 
 
 
-                tblContratoBien.Contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBienId = 3;
-                tblContratoBien.FechaAlta = DateTime.Now;
-                tblContratoBien.Activo = true;
-                tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblContratoBien = _businessInstrumeental.GuardarTblContratoBien(tblContratoBien);
+                    tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
+                    tblClavesaica.CatTipoDeBienId = 3;
+                    tblClavesaica.Activo = true;
+                    tblClavesaica.FechaAlta = DateTime.Now;
+                    tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-
-                tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBienId = 3;
-                tblFederalizacion.FechaAlta = DateTime.Now;
-                tblFederalizacion.Activo = true;
-                tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
-
-
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 3;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
-
-                tblProveedor.Proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBienId = 3;
-                tblProveedor.FechaAlta = DateTime.Now;
-                tblProveedor.Activo = true;
-                tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblProveedor = _businessInstrumeental.GuardarTblProveedor(tblProveedor);
-
-
-                tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBienId = 3;
-                tblClaveCabms.FechaAlta = DateTime.Now;
-                tblClaveCabms.Activo = true;
-                tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblClaveCabms = _businessInstrumeental.GuardarTblClaveCabms(tblClaveCabms);
-
-                tblInstrumentalMedico.IdFederalizacionid = tblFederalizacion.Id;
-                tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
-                tblInstrumentalMedico.IdInventarioid = tblInventarios.Id;
-                tblInstrumentalMedico.Marca = modeloInventario.marca;
-                tblInstrumentalMedico.Modelo = modeloInventario.modelo;
-                tblInstrumentalMedico.Serie = modeloInventario.serie;
-                tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
-                tblInstrumentalMedico.Costounitario = modeloInventario.costounitario;
-                tblInstrumentalMedico.CatTipoPartidaid = modeloInventario.IdTipoPartida;
-                tblInstrumentalMedico.CatTipoEntradaid = 2;
-                tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
-                tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
-                tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
-                tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
-                tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInstrumentalMedico.FechaAlta = DateTime.Now;
-                ///Es un dato que puede ir o no
-                tblInstrumentalMedico.IdContratoBienid = tblContratoBien.Id;
-                ///Es un dato que puede ir o no
-                tblInstrumentalMedico.IdProveedorid = tblProveedor.Id;
-                ///Es un dato que puede ir o no
-                tblInstrumentalMedico.IdFacturasid = tblFacturas.IdFactura;
-                tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblInstrumentalMedico.CatTipoDeBienid = 3;
-                tblInstrumentalMedico.Activo = true;
-                tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
-                tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                    tblClavesaica = _businessInstrumeental.GuardarTblClaveSaica(tblClavesaica);
 
 
 
+                    tblContratoBien.Contratobien = modeloInventario.ContratoBien;
+                    tblContratoBien.CatTipoDeBienId = 3;
+                    tblContratoBien.FechaAlta = DateTime.Now;
+                    tblContratoBien.Activo = true;
+                    tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblContratoBien = _businessInstrumeental.GuardarTblContratoBien(tblContratoBien);
+
+
+                    tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
+                    tblFederalizacion.CatTipoDeBienId = 3;
+                    tblFederalizacion.FechaAlta = DateTime.Now;
+                    tblFederalizacion.Activo = true;
+                    tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
+
+
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 3;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
+
+                    tblProveedor.Proveedor = modeloInventario.Proveedor;
+                    tblProveedor.CatTipoDeBienId = 3;
+                    tblProveedor.FechaAlta = DateTime.Now;
+                    tblProveedor.Activo = true;
+                    tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblProveedor = _businessInstrumeental.GuardarTblProveedor(tblProveedor);
+
+
+                    tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
+                    tblClaveCabms.CatTipoDeBienId = 3;
+                    tblClaveCabms.FechaAlta = DateTime.Now;
+                    tblClaveCabms.Activo = true;
+                    tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblClaveCabms = _businessInstrumeental.GuardarTblClaveCabms(tblClaveCabms);
+
+                    tblInstrumentalMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
+                    tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
+                    tblInstrumentalMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblInstrumentalMedico.Marca = modeloInventario.marca;
+                    tblInstrumentalMedico.Modelo = modeloInventario.modelo;
+                    tblInstrumentalMedico.Serie = modeloInventario.serie;
+                    tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
+                    tblInstrumentalMedico.Costounitario = modeloInventario.costounitario;
+                    tblInstrumentalMedico.CatTipoPartidaid = modeloInventario.IdTipoPartida;
+                    tblInstrumentalMedico.CatTipoEntradaid = 2;
+                    tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
+                    tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
+                    tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
+                    tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
+                    tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblInstrumentalMedico.FechaAlta = DateTime.Now;
+                    ///Es un dato que puede ir o no
+                    tblInstrumentalMedico.IdContratoBienid = tblContratoBien.Id;
+                    ///Es un dato que puede ir o no
+                    tblInstrumentalMedico.IdProveedorid = tblProveedor.Id;
+                    ///Es un dato que puede ir o no
+                    tblInstrumentalMedico.IdFacturasid = tblFacturas.IdFactura;
+                    tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblInstrumentalMedico.CatTipoDeBienid = 3;
+                    tblInstrumentalMedico.Activo = true;
+                    tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
+                    tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
+                    _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+
+
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
-
-
-            return Ok();
         }
         #endregion
 
@@ -377,53 +418,68 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporDonacion")]
         public IActionResult RegistroInventariopordonacion([FromBody] ModeloInventario modeloInventario)
         {
-
-            if (modeloInventario != null)
             {
 
                 TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
 
                 TblInventarios tblInventarios = new TblInventarios();
+                try
+                {
 
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 3;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
-
-
-
-
-
-                tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
-                ///<summary>
-                ///Este tipo de entrada lleva un numero de inventario interno
-                ///</summary>
-                tblInstrumentalMedico.IdInventarioid = tblInventarios.Id;
-                tblInstrumentalMedico.Marca = modeloInventario.marca;
-                tblInstrumentalMedico.Modelo = modeloInventario.modelo;
-                tblInstrumentalMedico.Serie = modeloInventario.serie;
-                tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
-                tblInstrumentalMedico.CatTipoEntradaid = 3;
-                tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
-                tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
-                tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
-                tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
-                tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInstrumentalMedico.FechaAlta = DateTime.Now;
-                tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblInstrumentalMedico.CatTipoDeBienid = 3;
-                tblInstrumentalMedico.Activo = true;
-                _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 3;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
 
 
 
+
+
+                    tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
+                    ///<summary>
+                    ///Este tipo de entrada lleva un numero de inventario interno
+                    ///</summary>
+                    tblInstrumentalMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblInstrumentalMedico.Marca = modeloInventario.marca;
+                    tblInstrumentalMedico.Modelo = modeloInventario.modelo;
+                    tblInstrumentalMedico.Serie = modeloInventario.serie;
+                    tblInstrumentalMedico.Cantidad = modeloInventario.cantidad;
+                    tblInstrumentalMedico.CatTipoEntradaid = 3;
+                    tblInstrumentalMedico.CatPisosid = modeloInventario.IdPisos;
+                    tblInstrumentalMedico.Catareaid = modeloInventario.IdArea;
+                    tblInstrumentalMedico.Catservicioid = modeloInventario.IdServicio;
+                    tblInstrumentalMedico.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblInstrumentalMedico.Observaciones = modeloInventario.observaciones;
+                    tblInstrumentalMedico.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblInstrumentalMedico.FechaAlta = DateTime.Now;
+                    tblInstrumentalMedico.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblInstrumentalMedico.CatTipoDeBienid = 3;
+                    tblInstrumentalMedico.Activo = true;
+                    _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+
+
+
+
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
-
-
-            return Ok();
         }
         #endregion
 
@@ -438,16 +494,19 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporSustitucion")]
         public IActionResult RegistroInventarioporReposicion([FromBody] ModeloInventario modeloInventario)
         {
-            
 
-                TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
-                TblFacturas tblFacturas = new TblFacturas();
-                TblClaveSaica tblClavesaica = new TblClaveSaica();
-                TblContratoBien tblContratoBien = new TblContratoBien();
-                TblFederalizacion tblFederalizacion = new TblFederalizacion();
-                TblInventarios tblInventarios = new TblInventarios();
-                TblProveedor tblProveedor = new TblProveedor();
-                TblClaveCabms tblClaveCabms = new TblClaveCabms();
+
+            TblInstrumentalMedico tblInstrumentalMedico = new TblInstrumentalMedico();
+            TblFacturas tblFacturas = new TblFacturas();
+            TblClaveSaica tblClavesaica = new TblClaveSaica();
+            TblContratoBien tblContratoBien = new TblContratoBien();
+            TblFederalizacion tblFederalizacion = new TblFederalizacion();
+            TblInventarios tblInventarios = new TblInventarios();
+            TblProveedor tblProveedor = new TblProveedor();
+            TblClaveCabms tblClaveCabms = new TblClaveCabms();
+            try
+            {
+
 
 
                 tblFacturas.Factura = modeloInventario.factura;
@@ -481,7 +540,7 @@ namespace SICOBIM_B.Controllers
                 tblFederalizacion.FechaAlta = DateTime.Now;
                 tblFederalizacion.Activo = true;
                 tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
+                objRespuestatblFederalizacion = _businessInstrumeental.GuardarTblFederalizacion(tblFederalizacion);
 
 
                 tblInventarios.NumeroInventario = modeloInventario.Inventario;
@@ -489,7 +548,7 @@ namespace SICOBIM_B.Controllers
                 tblInventarios.FechaAlta = DateTime.Now;
                 tblInventarios.Activo = true;
                 tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
+                objRespuestatblInventarios = _businessInstrumeental.GuardarTblInventarios(tblInventarios);
 
                 tblProveedor.Proveedor = modeloInventario.Proveedor;
                 tblProveedor.CatTipoDeBienId = 3;
@@ -506,9 +565,9 @@ namespace SICOBIM_B.Controllers
                 tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
                 tblClaveCabms = _businessInstrumeental.GuardarTblClaveCabms(tblClaveCabms);
 
-                tblInstrumentalMedico.IdFederalizacionid = tblFederalizacion.Id;
+                tblInstrumentalMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
                 tblInstrumentalMedico.Descripcion = modeloInventario.Descripcion;
-                tblInstrumentalMedico.IdInventarioid = tblInventarios.Id;
+                tblInstrumentalMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblInstrumentalMedico.Marca = modeloInventario.marca;
                 tblInstrumentalMedico.Modelo = modeloInventario.modelo;
                 tblInstrumentalMedico.Serie = modeloInventario.serie;
@@ -529,15 +588,26 @@ namespace SICOBIM_B.Controllers
                 tblInstrumentalMedico.Activo = true;
                 tblInstrumentalMedico.IdClaveCabmsid = tblClaveCabms.Id;
                 tblInstrumentalMedico.IdClaveSaicaid = tblClavesaica.Id;
-                var result =_businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
 
+                if (objRespuestatblInventarios.correcto == false)
+                {
+                    return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                }
+                else
+                {
 
+                    var result =
+                _businessInstrumeental.GuardarTblInstrumentalMedico(tblInstrumentalMedico);
+                    return Ok(result);
+                }
 
-            
-
-
-            return Ok(result);
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
+
         #endregion
 
 
@@ -545,3 +615,6 @@ namespace SICOBIM_B.Controllers
 
     }
 }
+
+
+

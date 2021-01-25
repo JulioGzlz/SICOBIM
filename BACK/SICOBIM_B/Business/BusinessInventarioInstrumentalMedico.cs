@@ -1,6 +1,7 @@
 ﻿using SICOBIM_B.Common;
 
 using SICOBIM_B.Entities;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Services;
 using System;
 using System.Collections.Generic;
@@ -178,7 +179,7 @@ namespace SICOBIM_B.Business
         /// </summary>
         /// <param name="factura"></param>
         /// <returns></returns>
-        public RespuestaApi<TblInstrumentalMedico> GetConcultaPorFactura()
+        public RespuestaApi<TblInstrumentalMedico> GetFacturasEquipoMedico()
         {
             try
             {
@@ -200,6 +201,34 @@ namespace SICOBIM_B.Business
             {
 
                 return new RespuestaApi<TblInstrumentalMedico>
+                { Mensaje = ex.Message };
+            }
+        }
+
+        public RespuestaApi<TblFacturas> GetConsultaPorFactura(string numFactura, string year)
+        {
+            try
+            {
+                List<TblFacturas> lstBienesFactura = null;
+                if (numFactura != null && year == null)
+                {
+                    var resul = _objsicobimContext.TblFacturas.Where(x => x.Factura == numFactura).ToList();
+                    lstBienesFactura = resul;
+                }   
+
+                if (lstBienesFactura == null || lstBienesFactura.Count <= 0)
+                    throw new System.Exception("No se encontraron resultados");
+
+                return new RespuestaApi<TblFacturas>()
+                {
+                    correcto = true,
+                    ObjetoRespuesta = lstBienesFactura
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new RespuestaApi<TblFacturas>
                 { Mensaje = ex.Message };
             }
         }
@@ -232,12 +261,13 @@ namespace SICOBIM_B.Business
                 { Mensaje = ex.Message };
             }
         }
-        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBieninstrumental)
+        public RespuestaApi<TblFacturas> GetFacturasTipoInventario(int idBieninstrumental) 
         {
 
             try
             {
-                List<TblFacturas> lstFacturasporInventario = null; var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBieninstrumental).ToList();
+                List<TblFacturas> lstFacturasporInventario = null; 
+                var resul = _objsicobimContext.TblFacturas.Where(x => x.CatTipoDeBienId == idBieninstrumental).ToList();
                 lstFacturasporInventario = resul;
                 if (lstFacturasporInventario == null || lstFacturasporInventario.Count <= 0)
                     throw new System.Exception("No existen registros con el Bien insertado, favor de verificar");
@@ -578,17 +608,65 @@ namespace SICOBIM_B.Business
             return _inventarioServiceInstrumentalMedico.GuardarTblContratoBien(tblContratoBien);
 
         }
-        public TblFederalizacion GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
+        public RespuestaApi<TblFederalizacion> GuardarTblFederalizacion(TblFederalizacion tblFederalizacion)
         {
+            TblFederalizacion objfederalizacion = new TblFederalizacion();
+            try
+            {
+                if (_objsicobimContext.TblFederalizacion.Any(x => x.Federalizacion == tblFederalizacion.Federalizacion))
+                    throw new AppException("Error, el numero de federalización ya existe");
 
-            return _inventarioServiceInstrumentalMedico.GuardarTblFederalizacion(tblFederalizacion);
+                objfederalizacion = _inventarioServiceInstrumentalMedico.GuardarTblFederalizacion(tblFederalizacion);
 
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objfederalizacion
+                };
+            }
+
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblFederalizacion>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objfederalizacion
+                };
+            }
         }
-        public TblInventarios GuardarTblInventarios(TblInventarios tblInventarios)
+        /// <summary>
+        /// Guarda y valida que no se duplique el numero de inventario en la BD
+        /// </summary>
+        /// <param name="tblInventarios"></param>
+        /// <returns>Obj de tipo tblIventarios, para obtener el Id de su llave primaria</returns>
+        public RespuestaApi<TblInventarios> GuardarTblInventarios(TblInventarios tblInventarios)
         {
+            TblInventarios objtblInventarios = new TblInventarios();
+            try
+            {
+                if (_objsicobimContext.TblInventarios.Any(x => x.NumeroInventario == tblInventarios.NumeroInventario))
+                    throw new AppException("Error, el numero de inventario ya existe");
 
-            return _inventarioServiceInstrumentalMedico.GuardarTblInventarios(tblInventarios);
+                objtblInventarios = _inventarioServiceInstrumentalMedico.GuardarTblInventarios(tblInventarios);
 
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = "Registro guardado correctamente",
+                    correcto = true,
+                    objGenerics = objtblInventarios
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaApi<TblInventarios>()
+                {
+                    Mensaje = ex.Message,
+                    correcto = false,
+                    objGenerics = objtblInventarios
+                };
+            }
         }
         public TblProveedor GuardarTblProveedor(TblProveedor tblProveedor)
         {

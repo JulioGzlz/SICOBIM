@@ -31,7 +31,7 @@ namespace SICOBIM_B.Controllers
 
         BusinessInventarioEquipoMedico _businessEquipoMedico;
         RespuestaApi<TblInventarios> objRespuestatblInventarios = new RespuestaApi<TblInventarios>();
-
+        RespuestaApi<TblFederalizacion> objRespuestatblFederalizacion = new RespuestaApi<TblFederalizacion>();
 
         public InventarioEquipoMedicoController(BusinessInventarioEquipoMedico objEquipoMedico)
         {
@@ -210,7 +210,7 @@ namespace SICOBIM_B.Controllers
                 tblFederalizacion.FechaAlta = DateTime.Now;
                 tblFederalizacion.Activo = true;
                 tblFederalizacion.IdUsuarioAlta =  modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
+                objRespuestatblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
 
 
                 tblInventarios.NumeroInventario = modeloInventario.Inventario;
@@ -240,7 +240,7 @@ namespace SICOBIM_B.Controllers
 
 
 
-                tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
+                tblBienesEquMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
                 tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
@@ -292,7 +292,7 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporTraspaso")]
         public IActionResult RegistroInventarioportraspaso([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
+         
             {
            
                 TblBienesEquMedico tblBienesEquMedico = new TblBienesEquMedico();
@@ -303,8 +303,9 @@ namespace SICOBIM_B.Controllers
                 TblInventarios tblInventarios = new TblInventarios();
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
-
-                tblFacturas.Factura = modeloInventario.factura;
+             try
+                {
+                    tblFacturas.Factura = modeloInventario.factura;
                 tblFacturas.CatTipoDeBienId = 2;
                 tblFacturas.FechaAlta = DateTime.Now;
                 tblFacturas.Activo = true;
@@ -337,7 +338,7 @@ namespace SICOBIM_B.Controllers
                 tblFederalizacion.FechaAlta = DateTime.Now;
                 tblFederalizacion.Activo = true;
                 tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
+                objRespuestatblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
 
 
                 tblInventarios.NumeroInventario = modeloInventario.Inventario;
@@ -362,7 +363,7 @@ namespace SICOBIM_B.Controllers
                 tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
                 tblClaveCabms = _businessEquipoMedico.GuardarTblClaveCabms(tblClaveCabms);
 
-                tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
+                tblBienesEquMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
                 tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;
@@ -390,15 +391,33 @@ namespace SICOBIM_B.Controllers
                 tblBienesEquMedico.Activo = true;
                 tblBienesEquMedico.IdClaveCabmsid = tblClaveCabms.Id;
                 tblBienesEquMedico.IdClaveSaicaid = tblClavesaica.Id;
-                _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico);
+
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result = _businessEquipoMedico.GuardarTblEquiMedico(tblBienesEquMedico); //Esta función se debe validar 
+                        return Ok(result);
+                    }
+                }
+
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+
+             }
 
 
 
             }
 
 
-            return Ok();
         }
+
+
         #endregion
 
         #region entrada por donaciòn 
@@ -517,7 +536,7 @@ namespace SICOBIM_B.Controllers
                 tblFederalizacion.FechaAlta = DateTime.Now;
                 tblFederalizacion.Activo = true;
                 tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
+                objRespuestatblFederalizacion = _businessEquipoMedico.GuardarTblFederalizacion(tblFederalizacion);
 
 
                 tblInventarios.NumeroInventario = modeloInventario.Inventario;
@@ -542,7 +561,7 @@ namespace SICOBIM_B.Controllers
                 tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
                 tblClaveCabms = _businessEquipoMedico.GuardarTblClaveCabms(tblClaveCabms);
 
-                tblBienesEquMedico.IdFederalizacionid = tblFederalizacion.Id;
+                tblBienesEquMedico.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
                 tblBienesEquMedico.Descripcion = modeloInventario.Descripcion;
                 tblBienesEquMedico.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
                 tblBienesEquMedico.Marca = modeloInventario.marca;

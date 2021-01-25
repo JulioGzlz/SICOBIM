@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SICOBIM_B.Business;
+using SICOBIM_B.Common;
+using SICOBIM_B.Helpers;
 using SICOBIM_B.Models;
 using SICOBIM_B.Services;
 
@@ -16,6 +18,8 @@ namespace SICOBIM_B.Controllers
     {
 
         BusinessInventarioMobiliario _businessInventarioMobiliario;
+        RespuestaApi<TblInventarios> objRespuestatblInventarios = new RespuestaApi<TblInventarios>();
+        RespuestaApi<TblFederalizacion> objRespuestatblFederalizacion = new RespuestaApi<TblFederalizacion>();
         #region Consultas metodo get
         public InventarioMobiliarioController(BusinessInventarioMobiliario objInventarioMobiliario)
 
@@ -144,7 +148,6 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporAdquisicion")]
         public IActionResult RegistroInventarioporadquisicion([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
             {
 
                 TblBienesMuebles tblBienesMuebles = new TblBienesMuebles();
@@ -155,105 +158,122 @@ namespace SICOBIM_B.Controllers
                 TblInventarios tblInventarios = new TblInventarios();
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
-
-
-                tblFacturas.Factura = modeloInventario.factura;
-                tblFacturas.Subtotal = modeloInventario.subtotal;
-                tblFacturas.Iva = modeloInventario.iva;
-                tblFacturas.CostoTotal = modeloInventario.total;
-                tblFacturas.CatTipoDeBienId = 1;
-                tblFacturas.FechaAlta = DateTime.Now;
-                tblFacturas.Activo = true;
-                tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
+                try
+                {
 
 
 
-                tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
-                tblClavesaica.CatTipoDeBienId = 1;
-                tblClavesaica.Activo = true;
-                tblClavesaica.FechaAlta = DateTime.Now;
-                tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblFacturas.Factura = modeloInventario.factura;
+                    tblFacturas.Subtotal = modeloInventario.subtotal;
+                    tblFacturas.Iva = modeloInventario.iva;
+                    tblFacturas.CostoTotal = modeloInventario.total;
+                    tblFacturas.CatTipoDeBienId = 1;
+                    tblFacturas.FechaAlta = DateTime.Now;
+                    tblFacturas.Activo = true;
+                    tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-                tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
-
-
-
-                tblContratoBien.Contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBienId = 1;
-                tblContratoBien.FechaAlta = DateTime.Now;
-                tblContratoBien.Activo = true;
-                tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
-
-
-                tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBienId = 1;
-                tblFederalizacion.FechaAlta = DateTime.Now;
-                tblFederalizacion.Activo = true;
-                tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
-
-
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 1;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
-
-                tblProveedor.Proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBienId = 1;
-                tblProveedor.FechaAlta = DateTime.Now;
-                tblProveedor.Activo = true;
-                tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
-
-
-                tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBienId = 1;
-                tblClaveCabms.FechaAlta = DateTime.Now;
-                tblClaveCabms.Activo = true;
-                tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
+                    tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
 
 
 
+                    tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
+                    tblClavesaica.CatTipoDeBienId = 1;
+                    tblClavesaica.Activo = true;
+                    tblClavesaica.FechaAlta = DateTime.Now;
+                    tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+
+                    tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
 
 
-                tblBienesMuebles.IdFederalizacionid = tblFederalizacion.Id;
-                tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
-                tblBienesMuebles.IdInventarioid = tblInventarios.Id;
-                tblBienesMuebles.Marca = modeloInventario.marca;
-                tblBienesMuebles.Modelo = modeloInventario.modelo;
-                tblBienesMuebles.Serie = modeloInventario.serie;
-                tblBienesMuebles.Cantidad = modeloInventario.cantidad;
-                tblBienesMuebles.Costounitario = modeloInventario.costounitario;
-                tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
-                tblBienesMuebles.CatTipoEntradaid = 1;
-                tblBienesMuebles.Catareaid = modeloInventario.IdArea;
-                tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
-                tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
-                tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblBienesMuebles.Observaciones = modeloInventario.observaciones;
-                tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblBienesMuebles.FechaAlta = DateTime.Now;
-                tblBienesMuebles.IdContratoBienid = tblContratoBien.Id;
-                tblBienesMuebles.IdProveedorid = tblProveedor.Id;
-                tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
-                tblBienesMuebles.CatGarantiaid = modeloInventario.IdGarantia;
-                tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblBienesMuebles.CatTipoDeBienid = 1;
-                tblBienesMuebles.Activo = true;
-                tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
-                tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
 
+                    tblContratoBien.Contratobien = modeloInventario.ContratoBien;
+                    tblContratoBien.CatTipoDeBienId = 1;
+                    tblContratoBien.FechaAlta = DateTime.Now;
+                    tblContratoBien.Activo = true;
+                    tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
+
+
+                    tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
+                    tblFederalizacion.CatTipoDeBienId = 1;
+                    tblFederalizacion.FechaAlta = DateTime.Now;
+                    tblFederalizacion.Activo = true;
+                    tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
+
+
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 1;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
+
+                    tblProveedor.Proveedor = modeloInventario.Proveedor;
+                    tblProveedor.CatTipoDeBienId = 1;
+                    tblProveedor.FechaAlta = DateTime.Now;
+                    tblProveedor.Activo = true;
+                    tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
+
+
+                    tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
+                    tblClaveCabms.CatTipoDeBienId = 1;
+                    tblClaveCabms.FechaAlta = DateTime.Now;
+                    tblClaveCabms.Activo = true;
+                    tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
+
+
+
+
+
+                    tblBienesMuebles.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
+                    tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
+                    tblBienesMuebles.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblBienesMuebles.Marca = modeloInventario.marca;
+                    tblBienesMuebles.Modelo = modeloInventario.modelo;
+                    tblBienesMuebles.Serie = modeloInventario.serie;
+                    tblBienesMuebles.Cantidad = modeloInventario.cantidad;
+                    tblBienesMuebles.Costounitario = modeloInventario.costounitario;
+                    tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
+                    tblBienesMuebles.CatTipoEntradaid = 1;
+                    tblBienesMuebles.Catareaid = modeloInventario.IdArea;
+                    tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
+                    tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
+                    tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblBienesMuebles.Observaciones = modeloInventario.observaciones;
+                    tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblBienesMuebles.FechaAlta = DateTime.Now;
+                    tblBienesMuebles.IdContratoBienid = tblContratoBien.Id;
+                    tblBienesMuebles.IdProveedorid = tblProveedor.Id;
+                    tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
+                    tblBienesMuebles.CatGarantiaid = modeloInventario.IdGarantia;
+                    tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblBienesMuebles.CatTipoDeBienid = 1;
+                    tblBienesMuebles.Activo = true;
+                    tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
+                    tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
+
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
 
-
-            return Ok();
         }
 
         #endregion
@@ -262,7 +282,6 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporTraspaso")]
         public IActionResult RegistroInventarioportraspaso([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
             {
 
                 TblBienesMuebles tblBienesMuebles = new TblBienesMuebles();
@@ -274,101 +293,115 @@ namespace SICOBIM_B.Controllers
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
 
-                tblFacturas.Factura = modeloInventario.factura;
-                tblFacturas.CatTipoDeBienId = 1;
-                tblFacturas.FechaAlta = DateTime.Now;
-                tblFacturas.Activo = true;
-                tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                try
+                {
+                    tblFacturas.Factura = modeloInventario.factura;
+                    tblFacturas.CatTipoDeBienId = 1;
+                    tblFacturas.FechaAlta = DateTime.Now;
+                    tblFacturas.Activo = true;
+                    tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-                tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
-
-
-
-                tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
-                tblClavesaica.CatTipoDeBienId = 1;
-                tblClavesaica.Activo = true;
-                tblClavesaica.FechaAlta = DateTime.Now;
-                tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
+                    tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
 
 
 
-                tblContratoBien.Contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBienId = 1;
-                tblContratoBien.FechaAlta = DateTime.Now;
-                tblContratoBien.Activo = true;
-                tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
+                    tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
+                    tblClavesaica.CatTipoDeBienId = 1;
+                    tblClavesaica.Activo = true;
+                    tblClavesaica.FechaAlta = DateTime.Now;
+                    tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-
-                tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBienId = 1;
-                tblFederalizacion.FechaAlta = DateTime.Now;
-                tblFederalizacion.Activo = true;
-                tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
-
-
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 1;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
-
-                tblProveedor.Proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBienId = 1;
-                tblProveedor.FechaAlta = DateTime.Now;
-                tblProveedor.Activo = true;
-                tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
-
-
-                tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBienId = 1;
-                tblClaveCabms.FechaAlta = DateTime.Now;
-                tblClaveCabms.Activo = true;
-                tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
-
-                tblBienesMuebles.IdFederalizacionid = tblFederalizacion.Id;
-                tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
-                tblBienesMuebles.IdInventarioid = tblInventarios.Id;
-                tblBienesMuebles.Marca = modeloInventario.marca;
-                tblBienesMuebles.Modelo = modeloInventario.modelo;
-                tblBienesMuebles.Serie = modeloInventario.serie;
-                tblBienesMuebles.Cantidad = modeloInventario.cantidad;
-                tblBienesMuebles.Costounitario = modeloInventario.costounitario;
-                tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
-                tblBienesMuebles.CatTipoEntradaid = 2;
-                tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
-                tblBienesMuebles.Catareaid = modeloInventario.IdArea;
-                tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
-                tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblBienesMuebles.Observaciones = modeloInventario.observaciones;
-                tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblBienesMuebles.FechaAlta = DateTime.Now;
-                ///Es un dato que puede ir o no
-                tblBienesMuebles.IdContratoBienid = tblContratoBien.Id;
-                ///Es un dato que puede ir o no
-                tblBienesMuebles.IdProveedorid = tblProveedor.Id;
-                ///Es un dato que puede ir o no
-                tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
-                tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblBienesMuebles.CatTipoDeBienid = 1;
-                tblBienesMuebles.Activo = true;
-                tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
-                tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                    tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
 
 
 
+                    tblContratoBien.Contratobien = modeloInventario.ContratoBien;
+                    tblContratoBien.CatTipoDeBienId = 1;
+                    tblContratoBien.FechaAlta = DateTime.Now;
+                    tblContratoBien.Activo = true;
+                    tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
+
+
+                    tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
+                    tblFederalizacion.CatTipoDeBienId = 1;
+                    tblFederalizacion.FechaAlta = DateTime.Now;
+                    tblFederalizacion.Activo = true;
+                    tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
+
+
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 1;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
+
+                    tblProveedor.Proveedor = modeloInventario.Proveedor;
+                    tblProveedor.CatTipoDeBienId = 1;
+                    tblProveedor.FechaAlta = DateTime.Now;
+                    tblProveedor.Activo = true;
+                    tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
+
+
+                    tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
+                    tblClaveCabms.CatTipoDeBienId = 1;
+                    tblClaveCabms.FechaAlta = DateTime.Now;
+                    tblClaveCabms.Activo = true;
+                    tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
+
+                    tblBienesMuebles.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
+                    tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
+                    tblBienesMuebles.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblBienesMuebles.Marca = modeloInventario.marca;
+                    tblBienesMuebles.Modelo = modeloInventario.modelo;
+                    tblBienesMuebles.Serie = modeloInventario.serie;
+                    tblBienesMuebles.Cantidad = modeloInventario.cantidad;
+                    tblBienesMuebles.Costounitario = modeloInventario.costounitario;
+                    tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
+                    tblBienesMuebles.CatTipoEntradaid = 2;
+                    tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
+                    tblBienesMuebles.Catareaid = modeloInventario.IdArea;
+                    tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
+                    tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblBienesMuebles.Observaciones = modeloInventario.observaciones;
+                    tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblBienesMuebles.FechaAlta = DateTime.Now;
+                    ///Es un dato que puede ir o no
+                    tblBienesMuebles.IdContratoBienid = tblContratoBien.Id;
+                    ///Es un dato que puede ir o no
+                    tblBienesMuebles.IdProveedorid = tblProveedor.Id;
+                    ///Es un dato que puede ir o no
+                    tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
+                    tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblBienesMuebles.CatTipoDeBienid = 1;
+                    tblBienesMuebles.Activo = true;
+                    tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
+                    tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
 
-
-            return Ok();
         }
+
         #endregion
 
         #region entrada por donaciòn 
@@ -382,54 +415,66 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporDonacion")]
         public IActionResult RegistroInventariopordonacion([FromBody] ModeloInventario modeloInventario)
         {
-
-            if (modeloInventario != null)
             {
 
                 TblBienesMuebles tblBienesMuebles = new TblBienesMuebles();
 
                 TblInventarios tblInventarios = new TblInventarios();
+                try
+                {
 
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 1;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
-
-
-
-
-
-                tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
-                ///<summary>
-                ///Este tipo de entrada lleva un numero de inventario interno
-                ///</summary>
-                tblBienesMuebles.IdInventarioid = tblInventarios.Id;
-                tblBienesMuebles.Marca = modeloInventario.marca;
-                tblBienesMuebles.Modelo = modeloInventario.modelo;
-                tblBienesMuebles.Serie = modeloInventario.serie;
-                tblBienesMuebles.Cantidad = modeloInventario.cantidad;
-                tblBienesMuebles.CatTipoEntradaid = 3;
-                tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
-                tblBienesMuebles.Catareaid = modeloInventario.IdArea;
-                tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
-                tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblBienesMuebles.Observaciones = modeloInventario.observaciones;
-                tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblBienesMuebles.FechaAlta = DateTime.Now;
-                tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblBienesMuebles.CatTipoDeBienid = 1;
-                tblBienesMuebles.Activo = true;
-                _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 1;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
 
 
 
+
+
+                    tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
+                    ///<summary>
+                    ///Este tipo de entrada lleva un numero de inventario interno
+                    ///</summary>
+                    tblBienesMuebles.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblBienesMuebles.Marca = modeloInventario.marca;
+                    tblBienesMuebles.Modelo = modeloInventario.modelo;
+                    tblBienesMuebles.Serie = modeloInventario.serie;
+                    tblBienesMuebles.Cantidad = modeloInventario.cantidad;
+                    tblBienesMuebles.CatTipoEntradaid = 3;
+                    tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
+                    tblBienesMuebles.Catareaid = modeloInventario.IdArea;
+                    tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
+                    tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblBienesMuebles.Observaciones = modeloInventario.observaciones;
+                    tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblBienesMuebles.FechaAlta = DateTime.Now;
+                    tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblBienesMuebles.CatTipoDeBienid = 1;
+                    tblBienesMuebles.Activo = true;
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
 
-
-            return Ok();
         }
+
         #endregion
 
         #region entrada por Reposición 
@@ -443,7 +488,6 @@ namespace SICOBIM_B.Controllers
         [HttpPost("EntradaporSustitucion")]
         public IActionResult RegistroInventarioporReposicion([FromBody] ModeloInventario modeloInventario)
         {
-            if (modeloInventario != null)
             {
 
                 TblBienesMuebles tblBienesMuebles = new TblBienesMuebles();
@@ -455,95 +499,110 @@ namespace SICOBIM_B.Controllers
                 TblProveedor tblProveedor = new TblProveedor();
                 TblClaveCabms tblClaveCabms = new TblClaveCabms();
 
-
-                tblFacturas.Factura = modeloInventario.factura;
-                tblFacturas.CatTipoDeBienId = 1;
-                tblFacturas.FechaAlta = DateTime.Now;
-                tblFacturas.Activo = true;
-                tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
+                try
+                {
 
 
+                    tblFacturas.Factura = modeloInventario.factura;
+                    tblFacturas.CatTipoDeBienId = 1;
+                    tblFacturas.FechaAlta = DateTime.Now;
+                    tblFacturas.Activo = true;
+                    tblFacturas.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-                tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
-                tblClavesaica.CatTipoDeBienId = 1;
-                tblClavesaica.Activo = true;
-                tblClavesaica.FechaAlta = DateTime.Now;
-                tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-
-                tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
+                    tblFacturas = _businessInventarioMobiliario.GuardarFacturaInventarioMobiliario(tblFacturas);
 
 
 
-                tblContratoBien.Contratobien = modeloInventario.ContratoBien;
-                tblContratoBien.CatTipoDeBienId = 1;
-                tblContratoBien.FechaAlta = DateTime.Now;
-                tblContratoBien.Activo = true;
-                tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
-                tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
-                tblFederalizacion.CatTipoDeBienId = 1;
-                tblFederalizacion.FechaAlta = DateTime.Now;
-                tblFederalizacion.Activo = true;
-                tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
+                    tblClavesaica.Clavesaica = modeloInventario.ClaveSaica;
+                    tblClavesaica.CatTipoDeBienId = 1;
+                    tblClavesaica.Activo = true;
+                    tblClavesaica.FechaAlta = DateTime.Now;
+                    tblClavesaica.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
 
-
-                tblInventarios.NumeroInventario = modeloInventario.Inventario;
-                tblInventarios.CatTipoDeBienId = 1;
-                tblInventarios.FechaAlta = DateTime.Now;
-                tblInventarios.Activo = true;
-                tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
-
-                tblProveedor.Proveedor = modeloInventario.Proveedor;
-                tblProveedor.CatTipoDeBienId = 1;
-                tblProveedor.FechaAlta = DateTime.Now;
-                tblProveedor.Activo = true;
-                tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
-
-
-                tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
-                tblClaveCabms.CatTipoDeBienId = 1;
-                tblClaveCabms.FechaAlta = DateTime.Now;
-                tblClaveCabms.Activo = true;
-                tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
-
-                tblBienesMuebles.IdFederalizacionid = tblFederalizacion.Id;
-                tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
-                tblBienesMuebles.IdInventarioid = tblInventarios.Id;
-                tblBienesMuebles.Marca = modeloInventario.marca;
-                tblBienesMuebles.Modelo = modeloInventario.modelo;
-                tblBienesMuebles.Serie = modeloInventario.serie;
-                tblBienesMuebles.Cantidad = modeloInventario.cantidad;
-                tblBienesMuebles.Costounitario = modeloInventario.costounitario;
-                tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
-                tblBienesMuebles.CatTipoEntradaid = 4;
-                tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
-                tblBienesMuebles.Catareaid = modeloInventario.IdArea;
-                tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
-                tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
-                tblBienesMuebles.Observaciones = modeloInventario.observaciones;
-                tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
-                tblBienesMuebles.FechaAlta = DateTime.Now;
-                tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
-                tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
-                tblBienesMuebles.CatTipoDeBienid = 1;
-                tblBienesMuebles.Activo = true;
-                tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
-                tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
-                _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                    tblClavesaica = _businessInventarioMobiliario.GuardarTblClaveSaica(tblClavesaica);
 
 
 
+                    tblContratoBien.Contratobien = modeloInventario.ContratoBien;
+                    tblContratoBien.CatTipoDeBienId = 1;
+                    tblContratoBien.FechaAlta = DateTime.Now;
+                    tblContratoBien.Activo = true;
+                    tblContratoBien.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblContratoBien = _businessInventarioMobiliario.GuardarTblContratoBien(tblContratoBien);
+                    tblFederalizacion.Federalizacion = modeloInventario.Federalizacion;
+                    tblFederalizacion.CatTipoDeBienId = 1;
+                    tblFederalizacion.FechaAlta = DateTime.Now;
+                    tblFederalizacion.Activo = true;
+                    tblFederalizacion.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblFederalizacion = _businessInventarioMobiliario.GuardarTblFederalizacion(tblFederalizacion);
+
+
+                    tblInventarios.NumeroInventario = modeloInventario.Inventario;
+                    tblInventarios.CatTipoDeBienId = 1;
+                    tblInventarios.FechaAlta = DateTime.Now;
+                    tblInventarios.Activo = true;
+                    tblInventarios.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    objRespuestatblInventarios = _businessInventarioMobiliario.GuardarTblInventarios(tblInventarios);
+
+                    tblProveedor.Proveedor = modeloInventario.Proveedor;
+                    tblProveedor.CatTipoDeBienId = 1;
+                    tblProveedor.FechaAlta = DateTime.Now;
+                    tblProveedor.Activo = true;
+                    tblProveedor.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblProveedor = _businessInventarioMobiliario.GuardarTblProveedor(tblProveedor);
+
+
+                    tblClaveCabms.Clavecambs = modeloInventario.ClaveCabms;
+                    tblClaveCabms.CatTipoDeBienId = 1;
+                    tblClaveCabms.FechaAlta = DateTime.Now;
+                    tblClaveCabms.Activo = true;
+                    tblClaveCabms.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblClaveCabms = _businessInventarioMobiliario.GuardarTblClaveCabms(tblClaveCabms);
+
+                    tblBienesMuebles.IdFederalizacionid = objRespuestatblFederalizacion.objGenerics.Id;
+                    tblBienesMuebles.Descripcion = modeloInventario.Descripcion;
+                    tblBienesMuebles.IdInventarioid = objRespuestatblInventarios.objGenerics.Id;
+                    tblBienesMuebles.Marca = modeloInventario.marca;
+                    tblBienesMuebles.Modelo = modeloInventario.modelo;
+                    tblBienesMuebles.Serie = modeloInventario.serie;
+                    tblBienesMuebles.Cantidad = modeloInventario.cantidad;
+                    tblBienesMuebles.Costounitario = modeloInventario.costounitario;
+                    tblBienesMuebles.CatTipoPartidaid = modeloInventario.IdTipoPartida;
+                    tblBienesMuebles.CatTipoEntradaid = 4;
+                    tblBienesMuebles.CatPisosid = modeloInventario.IdPisos;
+                    tblBienesMuebles.Catareaid = modeloInventario.IdArea;
+                    tblBienesMuebles.Catservicioid = modeloInventario.IdServicio;
+                    tblBienesMuebles.CatEstadoDelBienid = modeloInventario.IdEstadodelBien;
+                    tblBienesMuebles.Observaciones = modeloInventario.observaciones;
+                    tblBienesMuebles.IdUsuarioAlta = modeloInventario.idUsuarioAlta;
+                    tblBienesMuebles.FechaAlta = DateTime.Now;
+                    tblBienesMuebles.IdFacturasid = tblFacturas.IdFactura;
+                    tblBienesMuebles.IdResguardatariosid = modeloInventario.IdResguardatarios;
+                    tblBienesMuebles.CatTipoDeBienid = 1;
+                    tblBienesMuebles.Activo = true;
+                    tblBienesMuebles.IdClaveCabmsid = tblClaveCabms.Id;
+                    tblBienesMuebles.IdClaveSaicaid = tblClavesaica.Id;
+                    if (objRespuestatblInventarios.correcto == false)
+                    {
+                        return BadRequest(new { message = objRespuestatblInventarios.Mensaje });
+                    }
+                    else
+                    {
+
+                        var result =
+                    _businessInventarioMobiliario.GuardarTblBienesMuebles(tblBienesMuebles);
+                        return Ok(result);
+                    }
+
+                }
+                catch (AppException ex)
+                {
+                    return BadRequest(new { message = ex.Message });
+                }
             }
 
-
-            return Ok();
         }
+
         #endregion
 
     }
